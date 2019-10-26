@@ -1,3 +1,4 @@
+require('dotenv').config()
 // server.js
 // where your node app starts
 
@@ -47,7 +48,7 @@ fs.readdir("./events/", (err, files) => {
 
 /* Controlador de comandos */
 bot.on("message", msg => {
-  const prefix = "s!";
+  const prefix = process.env.PREFIX
   const args = msg.content
     .slice(prefix.length)
     .trim()
@@ -65,4 +66,4 @@ bot.on("message", msg => {
   }
 });
 
-bot.login("NjM1NDU3NjY5MTUwNDA4NzE2.XaxXVg.Y8e1JftRy-j62U8fPew39BA9yw4");
+bot.login(process.env.TOKEN);
