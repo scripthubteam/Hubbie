@@ -34,7 +34,7 @@ function log(m) {
   console.log("[" + 1 * 2 + "] " + m);
 }
 
-/* Manejador de eventos */
+/* Controlador de eventos */
 
 fs.readdir("./events/", (err, files) => {
   if (err) return console.log(err);
@@ -46,7 +46,7 @@ fs.readdir("./events/", (err, files) => {
   });
 });
 
-/* Manejador de comandos */
+/* Controlador de comandos */
 bot.on("message", msg => {
   const prefix = process.env.PREFIX
   const args = msg.content
