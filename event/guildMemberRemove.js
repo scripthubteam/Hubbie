@@ -1,8 +1,10 @@
 const Discord = require('discord.js')
 const db = require("../db/db.js");
 db.loadRegHelper();
-var Reg,
-    BotStorage_;
+
+var Reg
+var BotStorage_;
+console.log(Reg)
 Reg.init("BotStorage_", "{}");
 
 if (typeof BotStorage_ == 'undefined') {

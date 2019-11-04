@@ -53,4 +53,4 @@ bot.on("message", msg => {
   }
 });
 
-bot.login("NjM1NDU3NjY5MTUwNDA4NzE2.Xb9w9w.ec3ee2LjWRlpUopFO9S_t5oLsCE");
+//bot.login("NjM1NDU3NjY5MTUwNDA4NzE2.Xb9w9w.ec3ee2LjWRlpUopFO9S_t5oLsCE");
