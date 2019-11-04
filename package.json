@@ -10,14 +10,11 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "discord.js": "^11.5.1",
-    "dotenv": "^8.2.0",
     "express": "^4.16.4",
-    "megadb": "^3.0.0",
-    "moment": "^2.24.0",
-    "ms": "^2.1.2",
+    "discord.js": "^11.5.1",
     "pretty-ms": "^5.0.0",
-    "quick.db": "^6.3.2"
+    "ms": "^2.1.2",
+    "moment": "^2.24.0"
   },
   "engines": {
     "node": "8.x"
