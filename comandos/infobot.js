@@ -76,7 +76,7 @@ exports.run = async (bot, msg, args) => {
             }
             if(isNaN(getTheOwner) === false){
               getTheOwner = dbBot.owner.id+" (Abandonó el servidor)"
-              bot.channels.get(config.channel.staff).send(" Se ha detectado que el usuario <@"+dbBot.owner.id+"> abandonó el servidor y su bot **"+bot.users.get(dbBot.data.id).tag+"** está en el servidor. **ESTO AMERITA UN KICK A LA APLICACIÓN**")
+              bot.channels.get("440978840114823183").send(" Se ha detectado que el usuario <@"+dbBot.owner.id+"> abandonó el servidor y su bot **"+bot.users.get(dbBot.data.id).tag+"** está en el servidor. **ESTO AMERITA UN KICK A LA APLICACIÓN**")
             }
             let imTheOwnerLol = ''
             let isCertified = ''

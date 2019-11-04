@@ -17,8 +17,8 @@ if (typeof BotStorage_ == 'undefined') {
 
 module.exports = async (bot, member) => {
 
-    let channelBot = bot.channels.get("640550351874818050") //#playground
-    let channelLogHub = bot.channels.get("640550351874818050") //#loghub
+    let channelBot = bot.channels.get("606230765814153241") //#playground
+    let channelLogHub = bot.channels.get("606340576740114433") //#loghub
     var dbBot = await BotStorage_[member.user.id];
 
     if(member.user.bot){

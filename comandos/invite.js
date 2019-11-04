@@ -188,7 +188,7 @@ exports.run = async (bot, msg, args) => {
     }
     }
 
-    bot.channels.get("616806652619915320").send(embed_botinv)
+    bot.channels.get("606677648432955392").send(embed_botinv)
     msg.author.send(embed_dm)
-    bot.channels.get("632974065711448074").send(embed_staffinv)
+    bot.channels.get("606497658932035644").send(embed_staffinv)
 };
