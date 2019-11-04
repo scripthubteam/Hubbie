@@ -1,8 +1,20 @@
 const Discord = require("discord.js")
 const pms = require("pretty-ms")
 const ms = require("ms")
-var Reg,
+const db = require("../db/db.js");
+let Reg = db.loadRegHelper(),
     Col;
+
+Reg.init("Col", "{}");
+
+if (typeof Col == 'undefined') {
+    Col = {};
+    try {
+        Col = JSON.parse(Reg.get("Col"));
+    } catch (e) {
+        Col = {};
+    }
+}
 
 exports.run = async (bot, msg, args) => {
     let src = msg.author

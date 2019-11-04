@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const db = require("../db/db.js");
-db.loadRegHelper();
-var Reg,
+
+let Reg = db.loadRegHelper(),
     BotStorage_,
     Global;
 

@@ -1,7 +1,7 @@
 const db = require("../db/db.js");
 const Discord = require("discord.js")
-db.loadRegHelper();
-var Reg,
+
+let Reg = db.loadRegHelper(),
     Warns;
 
 if (typeof Warns == 'undefined') {

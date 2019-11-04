@@ -27,7 +27,6 @@ function log(m) {
 /* Controlador de eventos */
 
 fs.readdir("./event/", (err, files) => {
-  console.log(files)
   if(err) return console.log(err);
   files.forEach(file => {
     const event = require("./event/"+file)
@@ -52,7 +51,8 @@ bot.on("message", msg => {
     cmdFile.run(bot, msg, args);
   } catch (err) {
     msg.channel.send(":x: | Hubo un error al ejecutar el comando deseado.");
+    console.log(err)
   }
 });
 
-//bot.login("NjM1NDU3NjY5MTUwNDA4NzE2.Xb9w9w.ec3ee2LjWRlpUopFO9S_t5oLsCE");
+bot.login("NjA2MzY2MjM0MDQ0MjY4NTQ1.XcCyxw.TFa0p7jVk_SWrEz21P1SJT8YFj8");

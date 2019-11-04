@@ -1,13 +1,12 @@
 const Discord = require("discord.js");
 const db = require("../db/db.js");
-db.loadRegHelper();
-var Reg,
+let Reg = db.loadRegHelper(),
     BotStorage_,
     Global;
 
 Reg.init("BotStorage_", "{}");
 
-if (typeof BotStorage_ == 'undefined') {
+if (typeof BotStorage_ === 'undefined') {
     BotStorage_ = {};
     try {
         BotStorage_ = JSON.parse(Reg.get("BotStorage_"));
@@ -18,7 +17,7 @@ if (typeof BotStorage_ == 'undefined') {
 
 Reg.init("Global", "{}");
 
-if (typeof Global == 'undefined') {
+if (typeof Global === 'undefined') {
     Global = {};
     try {
         Global = JSON.parse(Reg.get("Global"));
@@ -32,7 +31,9 @@ exports.run = async (bot, msg, args) => {
     if (msg.channel.id !== "616806652619915320") {
         return;
     }
-
+    
+    if(args.len())
+    
     if (isNaN(args[0])) {
         msg.channel.send(":x: **Esa no es una ID válida.** La ID debe contener el número del cliente de la apliación/usuario.");
         return;

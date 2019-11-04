@@ -1,6 +1,6 @@
 const db = require("../db/db.js");
-db.loadRegHelper();
-var Reg,
+
+let Reg = db.loadRegHelper(),
     Warns;
 
 Reg.init("Warns", "{}");

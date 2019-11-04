@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const db = require("../db/db.js");
-db.loadRegHelper();
-var Reg,
+
+let Reg = db.loadRegHelper(),
     BotStorage_,
     Global;
 
@@ -29,6 +29,7 @@ if (typeof Global == 'undefined') {
 
 exports.run = async (bot, msg, args) => {
     if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(":x: No posees los permisos necesarios.")
+    if (!Global)
     if (Global[msg.guild.id].q === 0) {
         return msg.channel.send(":x: No hay ningún bot en espera.")
     } else {
