@@ -1,8 +1,6 @@
 
 var fs = require("fs");
 
-var Reg;
-
 module.exports = {
 
     loadRegHelper: function (reloadAnyway) {
