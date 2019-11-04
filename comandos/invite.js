@@ -28,11 +28,9 @@ if (typeof Global === 'undefined') {
 
 exports.run = async (bot, msg, args) => {
 
-    if (msg.channel.id !== "616806652619915320") {
+    if (msg.channel.id !== "606677648432955392") {
         return;
     }
-    
-    if(args.len())
     
     if (isNaN(args[0])) {
         msg.channel.send(":x: **Esa no es una ID válida.** La ID debe contener el número del cliente de la apliación/usuario.");

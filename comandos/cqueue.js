@@ -29,7 +29,7 @@ if (typeof Global == 'undefined') {
 
 exports.run = async (bot, msg, args) => {
     if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(":x: No posees los permisos necesarios.")
-    if (!Global)
+    if (!Global) return msg.channel.send(":x: Error.")
     if (Global[msg.guild.id].q === 0) {
         return msg.channel.send(":x: No hay ningún bot en espera.")
     } else {
