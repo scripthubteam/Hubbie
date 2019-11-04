@@ -18,32 +18,32 @@ exports.run = async (bot, msg, args) => {
         }
         // Tipo de patrocinio
         if(!type){
-            message.channel.send(":x: **Especifica un tipo de patrocinio.**");
+            msg.channel.send(":x: **Especifica un tipo de patrocinio.**");
             return;
         }
         // Título
         if(!title){ 
-            message.channel.send(":x: **Especifica el título**");
+            msg.channel.send(":x: **Especifica el título**");
             return;
         }
         // Descripción
         if(!desc){
-            message.channel.send(":x: **Especifica la descripción**");
+            msg.channel.send(":x: **Especifica la descripción**");
             return;
         }
         // URL
         if(!url){
-            message.channel.send(":x: **Especifica una URL**");
+            msg.channel.send(":x: **Especifica una URL**");
             return;
         }
 
         if(!imgch){
-            message.channel.send(":x: **Especifica una imagen.**");
+            msg.channel.send(":x: **Especifica una imagen.**");
             return;
         }
         let userconvert = bot.users.get(user)
         if(!userconvert){
-            message.channel.send(":x: **El ID del usuario introducido no existe**")
+            msg.channel.send(":x: **El ID del usuario introducido no existe**")
             return;
         }
 
@@ -121,7 +121,7 @@ exports.run = async (bot, msg, args) => {
           
 
         if(type){
-            message.channel.send(":x: **Categoría inexistente.**")
+            msg.channel.send(":x: **Categoría inexistente.**")
         }
         return;
 

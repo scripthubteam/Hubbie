@@ -10,7 +10,7 @@ module.exports = {
                       return;
                 }
     
-                Reg = new(function() {
+                var Reg = new(function() {
                       var file = "./Registro3.json";
                       this.data = {};
     
