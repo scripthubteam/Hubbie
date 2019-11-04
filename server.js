@@ -21,6 +21,8 @@ const Discord = require("discord.js"),
 function log(m) {
   console.log("[" + 1 * 2 + "] " + m);
 }
+  
+
 
 /* Controlador de eventos */
 
