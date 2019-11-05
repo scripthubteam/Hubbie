@@ -98,7 +98,7 @@ exports.run = async (bot, msg, args) => {
         "vote_players": []
       }
     }
-    if (!Global[msg.guild.id]) Global[msg.guild.id] = { q: 0 };
+    if (!Global[msg.guild.id] || Global[msg.guild.id] == null) Global[msg.guild.id] = { q: 0 };
     Reg.save("Global", JSON.stringify(Global));
 
     var count = Global[msg.guild.id].q += 1;
