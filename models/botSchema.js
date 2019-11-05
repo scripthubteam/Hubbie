@@ -5,7 +5,7 @@ let botSchema = new mongoose.Schema({
         type: String
     },
     requested: {
-        type: Date
+        type: Number
     },
     isAppr: {
         type: Boolean,
