@@ -16,13 +16,14 @@ if (typeof BotStorage_ == 'undefined') {
 
 module.exports = async (bot, member) => {
 
-    let channelLogHub = bot.channels.get(chan.logChan);
+    let channelLogHub = bot.channels.get(chan.logChan),
+        requiere = bot.channels.get(chan.staffTestChan);
     var dbBot = await BotStorage_[member.user.id];
 
     if (member.user.bot) {
         if (dbBot) {
             channelLogHub.send(":robot: [BOT] **"+member.user.username+"** fue agregado.");
-            bot.channels.get(chan.staffTestChan).send(`${member.user.tag}, requiere de aprobación.`);
+            requiere.send(`${member.user.tag}, requiere de aprobación.`).catch(e => requiere.send(e))
             member.addRole(member.guild.roles.find(f => f.name === "ToTest"));
 
             BotStorage_[member.user.id].data.appr.isAppr = true;
