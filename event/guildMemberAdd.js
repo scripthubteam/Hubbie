@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const db = require("../db/db.js");
 let Reg = db.loadRegHelper();
 var BotStorage_;
-
+const chan = require("../chans.json")
 Reg.init("BotStorage_", "{}");
 
 if (typeof BotStorage_ == 'undefined') {
@@ -16,13 +16,13 @@ if (typeof BotStorage_ == 'undefined') {
 
 module.exports = async (bot, member) => {
 
-    let channelLogHub = bot.channels.get("606340576740114433");
+    let channelLogHub = bot.channels.get(chan.logChan);
     var dbBot = await BotStorage_[member.user.id];
 
     if (member.user.bot) {
         if (dbBot) {
             channelLogHub.send(":robot: [BOT] **"+member.user.username+"** fue agregado.");
-            bot.channels.get("617491950496645141").send(`${member.user.tag}, requiere de aprobación.`);
+            bot.channels.get(chan.staffTestChan).send(`${member.user.tag}, requiere de aprobación.`);
             member.addRole(member.guild.roles.find(f => f.name === "ToTest"));
 
             BotStorage_[member.user.id].data.appr.isAppr = true;
@@ -44,7 +44,7 @@ module.exports = async (bot, member) => {
           "url": "https://i.imgur.com/D56tkxB.png"
         }
     };
-    let channelGuild = bot.channels.get("606340478249599034");
+    let channelGuild = bot.channels.get(chan.logChan);
     channelGuild.send(member.user,{ embed });
     member.addRole(member.guild.roles.find(f => f.name === "Usuario"));
     channelLogHub.send("[USER] **"+member.user.username+"** entró al servidor.")

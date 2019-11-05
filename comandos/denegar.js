@@ -59,7 +59,7 @@ exports.run = async (bot, msg, args) => {
                 a.send(":information_source: Mensaje del **Equipo Administrativo de Script Hub** envíado por el encargado en **Aprobación de solicitudes de Bots** ー **"+msg.author.tag+"**:\n\n**¡Hola "+a.username+"!**\nEste mensaje fue enviado para notificarte nuestra decisión sobre la solicitud dada el día **"+dbBot.data.request.day+"** para la aprobación de tu Bot en nuestros servicios:\n **Ha sido rechazada, vuelve a intertarlo otro día.** Puedes pedirle motivos al encargado para obtener más información sobre la aprobación.")
                 delete BotStorage_[id]
                 Reg.save("BotStorage_", JSON.stringify(BotStorage_))
-                msg.channel.send(":white_check_mark: La solicitud de **"+thebot.tag+"** fue rechazada con éxito.")
+                msg.channel.send(":white_check_mark: La solicitud de **"+thebot.tag+"** fue rechazada con éxito.") // Está duplicado
                 Global[msg.guild.id] -= 1;
                 Reg.save("Global", JSON.stringify(Global));
                 Object.keys(BotStorage_).forEach(x => {
@@ -73,7 +73,7 @@ exports.run = async (bot, msg, args) => {
                 a.send(":information_source: Mensaje del **Equipo Administrativo de Script Hub** envíado por el encargado en **Aprobación de solicitudes de Bots** ー **"+msg.author.tag+"**:\n\n**¡Hola "+a.username+"!**\nEste mensaje fue enviado para notificarte nuestra decisión sobre la solicitud dada el día **"+dbBot.data.request.day+"** para la aprobación de tu Bot en nuestros servicios:\n "+reason)
                 delete BotStorage_[id]
                 Reg.save("BotStorage_", JSON.stringify(BotStorage_))
-                msg.channel.send(":white_check_mark: La solicitud de **"+thebot.tag+"** fue rechazada con éxito.")
+                msg.channel.send(":white_check_mark: La solicitud de **"+thebot.tag+"** fue rechazada con éxito.") // Con este
         })
         Global[msg.guild.id].q -= 1;
         Reg.save("Global", JSON.stringify(Global));

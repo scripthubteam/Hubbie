@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const db = require("../db/db.js");
+const chan = require("../chans.json")
 
 let Reg = db.loadRegHelper(),
     BotStorage_,
@@ -76,7 +77,7 @@ exports.run = async (bot, msg, args) => {
             }
             if(isNaN(getTheOwner) === false){
               getTheOwner = dbBot.owner.id+" (Abandonó el servidor)"
-              bot.channels.get("440978840114823183").send(" Se ha detectado que el usuario <@"+dbBot.owner.id+"> abandonó el servidor y su bot **"+bot.users.get(dbBot.data.id).tag+"** está en el servidor. **ESTO AMERITA UN KICK A LA APLICACIÓN**")
+              bot.channels.get(chan.staffTestChan).send(" Se ha detectado que el usuario <@"+dbBot.owner.id+"> abandonó el servidor y su bot **"+bot.users.get(dbBot.data.id).tag+"** está en el servidor. **ESTO AMERITA UN KICK A LA APLICACIÓN**")
             }
             let imTheOwnerLol = ''
             let isCertified = ''
@@ -127,7 +128,7 @@ exports.run = async (bot, msg, args) => {
 
             //Descripción
             if(action == "desc"){
-            	if(dbBot.owner.id === msg.author.id || msg.member.roles.has(config.adminsRole) === true || msg.member.roles.has(config.modsRole) === true){
+            	if(dbBot.owner.id === msg.author.id || msg.member.roles.has("606256306558599178") === true || msg.member.roles.has("440552554296901632") === true){
             		if(!mcontent){
             			msg.channel.send(":x: Debes agregar un mensaje.")
             			return;
@@ -139,7 +140,7 @@ exports.run = async (bot, msg, args) => {
                     Reg.save("BotStorage_", JSON.stringify(BotStorage_));
             		msg.channel.send(":white_check_mark: **Descripción actualizada.**")
             		msg.channel.send("```"+mcontent+"```")
-            		if(msg.member.roles.has(config.adminsRole) === true || msg.member.roles.has(config.modsRole) === true && msg.author.id !== dbBot.owner.id){
+            		if(msg.member.roles.has("606256306558599178") === true || msg.member.roles.has("440552554296901632") === true && msg.author.id !== dbBot.owner.id){
             			bot.users.get(dbBot.owner.id).send(":information_source: La descripción de su bot **"+bot.users.get(dbBot.data.id).tag+"** fue cambiada por un miembro del equipo de **Script Hub** a `"+mcontent+"`.")
             		}
             		return;
@@ -150,7 +151,7 @@ exports.run = async (bot, msg, args) => {
 
         //Prefijo
             if(action === "prefix"){
-            	if(dbBot.owner.id === msg.author.id || msg.member.roles.has(config.adminsRole) === true || msg.member.roles.has(config.modsRole) === true){
+            	if(dbBot.owner.id === msg.author.id || msg.member.roles.has("606256306558599178") === true || msg.member.roles.has("440552554296901632") === true){
             		if(!mcontent){
             			msg.channel.send(":x: Debes agregar el prefijo que quieres añadir.")
             			return;
@@ -167,7 +168,7 @@ exports.run = async (bot, msg, args) => {
                 msg.channel.send("```"+dbBot.config.prefix+" --> "+mcontent+" (nuevo)```")
                 BotStorage_[botnameConverted.id].config.prefix = mcontent
                 Reg.save("BotStorage_", JSON.stringify(BotStorage_));
-            		if(msg.member.roles.has(config.adminsRole) === true || msg.member.roles.has(config.modsRole) === true && msg.author.id !== dbBot.owner.id){
+            		if(msg.member.roles.has("606256306558599178") === true || msg.member.roles.has("440552554296901632") === true && msg.author.id !== dbBot.owner.id){
             			bot.users.get(dbBot.owner.id).send(":information_source: El prefijo de su bot **"+bot.users.get(dbBot.data.id).tag+"** fue cambiada por un miembro del equipo de **Script Hub** a `"+mcontent+"`.")
             		}
             		return;
