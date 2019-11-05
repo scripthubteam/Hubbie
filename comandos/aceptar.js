@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const db = require("../db/db.js");
+const chan = require("../chans.json")
 
 let Reg = db.loadRegHelper(),
     BotStorage_,
