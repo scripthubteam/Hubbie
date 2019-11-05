@@ -79,11 +79,7 @@ exports.run = async (bot, msg, args) => {
         Reg.save("Global", JSON.stringify(Global));
         Object.keys(BotStorage_).forEach(x => {
             BotStorage_[x].data.appr.nQueue -= 1
-/**
-    Global[msg.guild.id].q -= 1;
-    Reg.save("Global", JSON.stringify(Global));
-    Object.keys(BotStorage_).forEach(x => {
-        BotStorage_[x].data.appr.nQueue -= 1
+/* 
 
 */
         })
