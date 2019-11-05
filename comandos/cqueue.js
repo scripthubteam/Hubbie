@@ -35,8 +35,9 @@ exports.run = async (bot, msg, args) => {
     } else {
         var ts = [];
         Object.keys(BotStorage_).forEach(x => {
+          console.log(BotStorage_[x].data.appr.isQueued)
             if (BotStorage_[x].data.appr.isQueued === true) {
-                ts.push("Poscición: "+BotStorage_[x].data.appr.nQueue+"\nID: **"+BotStorage_[x].data.id+"**\nPrefijo: **"+BotStorage_[x].config.prefix+"**\nOwner: **"+BotStorage_[x].owner.id+"**\n------");
+                ts.push("Posición: "+BotStorage_[x].data.appr.nQueue+"\nID: **"+BotStorage_[x].data.id+"**\nPrefijo: **"+BotStorage_[x].config.prefix+"**\nOwner: **"+BotStorage_[x].owner.id+"**\n------");
             }
         });
         ts = ts.join("\n")

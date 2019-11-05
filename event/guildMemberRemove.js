@@ -6,6 +6,8 @@ var BotStorage_;
 console.log(Reg)
 Reg.init("BotStorage_", "{}");
 
+const { logChan, playgroundBotChan } = require("../chans.json")
+
 if (typeof BotStorage_ == 'undefined') {
     BotStorage_ = {};
     try {
@@ -17,8 +19,8 @@ if (typeof BotStorage_ == 'undefined') {
 
 module.exports = async (bot, member) => {
 
-    let channelBot = bot.channels.get("606230765814153241") //#playground
-    let channelLogHub = bot.channels.get("606340576740114433") //#loghub
+    let channelBot = bot.channels.get(playgroundBotChan) //#playground
+    let channelLogHub = bot.channels.get(logChan) //#loghub
     var dbBot = await BotStorage_[member.user.id];
 
     if(member.user.bot){

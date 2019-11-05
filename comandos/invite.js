@@ -4,6 +4,8 @@ let Reg = db.loadRegHelper(),
     BotStorage_,
     Global;
 
+const { inviteChan, staffBotReqChan } = require("../chans.json")
+
 Reg.init("BotStorage_", "{}");
 
 if (typeof BotStorage_ === 'undefined') {
@@ -28,7 +30,7 @@ if (typeof Global === 'undefined') {
 
 exports.run = async (bot, msg, args) => {
 
-    if (msg.channel.id !== "606677648432955392") {
+    if (msg.channel.id !== inviteChan) {
         return;
     }
     
@@ -96,7 +98,7 @@ exports.run = async (bot, msg, args) => {
         "vote_players": []
       }
     }
-    if (!Global[msg.guild.id]) Global[msg.guild.id] = { q: 0 };
+    if (!Global[msg.guild.id] || Global[msg.guild.id] == null) Global[msg.guild.id] = { q: 0 };
     Reg.save("Global", JSON.stringify(Global));
 
     var count = Global[msg.guild.id].q += 1;
@@ -187,7 +189,7 @@ exports.run = async (bot, msg, args) => {
     }
     }
 
-    bot.channels.get("606677648432955392").send(embed_botinv)
+    bot.channels.get(inviteChan).send(embed_botinv)
     msg.author.send(embed_dm)
-    bot.channels.get("606497658932035644").send(embed_staffinv)
+    bot.channels.get(staffBotReqChan).send(embed_staffinv)
 };

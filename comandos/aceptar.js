@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const db = require("../db/db.js");
+const chan = require("../chans.json")
 
 let Reg = db.loadRegHelper(),
     BotStorage_,
@@ -72,7 +73,7 @@ exports.run = async (bot, msg, args) => {
     BotStorage_[member.user.id].data.appr.day = Date.now();
     Reg.save("BotStorage_", JSON.stringify(BotStorage_));
 
-    let channelBotPlay = bot.channels.get("606230765814153241")
+    let channelBotPlay = bot.channels.get(chan.playgroundBotChan)
     channelBotPlay.send({ embed })
     member.removeRole(member.guild.roles.find(r => r.name === "ToTest"));
     member.addRole(member.guild.roles.find(r => r.name === "Club de Bots"));
