@@ -46,7 +46,7 @@ exports.run = async (bot, msg, args) => {
         msg.channel.send(":x: **La ID introducida no pertenece a un Bot**.")
         return;
     }
-    if(dbBot === null) return msg.channel.send(":x: **La ID del bot introducida no pertenece a una solicitud existente**.")
+    if(dbBot === undefined) return msg.channel.send(":x: **La ID del bot introducida no pertenece a una solicitud existente**.")
     if(dbBot !== null) {
         if(dbBot.data.appr.isAppr === true){
             msg.channel.send(":x: Este Bot **no está en fase de solicitud**, fue aprobado el día **"+dbBot.data.appr.day+"**.")
