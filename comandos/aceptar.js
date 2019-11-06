@@ -57,7 +57,7 @@ exports.run = async (bot, msg, args) => {
         botId: member.user.id
     });
 
-    let global = globalDb.find({
+    let global = await globalDb.find({
         serverId: msg.guild.id
     })
 
