@@ -24,7 +24,7 @@ function log(m) {
 }
 
 // ===== Connecting to DB =====
-mongoose.connect("mongodb+srv://Bot:ASBxbrLXn3fOJit6@scripthub0-qcxei.mongodb.net/botsList?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGOURI)
 .then(db => {
   console.log("Connected to the DB")
 })
