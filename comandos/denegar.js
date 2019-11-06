@@ -12,7 +12,6 @@ exports.run = async (bot, msg, args) => {
         msg.channel.send(":x: **Debes introducir una ID.**")
         return;
     }
-
     let dbBot = await botSchema.find({
         botId: id
     })
@@ -31,7 +30,7 @@ exports.run = async (bot, msg, args) => {
 
         if (!reason) return;
 
-        bot.fetchUser(dbBot[0][0].ownerId).then(async user => {
+        bot.fetchUser(dbBot[0].ownerId).then(async user => {
             user.send(":information_source: Mensaje del **Equipo Administrativo de Script Hub** envíado por el encargado en **Aprobación de solicitudes de Bots** ー **" + msg.author.tag + "**:\n\n**¡Hola " + user.username + "!**\nEste mensaje fue enviado para notificarte nuestra decisión sobre la solicitud dada el día **" + dbBot[0].day + "** para la aprobación de tu Bot en nuestros servicios:\n " + reason)
             await botSchema.findOneAndRemove({
                 botId: id
@@ -43,8 +42,10 @@ exports.run = async (bot, msg, args) => {
             serverId: msg.guild.id
         })
 
-        globalDb.findOneAndUpdate(global, {
-            globalQueued: global.globalQueued - 1
+        await globalDb.findOneAndUpdate({
+            serverId: msg.guild.id
+        }, {
+            globalQueued: global[0].globalQueued - 1
         })
 
         let bots = await botSchema.find({})
