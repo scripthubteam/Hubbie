@@ -1,6 +1,7 @@
 const chan = require("../chans.json")
 const botSchema = require("../models/botSchema")
 const globalDb = require("../models/queueSchema")
+
 exports.run = async (bot, msg, args) => {
     if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(":x: No posees los permisos necesarios.")
     const member = msg.mentions.members.first()
@@ -57,7 +58,7 @@ exports.run = async (bot, msg, args) => {
         botId: member.user.id
     });
 
-    let global = await globalDb.find({
+    let global = await globalDb.findOne({
         serverId: msg.guild.id
     })
 
@@ -67,9 +68,13 @@ exports.run = async (bot, msg, args) => {
     })
     member.removeRole(member.guild.roles.find(r => r.name === "ToTest"));
     member.addRole(member.guild.roles.find(r => r.name === "Club de Bots"));
-    globalDb.findOneAndUpdate(global, {
+
+    await globalDb.findOneAndUpdate({
+        serverId: global.serverId
+    }, {
         globalQueued: global.globalQueued - 1
     })
+
     let bots = await botSchema.find({})
     bots.forEach(async e => {
         await botSchema.findOneAndUpdate({

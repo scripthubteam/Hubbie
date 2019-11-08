@@ -43,7 +43,6 @@ exports.run = async (bot, msg, args) => {
   const dbBot = await botSchema.findOne({
     botId: botnameConverted.id
   })
-  console.log(dbBot)
   if (dbBot) {
     let getTheOwner = dbBot.ownerId
     if (bot.users.get(getTheOwner)) {
@@ -166,7 +165,6 @@ exports.run = async (bot, msg, args) => {
         return;
       }
 
-      console.log("asdito")
       if (dbBot.ownerId === msg.author.id) return msg.channel.send(":x: No puedes votar por tu propio bot.")
       if (!mcontent) {
         msg.channel.send(":x: Debes votar de la siguiente manera: \n ```\n Para votar positivamente:\n --- s/infobot " + botnameConverted.username + ";vote;up \n Para votar negativamente:\n --- s/infobot " + botnameConverted.username + ";vote;down ```.")
@@ -174,18 +172,14 @@ exports.run = async (bot, msg, args) => {
       }
 
       if (mcontent === "up") {
-        console.log("up")
         BotStorage_[botnameConverted.id].config.votes_plus += 1;
 
         if (dbBot.config.votes_players === undefined) {
           var ts = BotStorage_[botnameConverted.id].config.votes_players;
           ts.push(msg.author.id)
-          console.log(BotStorage_[botnameConverted.id].config.votes_players)
           Reg.save("BotStorage_", JSON.stringify(BotStorage_));
         } else {
-          console.log("upelse")
           var ts = BotStorage_[botnameConverted.id].config.votes_players;
-          console.log(BotStorage_[botnameConverted.id].config.votes_players)
           ts.push(msg.author.id)
           Reg.save("BotStorage_", JSON.stringify(BotStorage_));
         }
@@ -193,11 +187,9 @@ exports.run = async (bot, msg, args) => {
         return;
       }
       if (mcontent === "down") {
-        console.log("d")
         BotStorage_[botnameConverted.id].config.votes_negative += 1
         var ts = BotStorage_[botnameConverted.id].config.votes_players;
         ts.push(msg.author.id)
-        console.log(BotStorage_[botnameConverted.id].config.votes_players)
         Reg.save("BotStorage_", JSON.stringify(BotStorage_));
         msg.channel.send(":thumbsdown: Vaya, has votado **negativamente** para este bot.")
         return;

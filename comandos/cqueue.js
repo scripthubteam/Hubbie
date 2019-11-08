@@ -14,13 +14,11 @@ exports.run = async (bot, msg, args) => {
     } else {
         let ts = "";
 
-        console.log(botDb)
         botDb.forEach(e => {
             if (e.isQueued === true) {
                 ts += "Posición: " + e.nQueue + "\nID: **" + e.botId + "**\nPrefijo: **" + e.prefix + "**\nOwner: **" + e.ownerId + "**\n------\n"
             }
         })
-        console.log(ts)
         msg.channel.send(ts)
     }
 }

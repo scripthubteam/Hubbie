@@ -19,10 +19,6 @@ const Discord = require("discord.js"),
   fs = require("fs"),
   mongoose = require("mongoose")
 
-function log(m) {
-  console.log("[" + 1 * 2 + "] " + m);
-}
-
 // ===== Connecting to DB =====
 mongoose.connect(process.env.MONGOURI)
 .then(db => {
