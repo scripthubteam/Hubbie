@@ -5,9 +5,12 @@ const globalSchema = require("../models/queueSchema")
 exports.run = async (bot, msg, args) => {
   const mentbot = msg.mentions.members.first()
 
-  let botname = args[0],
-    action = args[1],
-    mcontent = args[2];
+  const cmd_data = args.join(" ")
+
+  let parts = cmd_data.split("|"),
+    botname = parts[0],
+    action = parts[1],
+    mcontent = parts[2];
 
   if (!botname) {
     msg.channel.send(':x: **Es necesario que insertes el nombre del bot.** Puedes @mencionarlo, poner su nombre o ID.')
