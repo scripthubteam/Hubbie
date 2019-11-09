@@ -1,16 +1,16 @@
 const Discord = require("discord.js")
-module.exports = async (bot, message) => {
+module.exports = async (bot, msg) => {
   const embed = new Discord.RichEmbed()
-    .setDescription("Mensaje borrado en " + message.channel.toString())
-    .addField("> Usuario:", `<@${message.author.id}> \`(${message.author.id}\`)`);
+    .setDescription("Mensaje borrado en " + msg.channel.toString())
+    .addField("> Usuario:", `<@${msg.author.id}> \`(${msg.author.id}\`)`);
 
-  if (message.content) {
-    embed.addField("> Mensaje:", message.content);
+  if (msg.content) {
+    embed.addField("> Mensaje:", msg.content);
   }
 
-  if (message.attachments.size > 0) {
-    let urls = message.attachments
-      .map(r => `https://media.discordapp.net/attachments/${message.channel.id}/${r.id}/${r.name}`)
+  if (msg.attachments.size > 0) {
+    let urls = msg.attachments
+      .map(r => `https://media.discordapp.net/attachments/${msg.channel.id}/${r.id}/${r.name}`)
       .join("\n");
 
     embed.addField("> Archivos:", `${urls}`);
