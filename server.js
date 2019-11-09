@@ -16,13 +16,17 @@ const Discord = require("discord.js"),
   ms = require("ms"),
   pms = require("pretty-ms"),
   moment = require("moment"),
-  fs = require("fs");
+  fs = require("fs"),
+  mongoose = require("mongoose")
 
-function log(m) {
-  console.log("[" + 1 * 2 + "] " + m);
-}
-  
-
+// ===== Connecting to DB =====
+mongoose.connect(process.env.MONGOURI)
+.then(db => {
+  console.log("Connected to the DB")
+})
+.catch(err => {
+  console.log(err)
+})
 
 /* Controlador de eventos */
 
@@ -55,4 +59,4 @@ bot.on("message", msg => {
   }
 });
 
-bot.login("NjM1NDU3NjY5MTUwNDA4NzE2.XcDALg.IVQ__D5tm4vNCDyhPBkM8vNC6iQ");
+bot.login(process.env.TOKEN)

@@ -1,31 +1,4 @@
-const Discord = require("discord.js");
-const db = require("../db/db.js");
-
-let Reg = db.loadRegHelper(),
-    BotStorage_,
-    Global;
-
-Reg.init("BotStorage_", "{}");
-
-if (typeof BotStorage_ == 'undefined') {
-    BotStorage_ = {};
-    try {
-        BotStorage_ = JSON.parse(Reg.get("BotStorage_"));
-    } catch (e) {
-        BotStorage_ = {};
-    }
-}
-
-Reg.init("Global", "{}");
-
-if (typeof Global == 'undefined') {
-    Global = {};
-    try {
-        Global = JSON.parse(Reg.get("Global"));
-    } catch (e) {
-        Global = {};
-    }
-}
+const bots = require("../models/botSchema")
 
 exports.run = async (bot, msg, args) => {
 
@@ -35,11 +8,13 @@ exports.run = async (bot, msg, args) => {
     }
 
     var user = await bot.fetchUser(args[0]);
-    var dbBot = await BotStorage_[user.id];
+    var dbBot = await bots.findOne({
+        botId: user.id
+    });
 
-    if (dbBot !== undefined) {
-        if (dbBot.data.appr.isQueued === true) {
-            msg.channel.send("La poscición de **"+user.tag+"** en la cola es de **"+dbBot.data.appr.nQueue+"**");
+    if (dbBot !== null) {
+        if (dbBot.isQueued) {
+            msg.channel.send("La poscición de **"+user.tag+"** en la cola es de **"+dbBot.nQueue+"**");
             return;
         } else {
             msg.channel.send(":x: Este bot no está en la cola de espera.")
