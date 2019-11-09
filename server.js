@@ -20,7 +20,10 @@ const Discord = require("discord.js"),
   mongoose = require("mongoose")
 
 // ===== Connecting to DB =====
-mongoose.connect(process.env.MONGOURI)
+mongoose.connect(process.env.MONGOURI,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
 .then(db => {
   console.log("Connected to the DB")
 })

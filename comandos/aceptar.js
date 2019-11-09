@@ -11,10 +11,8 @@ exports.run = async (bot, msg, args) => {
         botId: member.user.id
     });
 
-    let getOwner = bot.users.array().filter(e => {
-        return e.id === dbBot.ownerId
-    })
-    getOwner[0].send({
+    let getOwner = bot.users.get(dbBot.ownerId)
+    getOwner.send({
         "embed": {
             "color": 302176,
             "timestamp": new Date,
@@ -35,7 +33,7 @@ exports.run = async (bot, msg, args) => {
     })
     let embed = {
         "title": "¡Nuevo Bot: " + member.user.tag + "!",
-        "description": "**◈ Prefix:** " + dbBot.prefix + "\n**◈ Owner** " + getOwner[0].tag,
+        "description": "**◈ Prefix:** " + dbBot.prefix + "\n**◈ Owner** " + getOwner.tag,
         "color": 109494,
         "timestamp": new Date(),
         "footer": {
