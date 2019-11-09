@@ -1,7 +1,8 @@
-/*const botSchema = require("../models/botSchema")
+const botSchema = require("../models/botSchema")
 
 exports.run = async (bot, msg, args) => {
-
+    if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(":x: No posees los permisos necesarios.")
+    
     const mentbot = msg.mentions.members.first();
 
     if(!mentbot) {
@@ -28,4 +29,4 @@ exports.run = async (bot, msg, args) => {
     msg.channel.send("**El bot fue certificado.**");
     return;
 
-}*/
+}

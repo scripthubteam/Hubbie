@@ -2,7 +2,8 @@ const botSchema = require("../models/botSchema")
 const globalDb = require("../models/queueSchema")
 
 exports.run = async (bot, msg, args) => {
-
+    if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(":x: No posees los permisos necesarios.")
+    
     let argsData = args.join(" ")
     let parts = argsData.split(";"),
         id = parts[0],

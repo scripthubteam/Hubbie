@@ -1,5 +1,6 @@
-/*exports.run = async (bot, msg, args) => {
-
+exports.run = async (bot, msg, args) => {
+    if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(":x: No posees los permisos necesarios.")
+    
     let argsData = args.join(" ")
     let parts = argsData.split("|"),
         type = parts[0],
@@ -125,4 +126,4 @@
         }
         return;
 
-}*/
+}
