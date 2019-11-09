@@ -2,10 +2,7 @@ const Discord = require("discord.js")
 module.exports = async (bot, message) => {
   const embed = new Discord.RichEmbed()
     .setDescription("Mensaje borrado en " + message.channel.toString())
-    .addField(
-      "> Usuario:",
-      `<@${message.author.id}> \`(${message.author.id}\`)`
-    );
+    .addField("> Usuario:", `<@${message.author.id}> \`(${message.author.id}\`)`);
 
   if (message.content) {
     embed.addField("> Mensaje:", message.content);
