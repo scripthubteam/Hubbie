@@ -37,7 +37,7 @@ module.exports = async (bot, member) => {
             "url": "https://i.imgur.com/D56tkxB.png"
         }
     };
-    let channelGuild = bot.channels.get(chan.logChan);
+    let channelGuild = bot.channels.get("606340478249599034");
     channelGuild.send(member.user, {
         embed
     });
