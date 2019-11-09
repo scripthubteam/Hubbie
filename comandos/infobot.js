@@ -142,10 +142,14 @@ exports.run = async (bot, msg, args) => {
         }
         msg.channel.send(":white_check_mark: **Prefijo actualizado.**")
         msg.channel.send("```" + dbBot.prefix + " --> " + mcontent + " (nuevo)```")
-        BotStorage_[botnameConverted.id].config.prefix = mcontent
-        Reg.save("BotStorage_", JSON.stringify(BotStorage_));
+        dbBot.prefix = mcontent
+        await botSchema.findOneAndUpdate({
+          botId: dbBot.botId
+        }, {
+          prefix: dbBot.prefix
+        })
         if (msg.member.roles.has("606256306558599178") === true || msg.member.roles.has("440552554296901632") === true && msg.author.id !== dbBot.ownerId) {
-          bot.users.get(dbBot.ownerId).send(":information_source: El prefijo de su bot **" + bot.users.get(dbBot.data.id).tag + "** fue cambiada por un miembro del equipo de **Script Hub** a `" + mcontent + "`.")
+          bot.users.get(dbBot.ownerId).send(":information_source: El prefijo de su bot **" + bot.users.get(dbBot.botId).tag + "** fue cambiada por un miembro del equipo de **Script Hub** a `" + mcontent + "`.")
         }
         return;
       }
@@ -155,15 +159,23 @@ exports.run = async (bot, msg, args) => {
 
     //Rating
     if (action === "vote") {
-      if (dbBot.votes_plus == undefined) {
-        BotStorage_[botnameConverted.id].config.votes_plus = 0
-        BotStorage_[botnameConverted.id].config.votes_negative = 0
-        BotStorage_[botnameConverted.id].config.votes_players = []
-        Reg.save("BotStorage_", JSON.stringify(BotStorage_));
+      if (dbBot.votes_plus === undefined || dbBot.votes_plus === null) {
+        dbBot.votes_plus = 0
+        dbBot.votes_negative = 0
+        dbBot.vote_players = []
+
+        await botSchema.findOneAndUpdate({
+          botId: dbBot.botId
+        }, {
+          votes_plus: dbBot.votes_plus,
+          votes_negative: dbBot.votes_negative,
+          vote_players: dbBot.vote_players
+        })
+
         msg.channel.send("Hemos actualizado algunas configuraciones de este bot, si usaste un comando por favor intentalo de nuevo.")
         return;
       }
-      if (dbBot.config.votes_players.includes(msg.author.id)) {
+      if (dbBot.vote_players.includes(msg.author.id)) {
         msg.channel.send(":x: Lo siento, pero solo se puede votar una vez.")
         return;
       }
@@ -175,25 +187,45 @@ exports.run = async (bot, msg, args) => {
       }
 
       if (mcontent === "up") {
-        BotStorage_[botnameConverted.id].config.votes_plus += 1;
+        dbBot.votes_plus += 1;
 
-        if (dbBot.config.votes_players === undefined) {
-          var ts = BotStorage_[botnameConverted.id].config.votes_players;
+        if (dbBot.vote_players === undefined) {
+          var ts = dbBot.vote_players;
           ts.push(msg.author.id)
-          Reg.save("BotStorage_", JSON.stringify(BotStorage_));
+          await botSchema.findOneAndUpdate({
+            botId: dbBot.botId
+          }, {
+            votes_plus: dbBot.votes_plus,
+            votes_negative: dbBot.votes_negative,
+            vote_players: dbBot.vote_players
+          })
+
         } else {
-          var ts = BotStorage_[botnameConverted.id].config.votes_players;
+          var ts = dbBot.vote_players;
           ts.push(msg.author.id)
-          Reg.save("BotStorage_", JSON.stringify(BotStorage_));
+          await botSchema.findOneAndUpdate({
+            botId: dbBot.botId
+          }, {
+            votes_plus: dbBot.votes_plus,
+            votes_negative: dbBot.votes_negative,
+            vote_players: dbBot.vote_players
+          })
+
         }
         msg.channel.send(":thumbsup: Genial, has votado **positivamente** para este bot.")
         return;
       }
       if (mcontent === "down") {
-        BotStorage_[botnameConverted.id].config.votes_negative += 1
-        var ts = BotStorage_[botnameConverted.id].config.votes_players;
+        dbBot.votes_negative += 1
+        var ts = dbBot.vote_players;
         ts.push(msg.author.id)
-        Reg.save("BotStorage_", JSON.stringify(BotStorage_));
+        await botSchema.findOneAndUpdate({
+          botId: dbBot.botId
+        }, {
+          votes_plus: dbBot.votes_plus,
+          votes_negative: dbBot.votes_negative,
+          vote_players: dbBot.vote_players
+        })
         msg.channel.send(":thumbsdown: Vaya, has votado **negativamente** para este bot.")
         return;
       }
