@@ -1,4 +1,4 @@
-const botSchema = require("../models/botSchema")
+/*const botSchema = require("../models/botSchema")
 
 exports.run = async (bot, msg, args) => {
 
@@ -28,4 +28,4 @@ exports.run = async (bot, msg, args) => {
     msg.channel.send("**El bot fue certificado.**");
     return;
 
-}
+}*/

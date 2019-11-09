@@ -1,4 +1,4 @@
-exports.run = async (bot, msg, args) => {
+/*exports.run = async (bot, msg, args) => {
 
     let argsData = args.join(" ")
     let parts = argsData.split("|"),
@@ -125,4 +125,4 @@ exports.run = async (bot, msg, args) => {
         }
         return;
 
-}
+}*/
