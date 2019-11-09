@@ -3,7 +3,7 @@ const bots = require("../models/botSchema")
 exports.run = async (bot, msg, args) => {
 
     if (isNaN(args[0])) {
-        msg.channel.send(":x: **Esa no es una ID válida.** La ID debe contener el número del cliente de la apliación/usuario.");
+        msg.channel.send(":x: **Esa no es una ID válida.** La ID debe contener el número del cliente de la apliación.");
         return;
     }
 

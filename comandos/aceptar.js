@@ -7,12 +7,12 @@ exports.run = async (bot, msg, args) => {
     const member = msg.mentions.members.first()
     if (!member) return msg.channel.send("Debes mencionar a un bot para ser aprobado.");
     if (member.user.bot === false) return msg.channel.send("No puedes aprobar a personas *humanas*");
-    let dbBot = await botSchema.find({
+    let dbBot = await botSchema.findOne({
         botId: member.user.id
     });
 
     let getOwner = bot.users.array().filter(e => {
-        return e.id === dbBot[0].ownerId
+        return e.id === dbBot.ownerId
     })
     getOwner[0].send({
         "embed": {
@@ -35,7 +35,7 @@ exports.run = async (bot, msg, args) => {
     })
     let embed = {
         "title": "¡Nuevo Bot: " + member.user.tag + "!",
-        "description": "**◈ Prefix:** " + dbBot[0].prefix + "\n**◈ Owner** " + getOwner[0].tag,
+        "description": "**◈ Prefix:** " + dbBot.prefix + "\n**◈ Owner** " + getOwner[0].tag,
         "color": 109494,
         "timestamp": new Date(),
         "footer": {
