@@ -58,7 +58,6 @@ bot.on("message", msg => {
     cmdFile.run(bot, msg, args);
   } catch (err) {
     msg.channel.send(":x: | Hubo un error al ejecutar el comando deseado.");
-    console.log(err)
   }
 });
 
