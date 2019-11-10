@@ -27,7 +27,7 @@ module.exports = async (bot, member) => {
     }
     let embed = {
         "title": "¡Bienvenido/a " + member.user.username + "!",
-        "description": "Gracias por unirte a **Script Hub**.\n**—** Lee <#606204103500103700> para empezar tu recorrido por el servidor.\n**—** Lee <#606688095328272394> para seguir el fundamento del servidor.\n**—** ¿Necesitas ayuda? Consulta tus dudas en <#614201710855979102>.",
+        "description": "Gracias por unirte a **Script Hub**.\n**—** Lee <#640985543630389288> para empezar tu recorrido por el servidor.\n**—** Lee <#606688095328272394> para seguir el fundamento del servidor.\n**—** ¿Necesitas ayuda? Consulta tus dudas en <#614201710855979102>.",
         "color": 255068,
         "timestamp": new Date(),
         "footer": {
