@@ -10,7 +10,7 @@ module.exports = async (bot, msg) => {
 
   if (msg.attachments.size > 0) {
     let urls = msg.attachments
-      .map(r => `https://media.discordapp.net/attachments/${msg.channel.id}/${r.id}/${r.name}`)
+      .map(r => `https://media.discordapp.net/attachments/${msg.channel.id}/${r.id}/${r.filename}`)
       .join("\n");
 
     embed.addField("> Archivos:", `${urls}`);

@@ -20,7 +20,10 @@ const Discord = require("discord.js"),
   mongoose = require("mongoose")
 
 // ===== Connecting to DB =====
-mongoose.connect(process.env.MONGOURI)
+mongoose.connect(process.env.MONGOURI,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
 .then(db => {
   console.log("Connected to the DB")
 })
@@ -55,7 +58,6 @@ bot.on("message", msg => {
     cmdFile.run(bot, msg, args);
   } catch (err) {
     msg.channel.send(":x: | Hubo un error al ejecutar el comando deseado.");
-    console.log(err)
   }
 });
 

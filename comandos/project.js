@@ -65,8 +65,8 @@ exports.run = async (bot, msg, args) => {
         return;
     }
 
-    if (desc.length > 40) {
-        msg.channel.send(":x: **La descripción no debe superar los 40 caractéres.**");
+    if (desc.length > 100) {
+        msg.channel.send(":x: **La descripción no debe superar los 100 caractéres.**");
         return;
     }
   
