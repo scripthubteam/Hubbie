@@ -6,9 +6,12 @@ exports.run = async (bot, msg, args) => {
     async function git() {
     exec("git pull origin master", (err, stdout, stderr) => {
       if (err) {
-         msg.channel.send(":x: **Error:** "+ error);
+        console.log(err)
+         msg.channel.send(":x: **Error:** "+ err);
          return;
       } else {
+        console.log(stdout);
+        console.log(stderr);
         if(stdout === "Already up-to-date."){
             msg.channel.send(":white_check_mark: **No hay cambios pendientes.** Todo está en orden.\n`"+stderr+"`");
             return;
@@ -17,11 +20,14 @@ exports.run = async (bot, msg, args) => {
     });
     exec("refresh", (err, stdout, stderr) => {
       if (err) {
+        console.log(err)
         msg.channel.send(":x: **Error:** No se pudieron aplicar los cambios. **(STAGE: refresh --> Glitch)** "+ error);
         msg.channel.send("**Intervención manual requerida**");         
         return;
       } else {
-       msg.channel.send(":white_check_mark: **Los cambios fueron aplicados satisfactoriamente.**")
+        console.log(stdout);
+        console.log(stderr);
+        msg.channel.send(":white_check_mark: **Los cambios fueron aplicados satisfactoriamente.**")
       }
     });
     } 
