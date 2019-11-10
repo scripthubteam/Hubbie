@@ -5,34 +5,29 @@ exports.run = async (bot, msg, args) => {
         msg.channel.send(":x: **Falta:** branch (rama)");
         return;
     }
-    msg.channel.send(" :red_circle: *Obteniendo cambios...*")
-    git = exec('git pull origin '+args,
-    function (error, stdout, stderr) {
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
+    //
+    msg.channel.send(" :red_circle: *Obteniendo cambios...*");
+    async function git() {
+    exec("git pull "+branch, (err, stdout, stderr) => {
+      if (err) {
+         msg.channel.send(":x: **Error:** "+ error);
+         return;
+      } else {
         if(stdout === "Already up-to-date."){
             msg.channel.send(":white_check_mark: **No hay cambios pendientes.** Todo está en orden.\n`"+stderr+"`");
             return;
         }
-        if (error !== null) {
-             console.log('exec error: ' + error);
-             msg.channel.send(":x: **Error:** "+ error);
-             return;
-        }
+      }
     });
+    exec("refresh", (err, stdout, stderr) => {
+      if (err) {
+        msg.channel.send(":x: **Error:** No se pudieron aplicar los cambios. **(STAGE: refresh --> Glitch)** "+ error);
+        msg.channel.send("**Intervención manual requerida**");         
+        return;
+      } else {
+       msg.channel.send(":white_check_mark: **Los cambios fueron aplicados satisfactoriamente.**")
+      }
+    });
+    } 
     git();
-    refresh = exec('refresh',
-    function (error, stdout, stderr) {
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-        if (error !== null) {
-             console.log('exec error: ' + error);
-             msg.channel.send(":x: **Error:** No se pudieron aplicar los cambios. **(STAGE: refresh --> Glitch)** "+ error);
-             msg.channel.send("**Intervención manual requerida**");
-             return;
-        }
-    });
-    msg.channel.send(":white_check_mark: **Los cambios fueron aplicados satisfactoriamente.**")
-    refresh();
-    
 }
