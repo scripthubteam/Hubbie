@@ -10,9 +10,13 @@ exports.run = async (bot, msg, args) => {
     function (error, stdout, stderr) {
         console.log('stdout: ' + stdout);
         console.log('stderr: ' + stderr);
+        if(stdout === "Already up-to-date."){
+            msg.channel.send(":white_check_mark: **No hay cambios pendientes.** Todo está en orden.\n`"+stderr+"`");
+            return;
+        }
         if (error !== null) {
              console.log('exec error: ' + error);
-             msg.channel.send("**Github:** "+ error);
+             msg.channel.send(":x: **Error:** "+ error);
              return;
         }
     });
