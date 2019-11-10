@@ -1,71 +1,62 @@
-const Discord = require('discord.js')
-const db = require("../db/db.js");
-
-let Reg = db.loadRegHelper(),
-    BotStorage_,
-    Global;
-
-Reg.init("BotStorage_", "{}");
-
-if (typeof BotStorage_ == 'undefined') {
-    BotStorage_ = {};
-    try {
-        BotStorage_ = JSON.parse(Reg.get("BotStorage_"));
-    } catch (e) {
-        BotStorage_ = {};
-    }
-}
-
-Reg.init("Global", "{}");
-
-if (typeof Global == 'undefined') {
-    Global = {};
-    try {
-        Global = JSON.parse(Reg.get("Global"));
-    } catch (e) {
-        Global = {};
-    }
-}
+const botSchema = require("../models/botSchema")
+const globalDb = require("../models/queueSchema")
 
 exports.run = async (bot, msg, args) => {
-
+    if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(":x: No posees los permisos necesarios.")
+    
     let argsData = args.join(" ")
     let parts = argsData.split(";"),
         id = parts[0],
         reason = parts[1];
 
-    if(!id){
+    if (!id) {
         msg.channel.send(":x: **Debes introducir una ID.**")
         return;
     }
+    let dbBot = await botSchema.find({
+        botId: id
+    })
+    let thebot = await bot.fetchUser(id)
 
-    const dbBot = await BotStorage_[id];
-    const thebot = await bot.fetchUser(id)
-
-    if(!thebot.bot){
+    if (!thebot.bot) {
         msg.channel.send(":x: **La ID introducida no pertenece a un Bot**.")
         return;
     }
-    if(dbBot === undefined) return msg.channel.send(":x: **La ID del bot introducida no pertenece a una solicitud existente**.")
-    if(dbBot !== undefined) {
-        if(dbBot.data.appr.isAppr === true){
-            msg.channel.send(":x: Este Bot **no está en fase de solicitud**, fue aprobado el día **"+dbBot.data.appr.day+"**.")
+    if (dbBot[0] === undefined) return msg.channel.send(":x: **La ID del bot introducida no pertenece a una solicitud existente**.")
+    if (dbBot[0] !== undefined) {
+        if (dbBot[0].isAppr === true) {
+            msg.channel.send(":x: Este Bot **no está en fase de solicitud**, fue aprobado el día **" + dbBot[0].day + "**.")
             return;
         }
 
-    if (!reason) return;
+        if (!reason) return;
 
-          bot.fetchUser(dbBot.owner.id).then(a => {
-                a.send(":information_source: Mensaje del **Equipo Administrativo de Script Hub** envíado por el encargado en **Aprobación de solicitudes de Bots** ー **"+msg.author.tag+"**:\n\n**¡Hola "+a.username+"!**\nEste mensaje fue enviado para notificarte nuestra decisión sobre la solicitud dada el día **"+dbBot.data.request.day+"** para la aprobación de tu Bot en nuestros servicios:\n "+reason)
-                delete BotStorage_[id]
-                Reg.save("BotStorage_", JSON.stringify(BotStorage_))
-                msg.channel.send(":white_check_mark: La solicitud de **"+thebot.tag+"** fue rechazada con éxito.")
+        bot.fetchUser(dbBot[0].ownerId).then(async user => {
+            user.send(":information_source: Mensaje del **Equipo Administrativo de Script Hub** envíado por el encargado en **Aprobación de solicitudes de Bots** ー **" + msg.author.tag + "**:\n\n**¡Hola " + user.username + "!**\nEste mensaje fue enviado para notificarte nuestra decisión sobre la solicitud dada el día **" + dbBot[0].day + "** para la aprobación de tu Bot en nuestros servicios:\n " + reason)
+            await botSchema.findOneAndRemove({
+                botId: id
+            })
+            msg.channel.send(":white_check_mark: La solicitud de **" + thebot.tag + "** fue rechazada con éxito.")
         })
-        Global[msg.guild.id].q -= 1;
-        Reg.save("Global", JSON.stringify(Global));
-        Object.keys(BotStorage_).forEach(x => {
-            BotStorage_[x].data.appr.nQueue -= 1
-        });
+
+        let global = await globalDb.find({
+            serverId: msg.guild.id
+        })
+
+        await globalDb.findOneAndUpdate({
+            serverId: msg.guild.id
+        }, {
+            globalQueued: global[0].globalQueued - 1
+        })
+
+        let bots = await botSchema.find({})
+        bots.forEach(async e => {
+            await botSchema.findOneAndUpdate({
+                botId: e.botId
+            }, {
+                nQueue: e.nQueue - 1
+            })
+        })
         return;
     }
 }

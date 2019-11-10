@@ -1,64 +1,39 @@
-const Discord = require('discord.js')
-const db = require("../db/db.js");
 const chan = require("../chans.json")
-
-let Reg = db.loadRegHelper(),
-    BotStorage_,
-    Global;
-
-Reg.init("BotStorage_", "{}");
-
-if (typeof BotStorage_ == 'undefined') {
-    BotStorage_ = {};
-    try {
-        BotStorage_ = JSON.parse(Reg.get("BotStorage_"));
-    } catch (e) {
-        BotStorage_ = {};
-    }
-}
-
-Reg.init("Global", "{}");
-
-if (typeof Global == 'undefined') {
-    Global = {};
-    try {
-        Global = JSON.parse(Reg.get("Global"));
-    } catch (e) {
-        Global = {};
-    }
-}
-
+const botSchema = require("../models/botSchema")
+const globalDb = require("../models/queueSchema")
 
 exports.run = async (bot, msg, args) => {
     if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(":x: No posees los permisos necesarios.")
     const member = msg.mentions.members.first()
     if (!member) return msg.channel.send("Debes mencionar a un bot para ser aprobado.");
     if (member.user.bot === false) return msg.channel.send("No puedes aprobar a personas *humanas*");
-    var dbBot = await BotStorage_[member.user.id];
-    let getOwner = bot.users.get(dbBot.owner.id)
-    getOwner.send({"embed": {
-        "color": 302176,
-        "timestamp": new Date,
-        "footer": {
-            "text": "Equipo de Aprobación de Aplicaciones"
-        },
-        "thumbnail": {
-            "url": member.user.displayAvatarURL
-        },
-        "image": {
-            "url": "https://i.imgur.com/D56tkxB.png"
-        },
-        "fields": [
-        {
-            "name": ":white_check_mark: ¡"+member.user.tag+" fue aprobado por el Equipo!",
-            "value": "Su Bot ahora es parte de **"+member.guild.name+"** y miembro del **Club de Bots**. Visite el canal <#606230765814153241> y utilice el comando `s/infobot "+member.user.username+"` para obtener información sobre su membresía."
+    let dbBot = await botSchema.findOne({
+        botId: member.user.id
+    });
+
+    let getOwner = bot.users.get(dbBot.ownerId)
+    getOwner.send({
+        "embed": {
+            "color": 302176,
+            "timestamp": new Date,
+            "footer": {
+                "text": "Equipo de Aprobación de Aplicaciones"
+            },
+            "thumbnail": {
+                "url": member.user.displayAvatarURL
+            },
+            "image": {
+                "url": "https://i.imgur.com/D56tkxB.png"
+            },
+            "fields": [{
+                "name": ":white_check_mark: ¡" + member.user.tag + " fue aprobado por el Equipo!",
+                "value": "Su Bot ahora es parte de **" + member.guild.name + "** y miembro del **Club de Bots**. Visite el canal <#606230765814153241> y utilice el comando `s/infobot " + member.user.username + "` para obtener información sobre su membresía."
+            }]
         }
-        ]
-    }
     })
     let embed = {
-        "title": "¡Nuevo Bot: "+member.user.tag+"!",
-        "description": "**◈ Prefix:** "+dbBot.config.prefix+"\n**◈ Owner** "+getOwner.tag,
+        "title": "¡Nuevo Bot: " + member.user.tag + "!",
+        "description": "**◈ Prefix:** " + dbBot.prefix + "\n**◈ Owner** " + getOwner.tag,
         "color": 109494,
         "timestamp": new Date(),
         "footer": {
@@ -68,19 +43,43 @@ exports.run = async (bot, msg, args) => {
             "url": member.user.displayAvatarURL
         }
     };
-    BotStorage_[member.user.id].data.appr.isAprr = true;
-    BotStorage_[member.user.id].data.appr.isQueued = false;
-    BotStorage_[member.user.id].data.appr.day = Date.now();
-    Reg.save("BotStorage_", JSON.stringify(BotStorage_));
+
+    await botSchema.findOneAndUpdate({
+        botId: member.user.id
+    }, {
+        isAppr: true,
+        isQueued: false,
+        day: Date.now()
+    })
+
+    dbBot = await botSchema.find({
+        botId: member.user.id
+    });
+
+    let global = await globalDb.findOne({
+        serverId: msg.guild.id
+    })
 
     let channelBotPlay = bot.channels.get(chan.playgroundBotChan)
-    channelBotPlay.send({ embed })
+    channelBotPlay.send({
+        embed
+    })
     member.removeRole(member.guild.roles.find(r => r.name === "ToTest"));
     member.addRole(member.guild.roles.find(r => r.name === "Club de Bots"));
-    Global[msg.guild.id].q -= 1;
-    Reg.save("Global", JSON.stringify(Global));
-    Object.keys(BotStorage_).forEach(x => {
-        BotStorage_[x].data.appr.nQueue -= 1
-    });
+
+    await globalDb.findOneAndUpdate({
+        serverId: global.serverId
+    }, {
+        globalQueued: global.globalQueued - 1
+    })
+
+    let bots = await botSchema.find({})
+    bots.forEach(async e => {
+        await botSchema.findOneAndUpdate({
+            botId: e.botId
+        }, {
+            nQueue: e.nQueue - 1
+        })
+    })
     msg.channel.send("El bot fue aceptado.")
 };

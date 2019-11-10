@@ -12,10 +12,6 @@ function loadRegHelper(reloadAnyway) {
     try {
       this.data = JSON.parse(fs.readFileSync(file));
     } catch (e) {
-      console.log(
-        "[Runtime Error] Base de datos no encontrada. Generando bajo el nombre: " +
-          file
-      );
       fs.writeFileSync(file, "{}");
     }
 
@@ -28,7 +24,6 @@ function loadRegHelper(reloadAnyway) {
       if (this.data[key] === undefined) {
         this.data[key] = value;
         this.saveData();
-        console.log("[BASE][" + key + "] Listo.");
       }
     };
 
@@ -69,7 +64,6 @@ function loadRegHelper(reloadAnyway) {
     this.saveData = function() {
       fs.writeFileSync(file, JSON.stringify(this.data), "utf8", err => {
         if (err) throw err;
-        console.log("[BASE][Run] %Save Data%");
       });
     };
 
