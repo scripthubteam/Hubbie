@@ -18,8 +18,5 @@ module.exports = async (bot, msg) => {
 
   let channel = bot.channels.get("606340576740114433");
   channel.send({ embed });
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 07207051492aebc6b3bd5850cf0c206cc41b5609
+
