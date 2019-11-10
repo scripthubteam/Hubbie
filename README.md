@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Welcome to Glitch
 =================
 
@@ -25,3 +26,10 @@ Made by [Glitch](https://glitch.com/)
 -------------------
 
 \ ゜o゜)ノ
+=======
+
+
+# Script Hub Free
+
+En redacción.
+>>>>>>> 07207051492aebc6b3bd5850cf0c206cc41b5609

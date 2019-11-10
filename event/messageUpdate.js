@@ -16,4 +16,8 @@ module.exports = async (bot, oldMessage, newMessage) => {
   let channel = bot.channels.get("606340576740114433");
 
   if (channel) await channel.send(embed1);
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 07207051492aebc6b3bd5850cf0c206cc41b5609
