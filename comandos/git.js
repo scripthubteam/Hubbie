@@ -3,6 +3,7 @@ exports.run = async (bot, msg, args) => {
     if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(":x: No posees los permisos necesarios.")
     if(!args[0]){
         msg.channel.send(":x: **Falta:** branch (rama)");
+        return;
     }
     git = exec('git pull origin '+args,
     function (error, stdout, stderr) {
