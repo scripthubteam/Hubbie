@@ -1,33 +1,26 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
-  "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
-  "main": "server.js",
+  "name": "script-hub-free",
+  "version": "1.0.0",
+  "description": "Discord Bot para la comunidad de programación Script Hub",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "child_process": "^1.0.2",
-    "discord.js": "^11.5.1",
     "express": "^4.16.4",
-    "moment": "^2.24.0",
-    "mongoose": "^5.7.8",
-    "ms": "^2.1.2",
-    "pretty-ms": "^5.0.0"
+    "discord.js": "^11.5.1",
+    "mongoose": "^5.7.9"
   },
   "engines": {
     "node": "8.x"
   },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
-  },
   "license": "MIT",
   "keywords": [
+    "bot",
+    "discord",
+    "free",
+    "script hub",
     "node",
-    "glitch",
-    "express"
+    "javascript"
   ]
 }
