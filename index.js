@@ -2,8 +2,6 @@
 const express = require("express");
 const app = express();
 
-require("./config")
-
 app.get("*", (req, res) => {
   res.send("OK");
 });
