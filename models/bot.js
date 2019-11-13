@@ -1,13 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const botSchema = new Schema({
-  _id: {
+  ownerId: {
     type: String
   },
-  idOwner: {
-    type: String
-  },
-  queuePosition: {
+  nQueue: {
     type: Number
   },
   prefix: {
@@ -17,18 +14,27 @@ const botSchema = new Schema({
     type: Number,
     default: 0
   },
-  description: {
+  info: {
     type: String,
     default: "Un bot simple"
   },
-  verified: {
+  certified: {
     type: Boolean,
     default: false
+  },
+  requested:{
+    type: Number
   },
   votes: {
     type: Array,
     default: []
+  },
+  votes_plus:{
+    type: Number
+  },
+  votes_neegative:{
+    type: Number
   }
 });
 
-exports.bots = model("ClubBots", botSchema);
+exports.bots = model("bots", botSchema);
