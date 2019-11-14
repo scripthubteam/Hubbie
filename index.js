@@ -18,7 +18,6 @@ const mongoose = require("mongoose");
 const client = new Discord.Client();
 const path = require("path");
 const fs = require("fs");
-const config = require("./config/index.json")
 
 // Conectando a base de datos MongoDB.
 mongoose.connect(process.env.MONGOURI, {
@@ -31,7 +30,7 @@ mongoose.connect(process.env.MONGOURI, {
 // Cuando el cliente esté listo.
 client.on("ready", () => {
   // Señal de vida.
-  console.log(client.user.username+"#"+client.user.tag+" - Listo!");
+  console.log(client.user.tag+" - Listo!");
   client.user.setActivity("Documentación y bots", {type: 'WATCHING'}).catch();
   // Definiciones importantes y administrador de comandos (1/3).
   client.onlyDeleteUsers = [];
