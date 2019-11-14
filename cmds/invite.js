@@ -1,5 +1,5 @@
-const inviteChannelId = require("./config/index.json").chan.inviteChannelId;
-const botRequestsChannelId = require("./config/index.json").chan.botRequestsChannelId;
+const inviteChannelId = require("../config/index.json").chan.inviteChannelId;
+const botRequestsChannelId = require("../config/index.json").chan.botRequestsChannelId;
 const { RichEmbed } = require("discord.js");
 
 exports.run = async (client, msg, args) => {

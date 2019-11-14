@@ -1,4 +1,5 @@
-const { globalChannelId, privateLogsChannelId } = require("../channelsConfig.json");
+const globalChannelId = require("../config/index.json").chan.globalChannelId;
+const privateLogsChannelId = require("../config/index.json").chan.privateLogsChannelId;
 const { RichEmbed } = require("discord.js");
 
 module.exports = async (client, member) => {

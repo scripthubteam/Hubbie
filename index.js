@@ -29,7 +29,7 @@ mongoose.connect(config.bot.MONGOURI, {
 // Cuando el cliente esté listo.
 client.on("ready", () => {
   // Señal de vida.
-  console.log("Discord Bot listo!");
+  console.log(+config.bot.VERSION+" - Listo!");
 
   // Definiciones importantes y administrador de comandos (1/3).
   client.onlyDeleteUsers = [];

@@ -1,4 +1,4 @@
-const partnersChannelId = require("./config/index.json").chan.partnersChannelId;
+const partnersChannelId = require("../config/index.json").chan.partnersChannelId;
 const { RichEmbed } = require("discord.js");
 const colorsEmbed = {
   twitch: 0x6441a5,
