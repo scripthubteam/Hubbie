@@ -1,4 +1,4 @@
-onst { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const botSchema = new Schema({
   ownerId: {
