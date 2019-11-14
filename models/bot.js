@@ -1,9 +1,6 @@
 const { Schema, model } = require("mongoose");
 
 const botSchema = new Schema({
-  _id: {
-    type: String
-  },
   ownerId: {
     type: String
   },
