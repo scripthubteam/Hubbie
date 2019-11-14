@@ -1,4 +1,5 @@
-const projectsChannelId = require("../config/index.json").chan.projectsChannelId;
+require('dotenv').config()
+const projectsChannelId = process.env.projectsChannelId;
 const { RichEmbed } = require("discord.js");
 
 exports.run = async (client, msg, args) => {

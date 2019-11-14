@@ -1,4 +1,5 @@
-const partnersChannelId = require("../config/index.json").chan.partnersChannelId;
+require('dotenv').config()
+const partnersChannelId = process.env.partnersChannelId;
 const { RichEmbed } = require("discord.js");
 const colorsEmbed = {
   twitch: 0x6441a5,

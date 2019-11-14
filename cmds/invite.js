@@ -1,5 +1,6 @@
-const inviteChannelId = require("../config/index.json").chan.inviteChannelId;
-const botRequestsChannelId = require("../config/index.json").chan.botRequestsChannelId;
+require('dotenv').config()
+const inviteChannelId = process.env.inviteChannelId;
+const botRequestsChannelId = process.env.botRequestsChannelId;
 const { RichEmbed } = require("discord.js");
 
 exports.run = async (client, msg, args) => {
