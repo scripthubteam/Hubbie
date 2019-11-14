@@ -1,8 +1,4 @@
 
-"glitch": {
-	"PORT": "900"
-}
-
 "bot": {
   "VERSION": "5.3"
 }
