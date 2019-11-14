@@ -1,3 +1,5 @@
+//dotenv
+require('dotenv').config()
 // Iniciamos un servidor web en el puerto por defecto para que Glitch no detecte errores.
 const express = require("express");
 const app = express();
