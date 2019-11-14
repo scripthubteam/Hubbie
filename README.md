@@ -8,6 +8,23 @@ Instala los paquetes de dependencias necesarios:
 
 `npm i`
 
+## Configuración 
+
+Plantilla `.env`:
+
+```
+TOKEN="TOKEN"
+MONGOURI="MONGO URL"
+
+
+inviteChannelId="Canal ID"
+globalChannelId="Canal ID"
+projectsChannelId="Canal ID"
+partnersChannelId="Canal ID"
+playgroundChannelId="Canal ID"
+privateLogsChannelId="Canal ID"
+botRequestsChannelId="Canal ID"
+```
 ## Ejecución
 
 ¡Ejecuta!
