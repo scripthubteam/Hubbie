@@ -16,10 +16,10 @@ exports.run = async (client, msg, args) => {
   if (!dbBot) return msg.channel.send(":x: **Este bot no está registrado en el club de bots**.");
 
   // Comprueba si ya está certificado/verificado.
-  if (dbBot.verified) return msg.channel.send(":x: **El bot que intentas certificar, ya está certificado**.");
+  if (dbBot.certified) return msg.channel.send(":x: **El bot que intentas certificar, ya está certificado**.");
 
   // Lo coloca en verificado y lo guarda.
-  dbBot.verified = true;
+  dbBot.certified = true;
   dbBot.save();
 
   // Envía mensaje de confirmación.

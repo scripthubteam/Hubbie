@@ -1,4 +1,5 @@
-const { inviteChannelId, botRequestsChannelId } = require("../channelsConfig.json");
+const inviteChannelId = require("./config/index.json").chan.inviteChannelId;
+const botRequestsChannelId = require("./config/index.json").chan.botRequestsChannelId;
 const { RichEmbed } = require("discord.js");
 
 exports.run = async (client, msg, args) => {
@@ -25,9 +26,9 @@ exports.run = async (client, msg, args) => {
     let queue = await client.db.bots.find({ approvedDate: 0 }).exec();
     dbBot = new client.db.bots({
       _id: userBot.id,
-      idOwner: msg.author.id,
+      ownerId: msg.author.id,
       prefix: args[1],
-      queuePosition: queue.length + 1
+      nQueue: queue.length + 1
     });
 
     // Guardamos todo lo anteriormente escrito.
@@ -58,7 +59,7 @@ exports.run = async (client, msg, args) => {
     embed = new RichEmbed()
       .setImage("https://i.imgur.com/D56tkxB.png")
       .setTitle("Su solicitud está pendiente de aprobación")
-      .setDescription(`Le notificamos que su bot **${userBot.tag}** está pendiente de ser aprobado o ser rechazado a la brevedad. Su puesto en la cola de espera es **${dbBot.queuePosition}**.`)
+      .setDescription(`Le notificamos que su bot **${userBot.tag}** está pendiente de ser aprobado o ser rechazado a la brevedad. Su puesto en la cola de espera es **${dbBot.nQueue}**.`)
       .setColor(0x000000)
       .setFooter("Equipo de aprobaciones de aplicaciones")
       .setTimestamp();

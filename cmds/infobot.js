@@ -11,13 +11,13 @@ exports.run = async (client, msg, args) => {
 
   // Obtiene el bot del club y su dueño.
   let dbBot = await client.db.bots.findOne({ _id: userBot.id }).exec();
-  let userOwner = msg.guild.members.get(dbBot.idOwner);
+  let userOwner = msg.guild.members.get(dbBot.ownerId);
 
   // Comprueba si está en el club.
   if (!dbBot) return msg.channel.send(":x: **Este bot no está registrado en el club de bots**.");
 
   // Comprueba si el dueño está dentro del servidor.
-  if (!userOwner) client.channels.get(privateLogsChannelId).send(`Se ha detectado que el usuario <@${dbBot.idOwner}> abandonó el servidor y su bot **${userBot.tag}** está en el servidor. **ESTO AMERITA UN KICK A LA APLICACIÓN**.`);
+  if (!userOwner) client.channels.get(privateLogsChannelId).send(`Se ha detectado que el usuario <@${dbBot.ownerId}> abandonó el servidor y su bot **${userBot.tag}** está en el servidor. **ESTO AMERITA UN KICK A LA APLICACIÓN**.`);
 
   // Comprueba si se modificará alguna información del bot o se añadirá un voto.
   if (args[1]) {
@@ -75,20 +75,20 @@ exports.run = async (client, msg, args) => {
       if (args.slice(1).join(" ").slice(5).length > 200) return msg.channel.send(":x: **La descripción no puede sobrepasar el límite de 200 caracteres**.");
 
       // Se establece la descripción del bot a la que especificó el usuario y se guarda.
-      dbBot.description = args.slice(1).join(" ").slice(5);
+      dbBot.info = args.slice(1).join(" ").slice(5);
       dbBot.save();
 
       // Se envía mensaje de confirmación.
-      return msg.channel.send(`**Has redefinido la descripción del bot a** \`${dbBot.description}\`.`);
+      return msg.channel.send(`**Has redefinido la descripción del bot a** \`${dbBot.info}\`.`);
     }
   }
 
   // Creamos el Embed con toda la información que da el bot de la base de datos y lo enviamos posteriormente.
   let embed = new RichEmbed()
     .setAuthor(`${userBot.user.tag}${msg.author.id === userOwner.id ? " (propiedad tuya)" : ""}`)
-    .setDescription(`${dbBot.verified ? "<:sb_verificado:632377244232318986> " : ""}${dbBot.description}`)
+    .setDescription(`${dbBot.certified ? "<:sb_verificado:632377244232318986> " : ""}${dbBot.info}`)
     .addField("ℹ Prefix", `\`${dbBot.prefix}\``)
-    .addField("💻 Desarrollador", userOwner ? userOwner.user.tag : `${dbBot.idOnwer} (fuera del servidor)`)
+    .addField("💻 Desarrollador", userOwner ? userOwner.user.tag : `${dbBot.ownerId} (fuera del servidor)`)
     .addField("📥 Votos", `**Positivos**: ${dbBot.votes.filter(v => v[1] === 1).length}.\n**Negativos**: ${dbBot.votes.filter(v => v[1] === 0).length}.`)
     .setColor(0x000000)
     .setThumbnail(userBot.displayAvatarURL);

@@ -9,7 +9,7 @@ exports.run = async (client, msg, args) => {
     if (dbBot.approvedDate !== 0) return msg.channel.send(":x: **Este bot no está en la lista de espera**.");
 
     // Envía la posición del bot actual en la lista de espera.
-    msg.channel.send(`La posición de **${userBot.tag}** en la cola es de **${dbBot.queuePosition}**.`);
+    msg.channel.send(`La posición de **${userBot.tag}** en la cola es de **${dbBot.nQueue}**.`);
   } catch (e) {
     // Mensaje de error por si el usuario no existe o pasa algo erróneo o no esperado.
     msg.channel.send(":x: **Esa no es una ID válida**. La ID debe ser el identificador de la aplicación del bot.");
