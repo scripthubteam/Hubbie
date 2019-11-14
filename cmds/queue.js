@@ -2,7 +2,7 @@ exports.run = async (client, msg, args) => {
   try {
     let userBot = await client.fetchUser(args[0]);
     // Comprueba si no existe en la base de datos (club de bots).
-    let dbBot = await client.db.bots.findOne({ _id: userBot.id }).exec();
+    let dbBot = await client.db.bots.findOne({ botId: userBot.id }).exec();
     if (!dbBot) return msg.channel.send(":x: **Este bot no ha sido invitado**.");
 
     // Comprueba si tiene está aprovado.

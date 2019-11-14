@@ -11,7 +11,7 @@ exports.run = async (client, msg, args) => {
   queue
     .sort((a, b) => a.nQueue - b.nQueue)
     .forEach((bot) => {
-      out += `> **${bot.nQueue}**. ${msg.guild.members.get(bot._id).user.tag} - ${msg.guild.members.get(bot.ownerId).user.tag} - \`${bot.prefix}\`\n`;
+      out += `> **${bot.nQueue}**. ${msg.guild.members.get(bot.botId).user.tag} - ${msg.guild.members.get(bot.ownerId).user.tag} - \`${bot.prefix}\`\n`;
     });
 
   // Se envía la variable que contiene la lista de bots en espera.

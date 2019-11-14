@@ -6,7 +6,7 @@ module.exports = async (client, member) => {
   // Comprueba si es un bot y hace lo siguiente.
   if (member.user.bot) {
     // Comprueba si el bot existe o está en el club de bots.
-    let dbBot = await client.db.bots.findOne({ _id: member.id }).exec();
+    let dbBot = await client.db.bots.findOne({ botId: member.id }).exec();
     if (!dbBot) return client.channels.get(privateLogsChannelId).send(`:robot: **[COMÚN] ${member.user.username}** salió del servidor.`);
 
     // Creamos el Embed el cual informa al dueño que su bot ha sido expulsado del club de bots.
@@ -27,7 +27,7 @@ module.exports = async (client, member) => {
     if (!client.onlyDeleteUsers.includes(member.id)) client.channels.get(playgroundChannelId).send(`:robot: El bot **${member.user.tag}** no pertenece más al **club de bots**.`).catch(() => { });
 
     // Por último, se elimina el bot del club de bots por su salida.
-    await client.db.bots.deleteOne({ _id: member.id });
+    await client.db.bots.deleteOne({ botId: member.id });
     if (client.onlyDeleteUsers.includes(member.id)) client.onlyDeleteUsers.splice(client.onlyDeleteUsers.indexOf(member.id), 1);
 
     // Si no es bot, se envía un mensaje de salida de un usuario al canal del personal del servidor.

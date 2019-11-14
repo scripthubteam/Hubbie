@@ -10,7 +10,7 @@ exports.run = async (client, msg, args) => {
   if (!userBot.user.bot) return msg.channel.send(":x: **El usuario que mencionaste no es un bot**.");
 
   // Obtiene el bot del club y su dueño.
-  let dbBot = await client.db.bots.findOne({ _id: userBot.id }).exec();
+  let dbBot = await client.db.bots.findOne({ botId: userBot.id }).exec();
   let userOwner = msg.guild.members.get(dbBot.ownerId);
 
   // Comprueba si está en el club.
