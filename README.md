@@ -8,40 +8,6 @@ Instala los paquetes de dependencias necesarios:
 
 `npm i`
 
-## Configuración
-
-Crea el directorio `/config/`:
-
-**Windows:**
-```
-mkdir config
-```
-
-Y el archivo `index.json` dentro de la carpeta `config`:
-
-
-```
-
-"glitch": {
-	"PORT": "900"
-}
-
-"bot": {
-	"VERSION": "version"
-}
-
-"chan": {
-  "inviteChannelId": "ID Canal",
-  "globalChannelId": "ID Canal",
-  "projectsChannelId": "ID Canal",
-  "partnersChannelId": "ID Canal",
-  "playgroundChannelId": "ID Canal",
-  "privateLogsChannelId": "ID Canal",
-  "botRequestsChannelId": "ID Canal"
-}
-
-```
-
 ## Ejecución
 
 ¡Ejecuta!
