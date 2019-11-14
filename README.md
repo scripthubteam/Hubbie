@@ -28,10 +28,13 @@ El otro archivo de configuración, el cual será llamado `channelsConfig.json`, 
 Una vez configurado totalmente el bot, podremos ejecutarlo usando el siguiente comando `npm start` (o `node index.js`) en la consola.
 
 ### Desarrolladores
-- [Deivid](https://github.com/Drylotrans "Drylotrans")
-- [mon](https://github.com/wwmon "mon")
-- [ToelF](https://github.com/toelf412 "toelf412")
+**Activos:**
 - [Devsaider](https://github.com/MrDevsaider "MrDevsaider")
 - [Lau](https://github.com/Laauuu "Lau")
 - [tati1206](https://github.com/tati1206 "tati1206")
+
+**Inactivos**
+- [Deivid](https://github.com/Drylotrans "Drylotrans")
+- [mon](https://github.com/wwmon "mon")
+- [ToelF](https://github.com/toelf412 "toelf412")
 
