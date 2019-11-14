@@ -1,3 +1,5 @@
+//dotenv
+require('dotenv').config()
 // Iniciamos un servidor web en el puerto por defecto para que Glitch no detecte errores.
 const express = require("express");
 const app = express();
@@ -17,7 +19,6 @@ const client = new Discord.Client();
 const path = require("path");
 const fs = require("fs");
 const config = require("./config/index.json")
-require("dotenv").config()
 
 // Conectando a base de datos MongoDB.
 mongoose.connect(process.env.MONGOURI, {
