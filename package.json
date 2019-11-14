@@ -23,5 +23,12 @@
     "script hub",
     "node",
     "javascript"
+<<<<<<< HEAD
   ]
+=======
+  ],
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
+>>>>>>> 15bed8e2f9cf3146fb810f79c187e136828f25b5
 }

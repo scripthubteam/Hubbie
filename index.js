@@ -5,11 +5,11 @@ const express = require("express");
 const app = express();
 
 app.get("*", (req, res) => {
-  res.send("No quedará en la noche una estrella.\nNo quedará la noche.\nMoriré y conmigo la suma\ndel intolerable universo.\nBorraré las pirámides, las medallas,\nlos continentes y las caras.\nBorraré la acumulación del pasado.\nHaré polvo la historia, polvo el polvo.\nEstoy mirando el último poniente.\nOigo el último pájaro.\nLego la nada a nadie.\n");
+    res.send("No quedará en la noche una estrella.\nNo quedará la noche.\nMoriré y conmigo la suma\ndel intolerable universo.\nBorraré las pirámides, las medallas,\nlos continentes y las caras.\nBorraré la acumulación del pasado.\nHaré polvo la historia, polvo el polvo.\nEstoy mirando el último poniente.\nOigo el último pájaro.\nLego la nada a nadie.\n");
 });
 
 app.listen(process.env.PORT || 3000, (e) => {
-  console.log(`${e ? `${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}` : "Página web lista!"}`);
+            console.log(`${e ? `${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}` : "Página web lista!"}`);
 });
 
 // Código del bot en sí.
