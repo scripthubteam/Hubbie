@@ -19,7 +19,7 @@ const fs = require("fs");
 const config = require("./config/index.json")
 
 // Conectando a base de datos MongoDB.
-mongoose.connect(config.bot.MONGOURI, {
+mongoose.connect(process.env.MONGOURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, (e) => {
@@ -72,6 +72,6 @@ process.on("unhandledRejection", e => {
 });
 
 // Iniciamos sesión en el bot con su token correspondiente y si hay algún error lo muestra.
-client.login(config.bot.TOKEN).catch((e) => {
+client.login(process.env.TOKEN).catch((e) => {
   console.error(`${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}`);
 });

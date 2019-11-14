@@ -19,7 +19,6 @@ mkdir config
 
 Y el archivo `index.json` dentro de la carpeta `config`:
 
-![](https://i.imgur.com/cj4fuCV.png)
 
 ```
 
@@ -28,8 +27,7 @@ Y el archivo `index.json` dentro de la carpeta `config`:
 }
 
 "bot": {
-	"MONGOURI": "Mongo URL",
-	"TOKEN": "Token"
+	"VERSION": "version"
 }
 
 "chan": {
