@@ -3,10 +3,10 @@ const express = require("express");
 const app = express();
 
 app.get("*", (req, res) => {
-  res.send("OK");
+  res.send("No quedará en la noche una estrella.\nNo quedará la noche.\nMoriré y conmigo la suma\ndel intolerable universo.\nBorraré las pirámides, las medallas,\nlos continentes y las caras.\nBorraré la acumulación del pasado.\nHaré polvo la historia, polvo el polvo.\nEstoy mirando el último poniente.\nOigo el último pájaro.\nLego la nada a nadie.\n");
 });
 
-app.listen(process.env.PORT || 3000, (e) => {
+app.listen(config.glitch.PORT || 3000, (e) => {
   console.log(`${e ? `${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}` : "Página web lista!"}`);
 });
 
@@ -16,9 +16,10 @@ const mongoose = require("mongoose");
 const client = new Discord.Client();
 const path = require("path");
 const fs = require("fs");
+const config = require("./config/index.json")
 
 // Conectando a base de datos MongoDB.
-mongoose.connect(process.env.MONGOURI, {
+mongoose.connect(config.bot.MONGOURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, (e) => {
@@ -71,6 +72,6 @@ process.on("unhandledRejection", e => {
 });
 
 // Iniciamos sesión en el bot con su token correspondiente y si hay algún error lo muestra.
-client.login(process.env.TOKEN).catch((e) => {
+client.login(config.bot.TOKEN).catch((e) => {
   console.error(`${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}`);
 });
