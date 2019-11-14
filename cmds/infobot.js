@@ -1,4 +1,4 @@
-const { privateLogsChannelId } = require("../channelsConfig.json");
+const privateLogsChannelId = require("./config/index.json").chan.privateLogsChannelId;
 const { RichEmbed } = require("discord.js");
 
 exports.run = async (client, msg, args) => {
@@ -42,7 +42,7 @@ exports.run = async (client, msg, args) => {
       // Si el usuario quiere votar negativamente haga lo siguiente.
       // Se añade su ID a un Array y se coloca un 0 de negativo.
       if (dbBot.votes.some((a) => a[0] === msg.author.id)) await dbBot.votes.splice(dbBot.votes.findIndex((a) => a[0] === msg.author.id), 1);
-      await dbBot.votes.push([msg.author.id, 0]);
+      await dbBot.votes.push([msg.author.id, -1]);
       
       // Guarda todo y envía un mensaje de confirmación.
       dbBot.save();

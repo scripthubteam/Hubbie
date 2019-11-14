@@ -33,7 +33,7 @@ client.on("ready", () => {
 
   // Definiciones importantes y administrador de comandos (1/3).
   client.onlyDeleteUsers = [];
-  client.db = require("./database.js");
+  client.db = require("./models/bot.js");
   client.cmds = new Discord.Collection();
 
   // Administrador de eventos.

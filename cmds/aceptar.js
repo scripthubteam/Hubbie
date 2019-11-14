@@ -1,4 +1,4 @@
-const { playgroundChannelId } = require("../channelsConfig.json");
+const playgroundChannelId = require("./config/index.json").chan.playgroundChannelId;
 const { RichEmbed } = require("discord.js");
 
 exports.run = async (client, msg, args) => {

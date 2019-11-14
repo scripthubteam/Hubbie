@@ -138,9 +138,6 @@ GitHub.sublime-settings
 # Ignore all local history of files
 .history
 
-# End of https://www.gitignore.io/api/node,sublimetext,visualstudiocode
-
 ## Script Hub ##
->>>>>>> 07207051492aebc6b3bd5850cf0c206cc41b5609
-config
+config/
 Registro3.json
