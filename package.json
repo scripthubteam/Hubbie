@@ -22,5 +22,8 @@
     "script hub",
     "node",
     "javascript"
-  ]
+  ],
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
 }
