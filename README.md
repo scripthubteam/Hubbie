@@ -15,6 +15,7 @@ Plantilla `.env`:
 ```
 TOKEN="TOKEN"
 MONGOURI="MONGO URL"
+PREFIX="Prefix"
 
 
 inviteChannelId="Canal ID"
