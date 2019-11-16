@@ -73,7 +73,7 @@ exports.run = async (client, msg, args) => {
   }
 }
 
-exports.aliases = [];
+exports.aliases = ['inv'];
 exports.public = true;
 exports.description = "Invita a tu bot.";
 exports.usage = "s!invite ID Prefix";

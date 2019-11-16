@@ -97,7 +97,7 @@ exports.run = async (client, msg, args) => {
   msg.channel.send(embed);
 }
 
-exports.aliases = [];
+exports.aliases = ['bot'];
 exports.public = true;
 exports.description = "Muestra la información de un bot.";
 exports.usage = "s!infobot Mención-ID (vote:up/down/del, prefix:!, desc:Un bot)";

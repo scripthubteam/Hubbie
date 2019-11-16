@@ -16,7 +16,7 @@ exports.run = async (client, msg, args) => {
   }
 };
 
-exports.aliases = [];
+exports.aliases = ['q'];
 exports.public = true;
 exports.description = "Muestra el número en la lista de espera.";
 exports.usage = "s!queue ID";
