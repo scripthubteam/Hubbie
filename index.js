@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGOURI, {
 // Cuando el cliente esté listo.
 client.on("ready", () => {
   // Señal de vida.
-  console.log(client.user.tag+" - Listo!");
+  console.log(client.user.tag+" ("+process.env.PREFIX+") - Listo!");
   client.user.setActivity("Documentación y bots", {type: 'WATCHING'}).catch();
   // Definiciones importantes y administrador de comandos (1/3).
   client.onlyDeleteUsers = [];

@@ -1,8 +1,9 @@
+require('dotenv').config()
 module.exports = (client, message) => {
   // Condiciones útiles para saber si es un bot, si está en mensaje directo y si no es un comando.
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
-  if (!message.content.toLowerCase().startsWith("s!")) return;
+  if (!message.content.toLowerCase().startsWith(process.env.PREFIX)) return;
   // Definición de cosas útiles como argumentos y el propio comando.
   let args = message.content.slice(2).split(/ +/g);
   let cmd = args.shift().toLowerCase();
