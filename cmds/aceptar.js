@@ -1,4 +1,5 @@
-const { playgroundChannelId } = require("../channelsConfig.json");
+require('dotenv').config()
+const playgroundChannelId = process.env.playgroundChannelId;
 const { RichEmbed } = require("discord.js");
 
 exports.run = async (client, msg, args) => {
@@ -13,7 +14,7 @@ exports.run = async (client, msg, args) => {
   if (!userBot.user.bot) return msg.channel.send(":x: **El usuario que mencionaste no es un bot**.");
 
   // Obtiene el bot de la base de datos o club.
-  let dbBot = await client.db.bots.findOne({ _id: userBot.id }).exec();
+  let dbBot = await client.db.bots.findOne({ botId: userBot.id }).exec();
 
   // Comprueba si está en el club.
   if (!dbBot) return msg.channel.send(":x: **Este bot no está registrado en el club de bots**.");
@@ -25,16 +26,16 @@ exports.run = async (client, msg, args) => {
   dbBot.approvedDate = Date.now();
   let queue = await client.db.bots.find({ approvedDate: 0 }).exec();
   queue
-    .slice(queue.findIndex((bot) => bot.queuePosition === dbBot.queuePosition) + 1)
+    .slice(queue.findIndex((bot) => bot.queuePosition === dbBot.nQueue) + 1)
     .sort((a, b) => a.queuePosition - b.queuePosition)
     .forEach(async (bot) => {
-      let queueDbBot = await client.db.bots.findOne({ _id: bot.id }).exec();
-      queueDbBot.queuePosition -= 1;
+      let queueDbBot = await client.db.bots.findOne({ botId: bot.id }).exec();
+      queueDbBot.nQueue -= 1;
       queueDbBot.save();
     });
 
   // Por último se quita el bot de la lista de espera y se guarda todo.
-  dbBot.queuePosition = 0;
+  dbBot.nQueue = 0;
   dbBot.save();
 
   // Se agregan y se quitan roles del bot para que esté en el club de bots.
@@ -44,7 +45,7 @@ exports.run = async (client, msg, args) => {
   // Se crea y se envía un mensaje con un Embed indiciándole a todos que hay un nuevo bot en el club de bots.
   let embed = new RichEmbed()
     .setTitle("¡Nuevo bot en el club de bots!")
-    .setDescription(`**◈ Prefijo**: ${dbBot.prefix}\n**◈ Dueño**: ${msg.guild.members.get(dbBot.idOwner).toString()}`)
+    .setDescription(`**◈ Prefijo**: ${dbBot.prefix}\n**◈ Dueño**: ${msg.guild.members.get(dbBot.ownerId).toString()}`)
     .setColor(0x01abb6)
     .setImage(userBot.user.displayAvatarURL)
     .setFooter("Script Hub")
@@ -61,7 +62,7 @@ exports.run = async (client, msg, args) => {
     .setFooter("Equipo de aprobaciones de aplicaciones")
     .setTimestamp();
 
-  client.users.get(dbBot.idOwner).send(embed).catch(() => { });
+  client.users.get(dbBot.ownerId).send(embed).catch(() => { });
 }
 
 exports.aliases = [];

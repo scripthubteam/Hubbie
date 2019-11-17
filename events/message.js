@@ -1,18 +1,19 @@
-module.exports = (client, message) => {
+require('dotenv').config()
+module.exports = async (client, message) => {
   // Condiciones útiles para saber si es un bot, si está en mensaje directo y si no es un comando.
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
-  if (!message.content.toLowerCase().startsWith("s!")) return;
+  if (!message.content.toLowerCase().startsWith(process.env.PREFIX)) return;
   // Definición de cosas útiles como argumentos y el propio comando.
-  let args = message.content.slice(2).split(/ +/g);
+  let args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
   let cmd = args.shift().toLowerCase();
   let err = false;
   // Administrador de comandos (3/3).
   try {
     // Se obtiene el comando por medio de alias o su propio nombre.
-    let cmdData = client.cmds.get(cmd) || client.cmds.find(cmd => cmd.aliases.includes(cmd));
+    let cmdData = await client.cmds.get(cmd);
     // Se ejecuta la función run del archivo del comando obtenido.
-    cmdData.file.run(client, message, args);
+    cmdData.runFile.run(client, message, args);
   } catch (e) {
     // Si hay algún error coloca una variable a true y muestra el error en consola.
     err = true;

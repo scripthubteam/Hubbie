@@ -1,4 +1,5 @@
-const { privateLogsChannelId } = require("../channelsConfig.json");
+require('dotenv').config()
+const privateLogsChannelId = process.env.privateLogsChannelId;
 const { RichEmbed } = require("discord.js");
 
 module.exports = async (client, msg) => {

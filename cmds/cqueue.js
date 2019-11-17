@@ -9,9 +9,9 @@ exports.run = async (client, msg, args) => {
   // Se define una variable de salida y se agrega cada bot por orden de lista.
   let out = "Lista de espera:\n";
   queue
-    .sort((a, b) => a.queuePosition - b.queuePosition)
+    .sort((a, b) => a.nQueue - b.nQueue)
     .forEach((bot) => {
-      out += `> **${bot.queuePosition}**. ${msg.guild.members.get(bot._id).user.tag} - ${msg.guild.members.get(bot.idOwner).user.tag} - \`${bot.prefix}\`\n`;
+      out += `> **${bot.nQueue}**. ${msg.guild.members.get(bot.botId).user.tag} - ${msg.guild.members.get(bot.ownerId).user.tag} - \`${bot.prefix}\`\n`;
     });
 
   // Se envía la variable que contiene la lista de bots en espera.

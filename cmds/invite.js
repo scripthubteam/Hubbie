@@ -1,4 +1,6 @@
-const { inviteChannelId, botRequestsChannelId } = require("../channelsConfig.json");
+require('dotenv').config()
+const inviteChannelId = process.env.inviteChannelId;
+const botRequestsChannelId = process.env.botRequestsChannelId;
 const { RichEmbed } = require("discord.js");
 
 exports.run = async (client, msg, args) => {
@@ -12,7 +14,7 @@ exports.run = async (client, msg, args) => {
     // Obtenemos el usuario del bot y si no se encuentra envía mensaje de error.
     let userBot = await client.fetchUser(args[0]);
     // Comprueba si existía ya en la base de datos (club de bots).
-    let dbBot = await client.db.bots.findOne({ _id: userBot.id }).exec();
+    let dbBot = await client.db.bots.findOne({ botId: userBot.id }).exec();
     if (dbBot) return msg.channel.send(":x: **Este bot ya ha sido invitado**.");
 
     // Comprueba si no es un bot.
@@ -24,10 +26,10 @@ exports.run = async (client, msg, args) => {
     // Obtenemos los bots actuales en la lista de espera y creamos el bot en la base de datos con esa posición.
     let queue = await client.db.bots.find({ approvedDate: 0 }).exec();
     dbBot = new client.db.bots({
-      _id: userBot.id,
-      idOwner: msg.author.id,
+      botId: userBot.id,
+      ownerId: msg.author.id,
       prefix: args[1],
-      queuePosition: queue.length + 1
+      nQueue: queue.length + 1
     });
 
     // Guardamos todo lo anteriormente escrito.
@@ -58,7 +60,7 @@ exports.run = async (client, msg, args) => {
     embed = new RichEmbed()
       .setImage("https://i.imgur.com/D56tkxB.png")
       .setTitle("Su solicitud está pendiente de aprobación")
-      .setDescription(`Le notificamos que su bot **${userBot.tag}** está pendiente de ser aprobado o ser rechazado a la brevedad. Su puesto en la cola de espera es **${dbBot.queuePosition}**.`)
+      .setDescription(`Le notificamos que su bot **${userBot.tag}** está pendiente de ser aprobado o ser rechazado a la brevedad. Su puesto en la cola de espera es **${dbBot.nQueue}**.`)
       .setColor(0x000000)
       .setFooter("Equipo de aprobaciones de aplicaciones")
       .setTimestamp();
@@ -71,7 +73,7 @@ exports.run = async (client, msg, args) => {
   }
 }
 
-exports.aliases = [];
+exports.aliases = ['inv'];
 exports.public = true;
 exports.description = "Invita a tu bot.";
 exports.usage = "s!invite ID Prefix";
