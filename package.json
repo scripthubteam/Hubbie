@@ -10,6 +10,7 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
+    "moment": "^2.24.0",
     "mongoose": "^5.7.9"
   },
   "engines": {
@@ -23,12 +24,8 @@
     "script hub",
     "node",
     "javascript"
-<<<<<<< HEAD
-  ]
-=======
   ],
   "devDependencies": {
     "dotenv": "^8.2.0"
   }
->>>>>>> 15bed8e2f9cf3146fb810f79c187e136828f25b5
 }
