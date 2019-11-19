@@ -2,6 +2,8 @@ require('dotenv').config()
 const globalChannelId = process.env.globalChannelId;
 const privateLogsChannelId = process.env.privateLogsChannelId;
 const { RichEmbed } = require("discord.js");
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
 
 module.exports = async (client, member) => {
   // Si el usuario es un bot, lo coloca para ser aprobado.
@@ -11,10 +13,10 @@ module.exports = async (client, member) => {
     if (!dbBot) return client.channels.get(privateLogsChannelId).send(`:robot: **[COMÚN] ${member.user.username}** salió del servidor.`);
 
     // Añade roles correspondientes para ser el bot probado y aprobado.
-    member.addRole(member.guild.roles.find(r => r.name === "ToTest"));
+    member.addRole(member.guild.roles.find(r => r.name === "Club de Bots"));
 
     // Envía un mensaje de la entrada del bot al canal privado del personal del servidor.
-    client.channels.get(privateLogsChannelId).send(`**[BOT] ${member.user.tag}** ha sido invitado al servidor y requiere de aprobación.`).catch(() => { });
+    client.channels.get(privateLogsChannelId).send(`**[BOT] ${member.user.tag}** ha sido invitado al servidor y requiere de aprobación.`).catch((e) => { errorLog(e)});
   } else {
     // Se crea un Embed para la bienvenida de cualquier usuario normal.
     let embed = new RichEmbed()
@@ -26,12 +28,12 @@ module.exports = async (client, member) => {
       .setImage("https://i.imgur.com/D56tkxB.png");
 
     // Se envía el Embed al canal general/global.
-    client.channels.get(globalChannelId).send(member.user.toString(), embed).catch(() => { });
+    client.channels.get(globalChannelId).send(member.user.toString(), embed).catch((e) => {errorLog(e)});
 
     // Se agregan roles correspondientes al usuario.
     member.addRole(member.guild.roles.find(r => r.name === "Usuario"));
 
     // Por útlimo muestra en el canal del personal que el usuario entró.
-    client.channels.get(privateLogsChannelId).send(`**[USER] ${member.user.tag}** entró al servidor.`).catch(() => { });
+    client.channels.get(privateLogsChannelId).send(`**[USER] ${member.user.tag}** entró al servidor.`).catch((e) => {errorLog(e)});
   };
 }

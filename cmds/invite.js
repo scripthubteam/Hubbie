@@ -2,6 +2,8 @@ require('dotenv').config()
 const inviteChannelId = process.env.inviteChannelId;
 const botRequestsChannelId = process.env.botRequestsChannelId;
 const { RichEmbed } = require("discord.js");
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
 
 exports.run = async (client, msg, args) => {
   // Solamente se puede invitar desde el canal de invitaciones.
@@ -54,7 +56,7 @@ exports.run = async (client, msg, args) => {
       .setDescription(`El usuario **${msg.author.tag}** ha solicitado que su bot **${userBot.tag}** sea invitado a **Script Hub**.\n[CLICK PARA INVITAR AQUÍ](https://discordapp.com/api/oauth2/authorize?client_id=${userBot.id}&permissions=0&scope=bot&guild_id=${msg.guild.id})`)
       .setFooter("Detalles de la petición");
 
-    client.channels.get(botRequestsChannelId).send(":information_source: Para rechazar una solicitud, utilice `s!denegar <ID>`", embed).catch(() => { });
+    client.channels.get(botRequestsChannelId).send(":information_source: Para rechazar una solicitud, utilice `s!denegar <ID>`", embed).catch((e) => {errorLog(e)});
 
     // Enviamos un Embed al autor (desarrollador del bot).
     embed = new RichEmbed()
@@ -62,13 +64,14 @@ exports.run = async (client, msg, args) => {
       .setTitle("Su solicitud está pendiente de aprobación")
       .setDescription(`Le notificamos que su bot **${userBot.tag}** está pendiente de ser aprobado o ser rechazado a la brevedad. Su puesto en la cola de espera es **${dbBot.nQueue}**.`)
       .setColor(0x000000)
-      .setFooter("Equipo de aprobaciones de aplicaciones")
+      .setFooter("Equipo de Administración General")
       .setTimestamp();
 
-    msg.author.send(embed).catch(() => { });
+    msg.author.send(embed).catch((e) => {errorLog(e)});
   } catch (e) {
     // Mensaje de error por si el usuario no existe o pasa algo erróneo o no esperado, que por lo general es que la ID no es válida.
     console.error(`${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}`);
+    errorLog(e);
     msg.channel.send(":x: **Esa no es una ID válida**. La ID debe ser el identificador de la aplicación del bot.");
   }
 }

@@ -1,6 +1,8 @@
 require('dotenv').config()
 const playgroundChannelId = process.env.playgroundChannelId;
 const { RichEmbed } = require("discord.js");
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
 
 exports.run = async (client, msg, args) => {
   // Verifica si el usuario pertenece al personal del servidor.
@@ -51,7 +53,7 @@ exports.run = async (client, msg, args) => {
     .setFooter("Script Hub")
     .setTimestamp();
 
-  client.channels.get(playgroundChannelId).send(embed).catch(() => { });
+  client.channels.get(playgroundChannelId).send(embed).catch((e) => {errorLog(e)});
 
   // Se envía un mensaje Embed al dueño de que el bot ha sido aceptado correctamente.
   embed = new RichEmbed()
@@ -62,7 +64,7 @@ exports.run = async (client, msg, args) => {
     .setFooter("Equipo de aprobaciones de aplicaciones")
     .setTimestamp();
 
-  client.users.get(dbBot.ownerId).send(embed).catch(() => { });
+  client.users.get(dbBot.ownerId).send(embed).catch((e) => {errorLog(e)});
 }
 
 exports.aliases = [];

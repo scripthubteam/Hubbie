@@ -1,6 +1,8 @@
 require('dotenv').config()
 const privateLogsChannelId  = process.env.privateLogsChannelId;
 const { RichEmbed } = require("discord.js");
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
 
 module.exports = async (client, oldMessage, newMessage) => {
   // Condiciones fundamentales por si el mensaje tiene embed y se "edita".
@@ -15,5 +17,5 @@ module.exports = async (client, oldMessage, newMessage) => {
     .addField("> Después", newMessage.content, true);
 
   // Se envía el Embed al canal del registro privado.
-  client.channels.get(privateLogsChannelId).send(embed).catch(() => { });
+  client.channels.get(privateLogsChannelId).send(embed).catch((e) => {errorLog(e)});
 }

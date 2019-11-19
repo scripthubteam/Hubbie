@@ -1,3 +1,6 @@
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
+
 exports.run = async (client, msg, args) => {
   // Verifica si el usuario pertenece al personal del servidor.
   if (!msg.member.hasPermission("ADMINISTRATOR")) return msg.channel.send(":x: No posees los permisos necesarios.");
@@ -36,7 +39,7 @@ exports.run = async (client, msg, args) => {
     });
 
   // Envía mensaje de denegación al dueño o desarrollador del bot.
-  if (userOwner) userOwner.send(`:information_source: Mensaje del **equipo de aprobaciones de aplicaciones de Script Hub** enviado por el encargado en **aprobación de solicitudes de bots** ー **${msg.author.tag}**:\n\n¡Hola **${userOwner.user.tag}**! Tenemos información de tu bot: **${userBot.user.tag}**.\nEste mensaje fue enviado para notificarte nuestra decisión sobre la solicitud dada el día **${new Date().toLocaleDateString()}** a las **${new Date().toLocaleTimeString()}** hora GMT (UTC) para la aprobación de tu bot en nuestros servicios:\n> ${args.slice(1).join(" ")}`).catch(() => { });
+  if (userOwner) userOwner.send(`:information_source: Mensaje del **equipo de aprobaciones de aplicaciones de Script Hub** enviado por el encargado en **aprobación de solicitudes de bots** ー **${msg.author.tag}**:\n\n¡Hola **${userOwner.user.tag}**! Tenemos información de tu bot: **${userBot.user.tag}**.\nEste mensaje fue enviado para notificarte nuestra decisión sobre la solicitud dada el día **${new Date().toLocaleDateString()}** a las **${new Date().toLocaleTimeString()}** hora GMT (UTC) para la aprobación de tu bot en nuestros servicios:\n> ${args.slice(1).join(" ")}`).catch((e) => {errorLog(e)});
 
   // Envía mensaje de confirmación a la persona que ejecutó el comando en el mismo canal.
   msg.channel.send(`:white_check_mark: El bot **${userBot.user.tag}** fue rechazado con éxito.`);

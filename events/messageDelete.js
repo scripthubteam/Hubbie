@@ -1,6 +1,8 @@
 require('dotenv').config()
 const privateLogsChannelId = process.env.privateLogsChannelId;
 const { RichEmbed } = require("discord.js");
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
 
 module.exports = async (client, msg) => {
   // Se crea un Embed base con el autor del mensaje.
@@ -23,5 +25,5 @@ module.exports = async (client, msg) => {
   }
 
   // Se envía el Embed al registro privado.
-  client.channels.get(privateLogsChannelId).send(embed).catch(() => { });
+  client.channels.get(privateLogsChannelId).send(embed).catch((e) => {errorLog(e)});
 }

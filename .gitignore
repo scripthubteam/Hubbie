@@ -135,8 +135,10 @@ GitHub.sublime-settings
 # Ignore all local history of files
 .history
 
-## Script Hub ##
-Registro3.json
-
 ## NPM ##
 package-lock.json
+
+## Script Hub ##
+Registro3.json
+bot_logs/
+
