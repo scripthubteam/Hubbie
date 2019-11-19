@@ -1,11 +1,19 @@
 const { RichEmbed } = require("discord.js");
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
 
 exports.run = async (client, msg, args) => {
   // Crea el Embed con una información predefinida.
+  const embedOTA = new RichEmbed()
+  .setColor("#00EBB0")
+  .setTitle("Reporta errores y contribuye. Sé parte de Script Hub.")
+  .setDescription("**Script Hub Bot** es uno de los proyectos **open source** de Script Hub que es publicado gracias al equipo de desarrolladores sin ánimos de lucro de **Script Hub OTA**. \n<:scripthub:646177532365897730> [¡Contribuye libremente con nosotros y aprende!](https://github.com/scripthubteam)")
+  .setThumbnail("https://i.imgur.com/xtkteHF.png")
+
   const embed = new RichEmbed()
     .setAuthor(client.user.username, client.user.displayAvatarURL)
-    .setTitle("Lista de comandos públicos")
-    .setColor(0x36393e);
+    .setColor(0x36393e)
+    .setFooter(msg.author.tag, msg.author.displayAvatarURL);
 
   // Definimos una variable de salida y por cada comando público, lo listamos en esa variable para ser colocado en el Embed.
   let outPublic = "";
@@ -23,18 +31,20 @@ exports.run = async (client, msg, args) => {
 
     // Se coloca un título y descripción diferente para los privados.
     embed
-      .setTitle("Lista de comandos privados")
+      .setTitle("Panel de Administración")
       .setDescription(outPrivate);
 
     // Se envía el Embed con los comandos privados.
-    msg.author.send(embed).catch(() => { });
+    msg.author.send(embed).catch((e) => {errorLog(e)});
   }
 
   // Se coloca la descripción del Embed con la información de comandos públicos.
+  embed.setTitle("Lista de comandos")
   embed.setDescription(outPublic);
 
   // Se envía el Embed con los comandos públicos.
-  msg.channel.send(embed);
+  msg.channel.send(embed).catch((e) => {errorLog(e)});
+  msg.channel.send(embedOTA).catch((e) => {errorLog(e)});
 }
 
 exports.aliases = [];

@@ -1,3 +1,6 @@
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
+
 exports.run = async (client, msg, args) => {
   // Verifica si el usuario pertenece al personal del servidor.
   if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(":x: No posees los permisos necesarios.");
@@ -11,7 +14,7 @@ exports.run = async (client, msg, args) => {
     if (err) {
       // Muestra en la consola el error y envía un mensaje con el error.
       console.error(err);
-      return msg.channel.send(`:x: **Error:** ${err.toString()}`).catch(() => { });
+      return msg.channel.send(`:x: **Error:** ${err.toString()}`).catch((e) => {errorLog(e)});
     } else {
       // Si no hay errores muestre en la consola la salida y/o error del comando ejecutado.
       console.log(stdout + "\n" + stderr);
@@ -26,6 +29,7 @@ exports.run = async (client, msg, args) => {
     if (err) {
       // Muestra en la consola el error y envía un mensaje con el error.
       console.error(err);
+      errorLog(err);
       msg.channel.send(`:x: **Error:** No se pudieron aplicar los cambios. **(STAGE: refresh --> Glitch)** ${err.toString()}`);
       return msg.channel.send("**Intervención manual requerida**");
     } else {

@@ -6,6 +6,8 @@ const colorsEmbed = {
   youtube: 0xc4302b,
   discord: 0x7289da
 };
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
 
 exports.run = async (client, msg, args) => {
   // Verifica si el usuario pertenece al personal del servidor.
