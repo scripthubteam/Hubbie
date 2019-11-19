@@ -24,71 +24,50 @@ const log = (message) => {
 };
 
 // Bot Modules
-const errorLog = require("./bot_modules/errorLog.js");
+client.errorLog = require("./bot_modules/errorLog.js");
+console.log(process.env)
 
-// Conectando a base de datos MongoDB.
-mongoose.connect(process.env.MONGOURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}, (e) => {
-  console.log(`${e ? `${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}` : `Base de datos lista!`}`);
-});
+/*
+* Usaremos una funcion para iniciar al bot de manera sincronizada para evitar posibles fallas 
+*/
 
-// Cuando el cliente esté listo.
-client.on("ready", () => {
-  // Señal de vida.
-  console.log(client.user.tag+" ("+process.env.PREFIX+") - Listo!");
-  client.user.setActivity("Documentación y bots", {type: 'WATCHING'}).catch();
-  // Definiciones importantes y administrador de comandos (1/3).
+const loadCommands = require('./bot_modules/loadCommands')
+const loadEvents = require('./bot_modules/loadEvents')
+
+const init = async () => {
+
+  // Conectando a base de datos MongoDB.
+  await mongoose.connect(process.env.MONGOURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }, (e) => {
+    console.log(`${e ? `${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}` : `Base de datos lista!`}`);
+  }).catch(e => {
+    throw new Error('No se pudo realizar la conexion a la base de datos')
+  });
+
+
   client.onlyDeleteUsers = [];
   client.db = require("./models/bot.js");
   client.cmds = new Discord.Collection();
   client.aliases = new Discord.Collection();
 
-//Eventos
-fs.readdir('./events/', (err, files) => {
-  if (err) throw err;
-  log(`[Eventos] [Cargando un total de ${files.length} eventos]`);
+  //Usaremos las funciones loadEvents y loadCommands para iniciar el bot de manera sincronizada
+  await loadEvents(path.resolve(__dirname, 'events'), client)
+  await loadCommands(path.resolve(__dirname, 'cmds'), client)
 
-  files.forEach((f) => {
-    const event = require(`./events/${f}`);
-    const eventName = f.split('.')[0];
-    client.on(eventName, event.bind(null, client));
-    delete require.cache[require.resolve(`./events/${f}`)];
+ // Iniciamos sesión en el bot con su token correspondiente y si hay algún error lo muestra.
+  client.login(process.env.TOKEN).catch((e) => {
+   errorLog(e);
+   console.error(`${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}`);
   });
-});
-
-//Comandos
-fs.readdir("./cmds/", (err, files) => {
-  if (err) errorLog(err);
-  
-  log(`[Comandos] [Cargando un total de ${files.length} comandos]`);
-  files.forEach(f => {
-    let props = require(`./cmds/${f}`);
-    let commandName = f.split('.')[0];
-    log(`Comando cargado: ${f}.`);
-    client.cmds.set(commandName, {
-      runFile: props,
-      name: f.split('.')[0],
-      public: props.public,
-      aliases: props.aliases,
-      description: props.description,
-      usage: props.usage
-    });
-  
-  });
-});
-});
+}
 
 // Controlamos todas las excepciones recibidas que no han sido controladas anteriormente.
 process.on("unhandledRejection", e => {
   // Se envía todo eso en la consola.
-  errorLog(e);
+  client.errorLog(e);
   console.error(`${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}`);
 });
 
-// Iniciamos sesión en el bot con su token correspondiente y si hay algún error lo muestra.
-client.login(process.env.TOKEN).catch((e) => {
-  errorLog(e);
-  console.error(`${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}`);
-});
+init()
