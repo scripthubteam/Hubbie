@@ -25,7 +25,6 @@ const log = (message) => {
 
 // Bot Modules
 client.errorLog = require("./bot_modules/errorLog.js");
-console.log(process.env)
 
 /*
 * Usaremos una funcion para iniciar al bot de manera sincronizada para evitar posibles fallas 
