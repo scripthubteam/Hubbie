@@ -2,6 +2,8 @@ require('dotenv').config()
 const privateLogsChannelId = process.env.privateLogsChannelId;
 const playgroundChannelId = process.env.playgroundChannelId;
 const { RichEmbed } = require("discord.js");
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
 
 module.exports = async (client, member) => {
   // Comprueba si es un bot y hace lo siguiente.
@@ -19,13 +21,13 @@ module.exports = async (client, member) => {
       .addField(":x: Su bot fue expulsado de Script Hub.", `El bot **${member.user.tag}** fue eliminado del club de bots.\n¿Esto es un error? Por favor contacta a un administrador.`);
 
     // Le envimos el embed al dueño o desarrollador del bot solo si no está aprobado.
-    if (!client.onlyDeleteUsers.includes(member.id)) client.users.get(dbBot.idOwner).send(embed).catch(() => { });
+    if (!client.onlyDeleteUsers.includes(member.id)) client.users.get(dbBot.idOwner).send(embed).catch((e) => {errorLog(e)});
 
     // Se le informa al personal por medio del canal de logs que el bot no hace parte del club de bots ahora.
-    client.channels.get(privateLogsChannelId).send(`:robot: **[CLUB DE BOTS] ${member.user.tag}** salió del servidor por no formar parte del **club de bots**.`).catch(() => { });
+    client.channels.get(privateLogsChannelId).send(`:robot: **[CLUB DE BOTS] ${member.user.tag}** salió del servidor por no formar parte del **club de bots**.`).catch((e) => {errorLog(e)});
 
     // Se le informa a todos los usuarios mediante el canal playground que el bot no pertecene más al club solo si no está aprobado.
-    if (!client.onlyDeleteUsers.includes(member.id)) client.channels.get(playgroundChannelId).send(`:robot: El bot **${member.user.tag}** no pertenece más al **club de bots**.`).catch(() => { });
+    if (!client.onlyDeleteUsers.includes(member.id)) client.channels.get(playgroundChannelId).send(`:robot: El bot **${member.user.tag}** no pertenece más al **club de bots**.`).catch((e) => {errorLog(e)});
 
     // Por último, se elimina el bot del club de bots por su salida.
     await client.db.bots.deleteOne({ botId: member.id });

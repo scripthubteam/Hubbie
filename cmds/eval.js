@@ -1,4 +1,6 @@
 const { RichEmbed } = require("discord.js");
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
 
 exports.run = async (client, msg, args) => {
     const arr = {
@@ -24,6 +26,7 @@ exports.run = async (client, msg, args) => {
             msg.channel.send(embed);
         } catch (err) {
             msg.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+            errorLog(err);
         }
     }
 }

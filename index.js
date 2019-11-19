@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 
 app.get("*", (req, res) => {
-    res.send("No quedará en la noche una estrella.\nNo quedará la noche.\nMoriré y conmigo la suma\ndel intolerable universo.\nBorraré las pirámides, las medallas,\nlos continentes y las caras.\nBorraré la acumulación del pasado.\nHaré polvo la historia, polvo el polvo.\nEstoy mirando el último poniente.\nOigo el último pájaro.\nLego la nada a nadie.\n");
+    res.send("No quedará en la noche una estrella.\nNo quedará la noche.\nMoriré y conmigo la suma\ndel intolerable universo.\nBorraré las pirámides, las medallas,\nlos continentes y las caras.\nBorraré la acumulación del pasado.\nHaré polvo la historia, polvo el polvo.\nEstoy mirando el último poniente.\nOigo el último pájaro.\nLlego la nada a nadie.\n");
 });
 
 app.listen(process.env.PORT || 3000, (e) => {
@@ -22,6 +22,9 @@ const fs = require("fs");
 const log = (message) => {
   console.log(`[${moment().format("MM-DD-YYYY HH:mm:ss")}] ${message}`);
 };
+
+// Bot Modules
+const errorLog = require("./bot_modules/errorLog.js");
 
 // Conectando a base de datos MongoDB.
 mongoose.connect(process.env.MONGOURI, {
@@ -57,7 +60,7 @@ fs.readdir('./events/', (err, files) => {
 
 //Comandos
 fs.readdir("./cmds/", (err, files) => {
-  if (err) console.error(err);
+  if (err) errorLog(err);
   
   log(`[Comandos] [Cargando un total de ${files.length} comandos]`);
   files.forEach(f => {
@@ -77,13 +80,15 @@ fs.readdir("./cmds/", (err, files) => {
 });
 });
 
-// Controlamos todas las excepciones recbiidas que no han sido controladas anteriormente.
+// Controlamos todas las excepciones recibidas que no han sido controladas anteriormente.
 process.on("unhandledRejection", e => {
   // Se envía todo eso en la consola.
+  errorLog(e);
   console.error(`${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}`);
 });
 
 // Iniciamos sesión en el bot con su token correspondiente y si hay algún error lo muestra.
 client.login(process.env.TOKEN).catch((e) => {
+  errorLog(e);
   console.error(`${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}`);
 });

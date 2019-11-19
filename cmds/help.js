@@ -1,10 +1,11 @@
 const { RichEmbed } = require("discord.js");
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
 
 exports.run = async (client, msg, args) => {
   // Crea el Embed con una información predefinida.
   const embed = new RichEmbed()
     .setAuthor(client.user.username, client.user.displayAvatarURL)
-    .setTitle("Lista de comandos públicos")
     .setColor(0x36393e);
 
   // Definimos una variable de salida y por cada comando público, lo listamos en esa variable para ser colocado en el Embed.
@@ -23,14 +24,15 @@ exports.run = async (client, msg, args) => {
 
     // Se coloca un título y descripción diferente para los privados.
     embed
-      .setTitle("Lista de comandos privados")
+      .setTitle("Panel de Administración")
       .setDescription(outPrivate);
 
     // Se envía el Embed con los comandos privados.
-    msg.author.send(embed).catch(() => { });
+    msg.author.send(embed).catch((e) => {errorLog(e)});
   }
 
   // Se coloca la descripción del Embed con la información de comandos públicos.
+  embed.setTitle("Lista de comandos")
   embed.setDescription(outPublic);
 
   // Se envía el Embed con los comandos públicos.

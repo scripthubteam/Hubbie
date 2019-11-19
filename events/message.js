@@ -1,4 +1,7 @@
 require('dotenv').config()
+// Bot Modules
+const errorLog = require("../bot_modules/errorLog.js")
+
 module.exports = async (client, message) => {
   // Condiciones útiles para saber si es un bot, si está en mensaje directo y si no es un comando.
   if (message.author.bot) return;
@@ -17,6 +20,7 @@ module.exports = async (client, message) => {
   } catch (e) {
     // Si hay algún error coloca una variable a true y muestra el error en consola.
     err = true;
+    errorLog(e);
     console.error(`${e.toString()}${e.fileName ? ` - ${e.fileName}:${e.lineNumber}:${e.columnNumber}` : ``}`);
   } finally {
     // Muestra en la consola el comando ejecutado y si hay error lo muestra en rojo.
