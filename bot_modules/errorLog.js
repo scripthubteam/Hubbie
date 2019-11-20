@@ -1,7 +1,18 @@
-module.exports = function (e) {
+const fs = require("fs");
+const fileExists = async path => !!(await fs.promises.stat(path).catch(e => false));
+
+module.exports = async (e) => {
 	if(!e) throw new Error("[ERRORLOG - MODULE] Falta el error.");
-	const fs = require("fs");
+
+	let check = await fileExists('./bot_logs/errors.txt')
+
+	if(!check) await fs.writeFile('./bot_logs/errors.txt', '', { overwrite: false }, function (err) {
+  		if (err) throw err;
+  		console.log('It\'s saved!');
+	});
+
 	var log = fs.createWriteStream('./bot_logs/errors.txt', { flags: 'a' });
 	log.write('[ERROR][ID #'+Date.now()+'] Log del error: '+e+' \n');
-	console.error("[ERRORLOG]: "+e);
+	console.error("[ERRORLOG][ID #'+Date.now()+']: "+e)
+	return false
 };
