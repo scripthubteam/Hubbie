@@ -3,5 +3,5 @@ module.exports = function (e) {
 	const fs = require("fs");
 	var log = fs.createWriteStream('./bot_logs/errors.txt', { flags: 'a' });
 	log.write('[ERROR][ID #'+Date.now()+'] Log del error: '+e+' \n');
-	console.error("[ERRORLOG]: "+e);
+	console.error("[ERRORLOG][ID #'+Date.now()+']: "+e);
 };
