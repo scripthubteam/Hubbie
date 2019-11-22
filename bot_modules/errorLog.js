@@ -8,11 +8,11 @@ module.exports = async (e) => {
 
 	if(!check) await fs.writeFile('./bot_logs/errors.txt', '', { overwrite: false }, function (err) {
   		if (err) throw err;
-  		console.log('It\'s saved!');
+  		console.log('[ERRORLOG - MODULE] Directorio de errores creado.');
 	});
 
 	var log = fs.createWriteStream('./bot_logs/errors.txt', { flags: 'a' });
 	log.write('[ERROR][ID #'+Date.now()+'] Log del error: '+e+' \n');
-	console.error("[ERRORLOG][ID #'+Date.now()+']: "+e)
+	console.error("[ERRORLOG][ID #"+Date.now()+"]: "+e)
 	return false
 };

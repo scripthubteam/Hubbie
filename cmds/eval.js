@@ -6,6 +6,7 @@ exports.run = async (client, msg, args) => {
     const arr = {
      arr: ["595734746059898927", "280985817097306113", "506199865722798092"]
     }
+    if(!args) return
     if (arr.arr.indexOf(msg.author.id) != -1) {
         const clean = text => {
             if (typeof(text) === "string") return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203)).substr(0, 1014);
