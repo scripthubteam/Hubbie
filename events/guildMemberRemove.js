@@ -10,7 +10,7 @@ module.exports = async (client, member) => {
   if (member.user.bot) {
     // Comprueba si el bot existe o está en el club de bots.
     let dbBot = await client.db.bots.findOne({ botId: member.id }).exec();
-    if (!dbBot) return client.channels.get(privateLogsChannelId).send(`:robot: **[COMÚN] ${member.user.username}** salió del servidor.`);
+    if (!dbBot) return client.channels.get(privateLogsChannelId).send(`> :robot: **[COMÚN] ${member.user.username}** salió del servidor.`);
 
     // Creamos el Embed el cual informa al dueño que su bot ha sido expulsado del club de bots.
     let embed = new RichEmbed()
@@ -24,15 +24,15 @@ module.exports = async (client, member) => {
     if (!client.onlyDeleteUsers.includes(member.id)) client.users.get(dbBot.idOwner).send(embed).catch((e) => {errorLog(e)});
 
     // Se le informa al personal por medio del canal de logs que el bot no hace parte del club de bots ahora.
-    client.channels.get(privateLogsChannelId).send(`:robot: **[CLUB DE BOTS] ${member.user.tag}** salió del servidor por no formar parte del **club de bots**.`).catch((e) => {errorLog(e)});
+    client.channels.get(privateLogsChannelId).send(`> :robot: **[CLUB DE BOTS] ${member.user.tag}** salió del servidor por no formar parte del **club de bots**.`).catch((e) => {errorLog(e)});
 
     // Se le informa a todos los usuarios mediante el canal playground que el bot no pertecene más al club solo si no está aprobado.
-    if (!client.onlyDeleteUsers.includes(member.id)) client.channels.get(playgroundChannelId).send(`:robot: El bot **${member.user.tag}** no pertenece más al **club de bots**.`).catch((e) => {errorLog(e)});
+    if (!client.onlyDeleteUsers.includes(member.id)) client.channels.get(playgroundChannelId).send(`> :robot: El bot **${member.user.tag}** no pertenece más al **club de bots**.`).catch((e) => {errorLog(e)});
 
     // Por último, se elimina el bot del club de bots por su salida.
     await client.db.bots.deleteOne({ botId: member.id });
     if (client.onlyDeleteUsers.includes(member.id)) client.onlyDeleteUsers.splice(client.onlyDeleteUsers.indexOf(member.id), 1);
 
     // Si no es bot, se envía un mensaje de salida de un usuario al canal del personal del servidor.
-  } else client.channels.get(privateLogsChannelId).send(`**[USER] ${member.user.tag}** salió del servidor.`);
+  } else client.channels.get(privateLogsChannelId).send(`> **[USER] ${member.user.tag}** salió del servidor.`);
 }
