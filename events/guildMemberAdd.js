@@ -10,13 +10,13 @@ module.exports = async (client, member) => {
   if (member.user.bot) {
     // Comprueba si el bot existe o está en el club de bots.
     let dbBot = await client.db.bots.findOne({ botId: member.id }).exec();
-    if (!dbBot) return client.channels.get(privateLogsChannelId).send(`:robot: **[COMÚN] ${member.user.username}** salió del servidor.`);
+    if (!dbBot) return client.channels.get(privateLogsChannelId).send(`> :robot: **[COMÚN] ${member.user.username}** salió del servidor.`);
 
     // Añade roles correspondientes para ser el bot probado y aprobado.
     member.addRole(member.guild.roles.find(r => r.name === "Club de Bots"));
 
     // Envía un mensaje de la entrada del bot al canal privado del personal del servidor.
-    client.channels.get(privateLogsChannelId).send(`**[BOT] ${member.user.tag}** ha sido invitado al servidor y requiere de aprobación.`).catch((e) => { errorLog(e)});
+    client.channels.get(privateLogsChannelId).send(`> **[BOT] ${member.user.tag}** ha sido invitado al servidor y requiere de aprobación.`).catch((e) => { errorLog(e)});
   } else {
     // Se crea un Embed para la bienvenida de cualquier usuario normal.
     let embed = new RichEmbed()
@@ -34,6 +34,6 @@ module.exports = async (client, member) => {
     member.addRole(member.guild.roles.find(r => r.name === "Usuario"));
 
     // Por útlimo muestra en el canal del personal que el usuario entró.
-    client.channels.get(privateLogsChannelId).send(`**[USER] ${member.user.tag}** entró al servidor.`).catch((e) => {errorLog(e)});
+    client.channels.get(privateLogsChannelId).send(`> **[USER] ${member.user.tag}** entró al servidor.`).catch((e) => {errorLog(e)});
   };
 }
