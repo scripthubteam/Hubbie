@@ -42,5 +42,3 @@ botRequestsChannelId="Canal ID"
 **Inactivos**
 - [Deivid](https://github.com/Drylotrans "Drylotrans")
 - [mon](https://github.com/wwmon "mon")
-- [ToelF](https://github.com/toelf412 "toelf412")
-
