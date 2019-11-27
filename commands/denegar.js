@@ -12,17 +12,18 @@ exports.run = async (client, msg, args) => {
 
   if (!userBot.user.bot) return msg.channel.send(':x: **El usuario que mencionaste no es un bot**.');
 
+  const BOT_ID = userBot.id;
   // Comprueba si está en el club.
-  if (!await botManager.botExists(userBot.id)) return msg.channel.send(':x: **Este bot no está registrado en el club de bots**.');
+  if (!await botManager.botExists(BOT_ID)) return msg.channel.send(':x: **Este bot no está registrado en el club de bots**.');
 
 
   // Comprueba si tiene una razón válida.
   if (args.slice(1).join(' ').length <= 5) return msg.channel.send(':x: **Especifica una razón por la cual vas a rechazar este bot**.');
 
   // Comprueba si no está en fase de solicitud
-  if (await botManager.isApproved(userBot.id)) return msg.channel.send(`:x: **Este bot no está en fase de solicitud.**`);
+  if (await botManager.isApproved(BOT_ID)) return msg.channel.send(`:x: **Este bot no está en fase de solicitud.**`);
 
-  const botDeleted = botManager.getBot(userBot.id);
+  const botDeleted = botManager.getBot(BOT_ID);
 
   // Obtiene el dueño del bot.
   const userOwner = msg.guild.members.get(botDeleted.idOwner);
@@ -41,7 +42,7 @@ exports.run = async (client, msg, args) => {
 
   // Por último se quita el bot del servidor para en el evento ser quitado de la base de datos.
   if (userBot.kickable) userBot.kick('rechazado del club de bots.');
-  await botManager.rejectBot(userBot.id);
+  await botManager.rejectBot(BOT_ID);
 };
 
 exports.aliases = [];
