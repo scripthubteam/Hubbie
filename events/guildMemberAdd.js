@@ -2,17 +2,20 @@ require('dotenv').config();
 const globalChannelId = process.env.globalChannelId;
 const privateLogsChannelId = process.env.privateLogsChannelId;
 const {RichEmbed} = require('discord.js');
+
+const BotManager = require('../lib/BotManager');
+const botManager = new BotManager();
 // Bot Modules
 
 module.exports = async (client, member) => {
   // Si el usuario es un bot, lo coloca para ser aprobado.
   if (member.user.bot) {
     // Comprueba si el bot existe o está en el club de bots.
-    const dbBot = await client.db.bots.findOne({botId: member.id}).exec();
-    if (!dbBot) return client.channels.get(privateLogsChannelId).send(`:robot: **[COMÚN] ${member.user.username}** salió del servidor.`);
+    const botExists = await botManager.botExists(member.user.id);
+    if (!botExists) return client.channels.get(privateLogsChannelId).send(`:robot: **[COMÚN] ${member.user.username}** salió del servidor.`);
 
     // Añade roles correspondientes para ser el bot probado y aprobado.
-    member.addRole(member.guild.roles.find((r) => r.name === 'Club de Bots'));
+    member.addRole(member.guild.roles.find((r) => r.name === 'ToTest'));
 
     // Envía un mensaje de la entrada del bot al canal privado del personal del servidor.
     client.channels.get(privateLogsChannelId).send(`**[BOT] ${member.user.tag}** ha sido invitado al servidor y requiere de aprobación.`).catch((e) => {

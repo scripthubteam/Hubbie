@@ -8,15 +8,14 @@ exports.run = async (client, msg, args) => {
   // Se obtienen los bots en espera y se verifica si hay más de uno.
   if (await botManager.getQueue() === 0) return msg.channel.send(':x: **No hay ningún bot en la lista de espera**.');
   const botsInQueue = await botManager.getNoApprovedBots();
-
   // Se define una variable de salida y se agrega cada bot por orden de lista.
   let out = 'Lista de espera:\n';
-  botsInQueue
+  await botsInQueue
       .sort()
-      .forEach((bot) => {
-        const memberBot = msg.guild.members.get(bot.botId);
+      .forEach(async (bot) => {
+        const memberBot = await client.fetchUser(bot.botId);
         const memberOwner = msg.guild.members.get(bot.ownerId);
-        out += `> **${bot.nQueue}**. ${memberBot.user.tag} - ${memberOwner.user.tag} - \`${bot.prefix}\`\n`;
+        out += `> **${bot.nQueue}**. ${memberBot.tag} - ${memberOwner.user.tag} - \`${bot.prefix}\`\n `;
       });
 
   // Se envía la variable que contiene la lista de bots en espera.

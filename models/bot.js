@@ -34,9 +34,11 @@ const botSchema = new Schema({
   },
   votes_plus: {
     type: Number,
+    default: 0,
   },
-  votes_neegative: {
+  votes_negative: {
     type: Number,
+    default: 0,
   },
 });
 
