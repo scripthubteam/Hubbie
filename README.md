@@ -34,11 +34,7 @@ botRequestsChannelId="Canal ID"
 `node index.js`
 
 # Desarrolladores
-**Activos:**
+
 - [Devsaider](https://github.com/MrDevsaider "MrDevsaider")
 - [Lau](https://github.com/Laauuu "Lau")
 - [tati1206](https://github.com/tati1206 "tati1206")
-
-**Inactivos**
-- [Deivid](https://github.com/Drylotrans "Drylotrans")
-- [mon](https://github.com/wwmon "mon")
