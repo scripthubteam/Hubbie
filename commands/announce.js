@@ -43,11 +43,11 @@ exports.run = async (client, msg, args) => {
 
 
   // Departamento comunidad
-  if (msg.channel.id === '650684881436934144') depName = 'departamento comunitario';
+  if (msg.channel.id === '643948768118571028') depName = 'departamento comunitario';
   // Departamento técnico
-  if (msg.channel.id === '650684895320080384') depName = 'departamento técnico';
+  if (msg.channel.id === '643948656545890320') depName = 'departamento técnico';
   // Departamento general
-  if (msg.channel.id === '650684863854280715') depName = 'departamento general';
+  if (msg.channel.id === '609010510599421985') depName = 'departamento general';
   let toSend;
 
   if (args[3] === 'e') {
