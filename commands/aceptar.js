@@ -7,7 +7,7 @@ const botManager = new BotManager();
 
 exports.run = async (client, msg, args) => {
   // Verifica si el usuario pertenece al personal del servidor.
-  if (!msg.member.hasPermission('MANAGE_SERVER')) return msg.channel.send(':x: No posees los permisos necesarios.');
+  if (!msg.member.hasPermission('MANAGE_GUILD')) return msg.channel.send(':x: No posees los permisos necesarios.');
 
   // Obtiene y comprueba si el bot mencionado está en el servidor.
   const userBot = msg.guild.members.get(args[0]) || msg.mentions.members.first();
