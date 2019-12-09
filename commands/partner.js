@@ -9,7 +9,7 @@ const colorsEmbed = {
 
 exports.run = async (client, msg, args) => {
   // Verifica si el usuario pertenece al personal del servidor.
-  if (!msg.member.hasPermission('MANAGE_MESSAGES')) return msg.channel.send(':x: No posees los permisos necesarios.');
+  if (!msg.member.hasPermission('MANAGE_GUILD')) return msg.channel.send(':x: No posees los permisos necesarios.');
 
   // Redefinimos los argumentos.
   args = args.join(' ').split('|').map((arg) => arg.trim());
