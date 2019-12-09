@@ -33,6 +33,15 @@ botRequestsChannelId="Canal ID"
 
 `node index.js`
 
+## ¿Como reportar issues?
+Por favor, en caso de encontrar errores o bugs, sigue este formato
+```
+Como reproducir el bug: 
+Resultado obtenido: 
+Resultado esperado:
+Información extra: 
+```
+
 # Desarrolladores
 **Activos:**
 - [Devsaider](https://github.com/MrDevsaider "MrDevsaider")
