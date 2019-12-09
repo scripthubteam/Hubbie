@@ -4,7 +4,13 @@ const announceChannelId = process.env.announceChannelId;
 
 exports.run = async (client, msg, args) => {
   let depName;
+<<<<<<< HEAD
   if (!msg.member.hasPermission('MANAGE_GUILD')) return msg.channel.send(':x: No posees los permisos necesarios.');
+=======
+
+  if (!msg.member.hasPermission('MANAGE_GUILD')) return msg.channel.send(':x: No posees los permisos necesarios.');
+
+>>>>>>> cd5cd47febd1d3209cc11d9fc1bb5c2e72812353
   args = args.join(' ').split('|').map((arg) => arg.trim());
 
   if (!args[0]) {
