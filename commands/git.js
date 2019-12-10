@@ -11,7 +11,7 @@ exports.run = async (client, msg, args) => {
     if (err) {
       // Muestra en la consola el error y envía un mensaje con el error.
       console.error(err);
-      return msg.channel.send(`:x: **Error:** ${err.toString()}`).catch((e) => {
+      return msg.channel.send(`${err.toString()}`).catch((e) => {
         console.error(e);
       });
     } else {
