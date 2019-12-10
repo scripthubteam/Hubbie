@@ -21,7 +21,7 @@ exports.run = async (client, msg, args) => {
   if (!await botManager.botExists(BOT_ID)) return msg.channel.send(':x: **Este bot no está registrado en el club de bots**.');
 
   // Comprueba si el dueño está dentro del servidor.
-  if (!userOwner) {
+  if (!msg.guild.members.find(x => x.user === userOwner)) {
     return client.channels.get(privateLogsChannelId).send(`Se ha detectado que el usuario <@${OWNER_ID}> abandonó el servidor y su bot **${userBot.tag}** está en el servidor. **ESTO AMERITA UN KICK A LA APLICACIÓN**.`);
   }
 
