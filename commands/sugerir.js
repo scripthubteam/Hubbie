@@ -31,7 +31,9 @@ exports.run = async (client, msg, args) => {
                 .setFooter("Usa `s!sugerir <sugerencia>` para mandar una sugerencia")
                 .setTimestamp();
             let channel = msg.guild.channels.get(suggestionsChannelId); // Obtenemos el canal mediante la ID declarada más arriba.
-            channel.send({ embed: suggestEmbed }); // Y mandamos el embed con la sugerencia.
+            let suggestReact = await channel.send({ embed: suggestEmbed });
+            await suggestReact.react('653815214273331201');
+            await suggestReact.react('653815214541766656'); // Y mandamos el embed con la sugerencia.
         }
     } catch (e) {
         console.log(e.toString())
