@@ -1,0 +1,554 @@
+[33mcommit e22fe9421f4cd20acd12855fd408d1f2b5718d05[m[33m ([m[1;36mHEAD -> [m[1;32mtest[m[33m, [m[1;31morigin/test[m[33m)[m
+Merge: b673418 a71d626
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Mon Dec 9 23:47:15 2019 -0600
+
+    Merge branch 'development' of https://github.com/scripthubteam/Script-Hub-Free into test
+
+[33mcommit b673418b40bc8d4e84e68bbd3fb327c3fe83cdff[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Mon Dec 9 23:46:33 2019 -0600
+
+    reacts
+
+[33mcommit fb5258d9b3b9b23b3343737c9c38b4b02cee307a[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Mon Dec 9 23:16:50 2019 -0600
+
+    Sistema de sugerencias 1.0, corrección de errores y cambios de entorno
+
+[33mcommit 338341fb0bf9db2933631792ca4374a07d6f03cb[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Mon Dec 9 23:15:19 2019 -0600
+
+    Sistema de sugerencias 1.0, corrección de errores y cambios de entorno
+
+[33mcommit a71d626a627f4f880637d7cb52d2df73daeb48c7[m[33m ([m[1;31morigin/development[m[33m)[m
+Merge: 73baaa0 fb5258d
+Author: Devsaider <sebasmoraresu@gmail.com>
+Date:   Mon Dec 9 23:18:18 2019 -0500
+
+    Merge pull request #27 from scripthubteam/test
+    
+    test -> development
+
+[33mcommit 73baaa08d99f7ff507928e8cd5d9db754a3952ed[m[33m ([m[1;32mdevelopment[m[33m)[m
+Merge: 9e428d7 20e8ca4
+Author: Devsaider <sebasmoraresu@gmail.com>
+Date:   Mon Dec 9 22:51:34 2019 -0500
+
+    Merge pull request #23 from estebanDT30/development
+    
+    Detalles extra en el ".gitignore". "package.json" al día.
+
+[33mcommit 9e428d7c29b635ff8ed857def7f23a7652c597ce[m
+Merge: 12f9c52 0d002ee
+Author: Devsaider <sebasmoraresu@gmail.com>
+Date:   Mon Dec 9 22:50:49 2019 -0500
+
+    Merge pull request #25 from wwmon/test
+    
+    Comando de sugerencias
+
+[33mcommit 12f9c52972c068ae4114a06699d3fcb97c6c8d57[m
+Merge: 5b0398c 9cb1799
+Author: Devsaider <sebasmoraresu@gmail.com>
+Date:   Mon Dec 9 22:50:29 2019 -0500
+
+    Merge pull request #26 from scripthubteam/master
+    
+    Actualizando rama de pruebas.
+
+[33mcommit 0d002ee8cc2f534cc241adc9b8c813ca39e654a2[m
+Author: mon <54691517+wwmon@users.noreply.github.com>
+Date:   Tue Dec 10 02:00:42 2019 +0300
+
+    Comando de sugerencias
+
+[33mcommit 20e8ca4392a33192cb17fb3fdcb0f46137d14e4f[m
+Author: Esteban Delgado Trejos <edelgadotrejos@gmail.com>
+Date:   Mon Dec 9 09:37:56 2019 -0600
+
+    Detalles extra en el ".gitignore". "package.json" al día.
+
+[33mcommit 9cb17994cf1d60d24801f76754485ff5a3fb782f[m
+Merge: cd5cd47 6c36b7a
+Author: Devsaider <sebasmoraresu@gmail.com>
+Date:   Mon Dec 9 02:03:04 2019 -0500
+
+    Merge pull request #22 from scripthubteam/development
+    
+    Merge pull request #21 from scripthubteam/master
+
+[33mcommit 6c36b7aef25c0959d7581fd47869a8e311af63de[m
+Merge: 303853c cd5cd47
+Author: Devsaider <sebasmoraresu@gmail.com>
+Date:   Mon Dec 9 01:36:08 2019 -0500
+
+    Merge pull request #21 from scripthubteam/master
+    
+    Actualizando rama
+
+[33mcommit cd5cd47febd1d3209cc11d9fc1bb5c2e72812353[m
+Author: mon <54691517+wwmon@users.noreply.github.com>
+Date:   Mon Dec 9 07:55:56 2019 +0300
+
+    Cambio de permisos
+    
+    Se cambió de Manejar mensajes a Manejar Servidor.
+
+[33mcommit 8bc370552c4197313e4162bec9938085c75533f6[m
+Author: mon <54691517+wwmon@users.noreply.github.com>
+Date:   Mon Dec 9 07:54:08 2019 +0300
+
+    Cambio de permisos
+    
+    Se cambió de Administrador a Manejar Servidor.
+
+[33mcommit 0d27aa95cdb63b234cc6ea846eae8d7df3683cbb[m
+Author: mon <54691517+wwmon@users.noreply.github.com>
+Date:   Mon Dec 9 07:53:33 2019 +0300
+
+    Cambio de permisos.
+    
+    Se cambió de Administrador a Manejar Servidor.
+
+[33mcommit de245fa286c2a79f0611b4d5a6f35b50041573ec[m
+Author: mon <54691517+wwmon@users.noreply.github.com>
+Date:   Mon Dec 9 07:51:43 2019 +0300
+
+    Cambio de permisos.
+    
+    Se cambió de Administrador a Manejar Servidor.
+
+[33mcommit b3fe3df5b23a7e70d6642c60f361d4ce732ee80a[m
+Author: Lau <33169908+Laauuu@users.noreply.github.com>
+Date:   Sun Dec 8 13:29:10 2019 -0300
+
+    Update addrule.js
+
+[33mcommit 70dd3834694e5e55c797cfa25a4e39372d6c7841[m
+Author: Lauuu <elkozi116@gmail.com>
+Date:   Tue Dec 3 19:45:59 2019 -0300
+
+    Fix announce
+
+[33mcommit 498531dec814650a56e752a94ece3e8b12446cfb[m
+Author: Lau <33169908+Laauuu@users.noreply.github.com>
+Date:   Mon Dec 2 18:42:59 2019 -0300
+
+    Modificación de ids en announce.js
+
+[33mcommit f4ea86a61dc4ff49f0c7ee1e8943eb5e485db686[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Mon Dec 2 18:37:50 2019 -0300
+
+    ESlint fix
+
+[33mcommit 0645b54f4fef55228ae331c7b35e0009745d0127[m
+Merge: f56567f 8dce041
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Mon Dec 2 17:44:15 2019 -0300
+
+    Merge branch 'development'
+
+[33mcommit 8dce04138b4709411c588a68853a0a45ea418521[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Mon Dec 2 17:43:44 2019 -0300
+
+    Se eliminaron las carpetas cmds y bot_modules
+
+[33mcommit 7abc1fe94d391117e6554979b00ac3db2acac413[m
+Merge: 303853c 5b0398c
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Mon Dec 2 17:41:44 2019 -0300
+
+    Resolve conflicts
+
+[33mcommit 5b0398cd66720e76650db710c254e103d06d29f5[m
+Author: Lauuu <elkozi116@gmail.com>
+Date:   Sun Dec 1 12:22:51 2019 -0300
+
+    Addrule y announce
+
+[33mcommit f56567f9039b4bc5fd7bce519e39ccdc1bb857f6[m
+Author: tati1206 <45135760+tati1206@users.noreply.github.com>
+Date:   Fri Nov 29 17:06:08 2019 -0300
+
+    Se agregó un formato de reporte de bugs
+
+[33mcommit bfb10157e15819b4217c33947b0ffca5bce0c3b7[m
+Author: Lauuu <elkozi116@gmail.com>
+Date:   Wed Nov 27 21:27:54 2019 -0300
+
+    Añadido comando para añadir reglas
+
+[33mcommit 7df51dcc88c9eca0d66740189d68e3a11e9cfb1a[m
+Merge: 4336e69 6e727ab
+Author: tati1206 <45135760+tati1206@users.noreply.github.com>
+Date:   Wed Nov 27 20:13:40 2019 -0300
+
+    Merge pull request #19 from scripthubteam/test
+    
+    Test
+
+[33mcommit 6e727abec90fc4785f57ec97e987cd7fe7ffd9bd[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Wed Nov 27 20:11:59 2019 -0300
+
+    Se mejoraron algunas cosas del codigo
+
+[33mcommit f051ed20736ce510975d2337dc7b794bcad786e5[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Wed Nov 27 19:00:51 2019 -0300
+
+    Se documentó la clase BotManager
+
+[33mcommit bdfa8210568726fb4e0896d950a6d9accfb99b77[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Wed Nov 27 16:53:16 2019 -0300
+
+    Se termino de implementar la clase BotManager en todos los comandos y eventos
+
+[33mcommit 654ce8c05925c64a288815832799a4cb53676344[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 02:52:11 2019 -0300
+
+    Se mejoró el codigo del comando help
+
+[33mcommit 56c059cf47cf978c868fde061749a3d2dc1cbcca[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 02:43:19 2019 -0300
+
+    Se implemento la clase BotManager en el comando dengar
+
+[33mcommit 4282673d6acb8e6d72af6a5977ffa0f89fff4e39[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 02:42:55 2019 -0300
+
+    Se agregó el metodo rejectBot()
+
+[33mcommit ae7e13162a9394ab790f95fa9c77e6b4a8774900[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 02:02:26 2019 -0300
+
+    Se implementó la clase BotManager en el comando cqueue
+
+[33mcommit 6bf7ce2898f388048cf6d0f30e5a8a5d52b776d7[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 02:01:10 2019 -0300
+
+    Se agregó el metodo getQueue
+
+[33mcommit ca77128c02e30e88cca7f664ae4dda74e41b3a6b[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 01:49:55 2019 -0300
+
+    Se implemento la clase BotManager en el comando certificar
+
+[33mcommit 4db01aea4482f5deffec20f540cc182ec1518cf5[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 01:49:28 2019 -0300
+
+    Se agregó el metodo certifyBot y isCertified
+
+[33mcommit 915af8647e4693c192da471f2155cb0ebff1a8b7[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 01:02:36 2019 -0300
+
+    Se borró la carpeta cmds y la carpeta boy_modules se renombró a lib
+
+[33mcommit f909c1edfe2fb9d1924326a54dc2bfdabe0b7a4e[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 01:02:03 2019 -0300
+
+    Se eliminaron cosas inecesarias
+
+[33mcommit 83f061ae924cb224efcb75d74ad355f467a532c8[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 01:01:32 2019 -0300
+
+    Cambios hechos por eslint
+
+[33mcommit 9eb352393d8cdabc8389eca5f40f20d6ed45a63d[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 01:01:08 2019 -0300
+
+    Cambios hechos por eslint
+
+[33mcommit f76e7c7822a68eeac4994b925c9c937d3d1718e3[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 01:00:48 2019 -0300
+
+    Se cambió el nombre de cmds a commands y también se implemento la clase BotsManager al comando invite y aceptar
+
+[33mcommit 39f23d4fb8d4d3889400e5cc82c58446c937481e[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sun Nov 24 00:59:47 2019 -0300
+
+    Se creó la clase BotsManager
+
+[33mcommit 6baf06b2107d15a8622feed4a0bd49c0ee7338a1[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Sat Nov 23 23:47:02 2019 -0300
+
+    Se implementó eslint en el proyecto
+
+[33mcommit 303853ce63f167abab45eb448f17ed96c8fab38d[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 21 22:39:12 2019 -0600
+
+    fix errorLog char
+
+[33mcommit 2f4b354a58328c253557d7f5c18fe90597bb5e57[m
+Merge: 57b6847 cc49054
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 21 21:59:57 2019 -0500
+
+    Merge pull request #17 from scripthubteam/test
+    
+    test to development
+
+[33mcommit 57b684774148729d035df1bd3ede6200f2ad97b0[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 21 21:52:09 2019 -0600
+
+    typos 2
+
+[33mcommit dc6d323a64db83d4d58ae4aa34c0cd39ba172284[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 21 21:51:20 2019 -0600
+
+    typos
+
+[33mcommit 4336e6934032511aaac482556ec49812e6279665[m
+Merge: 1cc747a 0d0f174
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Wed Nov 20 19:07:41 2019 -0500
+
+    Merge pull request #16 from scripthubteam/development
+    
+    README
+
+[33mcommit 0d0f174a72c8d188f9ecb64df68304403bfec9cb[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Wed Nov 20 18:07:12 2019 -0600
+
+    Update README.md
+
+[33mcommit cc4905407e0e915d6334cb7ea09d357094a4e6b9[m
+Merge: 1cc747a 77dd1b5
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Wed Nov 20 02:38:38 2019 -0500
+
+    Merge pull request #15 from esponjosin/development
+    
+    Fix de errores, optimizacion de código y limpieza
+
+[33mcommit 77dd1b57c1ec0f5c75220cdd93b56664a11c4dbf[m
+Author: tati1206 <45135760+tati1206@users.noreply.github.com>
+Date:   Tue Nov 19 17:59:35 2019 -0300
+
+    Removed console.log(process.env);
+
+[33mcommit 0b32446871b020faa5d08da5982e5b6aabb6a417[m
+Author: esponjosin <42915103+esponjosin@users.noreply.github.com>
+Date:   Tue Nov 19 17:45:06 2019 -0300
+
+    Fix de errores, optimizacion de código y limpieza
+
+[33mcommit 47c2891dd19be32e9f1e88a4bcfcd6b5852dd14a[m
+Merge: fdfe79c 20fa9ab
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Mon Nov 18 22:23:15 2019 -0600
+
+    Merge branch 'development' of https://github.com/scripthubteam/Script-Hub-Free into development
+
+[33mcommit fdfe79cdac2827d04382cde940f7082e2ccc9b5e[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Mon Nov 18 22:22:47 2019 -0600
+
+    errorlog
+
+[33mcommit dd0587111d9153cd2e4849b8425dde718dc6edbb[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Mon Nov 18 22:01:02 2019 -0600
+
+    ndea
+
+[33mcommit 1cc747a9a8be44f780e9d3e0f3e57e580aa1651f[m
+Merge: ec15ee1 20fa9ab
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Mon Nov 18 22:03:59 2019 -0500
+
+    Merge pull request #14 from scripthubteam/development
+    
+    Development 1.2b
+
+[33mcommit 20fa9ab94d2c255db8259797aa2f0d975700f3d0[m
+Merge: dd05871 ec15ee1
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Mon Nov 18 22:03:46 2019 -0500
+
+    Merge branch 'master' into development
+
+[33mcommit 911e7c00ce5ef29570a5376db0bad178b8010d7d[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Mon Nov 18 20:36:47 2019 -0600
+
+    Bot Modules: ErrorLog.js
+
+[33mcommit ec15ee1d00b3a3e14c285ff1a33b28853caf372d[m
+Author: tati1206 <45135760+tati1206@users.noreply.github.com>
+Date:   Sat Nov 16 23:36:33 2019 -0300
+
+    Delete package-lock.json
+
+[33mcommit 3beca9b58f6fbcdc037cd3d2442f30cb7736d284[m
+Author: tati1206 <45135760+tati1206@users.noreply.github.com>
+Date:   Sat Nov 16 23:36:14 2019 -0300
+
+    Update .gitignore
+
+[33mcommit 91c77ccd9b00aed9568125da9f0c58b6c596de6e[m
+Merge: a2b2d99 fecb6b2
+Author: tati1206 <45135760+tati1206@users.noreply.github.com>
+Date:   Sat Nov 16 23:21:01 2019 -0300
+
+    Merge pull request #12 from scripthubteam/development
+    
+    Development
+
+[33mcommit fecb6b2b47d1d89279fd3e72e77fd5763a2d9dc9[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Sat Nov 16 20:10:54 2019 -0600
+
+    fix commandHandler
+
+[33mcommit 142eee6eb535ecddf6d487be283bf8980eef7cb2[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Sat Nov 16 17:22:32 2019 -0600
+
+    .env template update
+
+[33mcommit 8c6faaad946eb0240c3e8f846cfed21e92524c4e[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Sat Nov 16 17:20:31 2019 -0600
+
+    .env template update
+
+[33mcommit de9548bf8cd86b78ef0e7e61cd351a9e628aea97[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Sat Nov 16 16:52:49 2019 -0600
+
+    all
+
+[33mcommit b05fa824a2570980f00ce2b89387fa45ac901254[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Sat Nov 16 16:10:41 2019 -0600
+
+    eval command & aliases
+
+[33mcommit 76293bec345f5ba8bd6521c75ac63a75e27f77cf[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 17:50:13 2019 -0600
+
+    El directorio config ya no existe más.
+
+[33mcommit 48e51ea93338e2974db5e9387acd7c4eed953ba1[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 17:46:58 2019 -0600
+
+    El directorio config ya no existe más.
+
+[33mcommit 5363bd89bf568982a4a4061cb842cfcc740250c0[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 17:44:29 2019 -0600
+
+    .env vars & setActivity
+
+[33mcommit 1ec67b43da13be207809a4077c6336e256a28c99[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 16:54:02 2019 -0600
+
+    Comandos actualizados acorde al esquema
+
+[33mcommit 774181bb4c3f537d422511874385b704b41063b3[m
+Merge: a7fde29 5416e1c
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Thu Nov 14 18:31:36 2019 -0300
+
+    Merge branch 'development' of https://github.com/scripthubteam/Script-Hub-Free into development
+
+[33mcommit 5416e1c4744cda7b42d8665b30b1ea02baf38356[m
+Merge: deb6b11 15bed8e
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 16:11:03 2019 -0600
+
+    dotenv config
+
+[33mcommit deb6b1158a69621208c63e37f271de5606655c28[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 16:09:34 2019 -0600
+
+    dotenv
+
+[33mcommit 93865e7dd1bbed070b9fad2b45b5c69e58fd4a8a[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 15:38:48 2019 -0600
+
+    PORT
+
+[33mcommit e412dfa482c1b5624ee286969e66876114b1c4de[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 15:35:40 2019 -0600
+
+    config root
+
+[33mcommit a7fde29c32233af3bb0abb5b6e3a070b3b681da0[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Thu Nov 14 18:31:13 2019 -0300
+
+    Se editó el esquema
+
+[33mcommit c3a37c69c32dd40d624c1dec333fa30ca39b7e58[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 15:29:13 2019 -0600
+
+    .env token & mongouri
+
+[33mcommit 15bed8e2f9cf3146fb810f79c187e136828f25b5[m
+Author: tati <mazzasantino1206@gmail.com>
+Date:   Thu Nov 14 17:56:14 2019 -0300
+
+    se agregó dotenv
+
+[33mcommit 16f27417d827a82068b0800ceadb7bf9115834af[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 14:50:34 2019 -0600
+
+    Adaptación de comandos al esquema general de la base de datos
+
+[33mcommit 7c40be4e6a26c1e3ad7d4f95907bb5365b0bf015[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 14:43:29 2019 -0600
+
+    fix Schema
+
+[33mcommit 6e40485d54f8c3f3a094e9999a7869e0a14dcc96[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 14:41:18 2019 -0600
+
+    Adaptación de comandos al esquema general de la base de datos
+
+[33mcommit a5037578d808cf6e1caf620808402b6f91d02f4c[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 14:18:36 2019 -0600
+
+    fix Schema
+
+[33mcommit 1f7cada3c37ca91f4cb13cf16869aabeec418041[m
+Author: Devsaider <saskexgames@gmail.com>
+Date:   Thu Nov 14 14:17:53 2019 -0600
+
+    fix Schema

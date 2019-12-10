@@ -4,6 +4,6 @@ exports.run = async (client, msg, args) => {
 };
 
 exports.aliases = [];
-exports.public = false;
+exports.public = true;
 exports.description = 'Muestra la latencia en milisegundos.';
 exports.usage = 's!ping';
