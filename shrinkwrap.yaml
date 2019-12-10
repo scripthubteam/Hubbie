@@ -3,9 +3,9 @@ dependencies:
   dotenv: 8.2.0
   express: 4.16.4
   moment: 2.24.0
-  mongoose: 5.7.10
+  mongoose: 5.8.0
 devDependencies:
-  eslint: 6.7.1
+  eslint: 6.7.2
   eslint-config-google: 0.14.0
 packages:
   /@babel/code-frame/7.5.5:
@@ -353,7 +353,7 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-8y9YjtM1JBJU/A9Kc+SbaOV4y29sSWckBwMHa+FGtVj5gN/sbnKDf6xJUl+8g7FAij9LVaP8C24DUiH/f/2Z9A==
-  /eslint/6.7.1:
+  /eslint/6.7.2:
     dependencies:
       '@babel/code-frame': 7.5.5
       ajv: 6.10.2
@@ -397,7 +397,7 @@ packages:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     hasBin: true
     resolution:
-      integrity: sha512-UWzBS79pNcsDSxgxbdjkmzn/B6BhsXMfUaOHnNwyE8nD+Q6pyT96ow2MccVayUTV4yMid4qLhMiQaywctRkBLA==
+      integrity: sha512-qMlSWJaCSxDFr8fBPvJM9kJwbazrhNcBU3+DszDW1OlEwKBBRWsJc7NJFelvwQpanHCR14cOLD41x8Eqvo3Nng==
   /espree/6.1.2:
     dependencies:
       acorn: 7.1.0
@@ -836,7 +836,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
-  /mongodb/3.3.3:
+  /mongodb/3.3.5:
     dependencies:
       bson: 1.1.3
       require_optional: 1.0.1
@@ -847,18 +847,18 @@ packages:
     optionalDependencies:
       saslprep: 1.0.3
     resolution:
-      integrity: sha512-MdRnoOjstmnrKJsK8PY0PjP6fyF/SBS4R8coxmhsfEU7tQ46/J6j+aSHF2n4c2/H8B+Hc/Klbfp8vggZfI0mmA==
+      integrity: sha512-6NAv5gTFdwRyVfCz+O+KDszvjpyxmZw+VlmqmqKR2GmpkeKrKFRv/ZslgTtZba2dc9JYixIf99T5Gih7TIWv7Q==
   /mongoose-legacy-pluralize/1.0.2:
     dev: false
     peerDependencies:
       mongoose: '*'
     resolution:
       integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
-  /mongoose/5.7.10:
+  /mongoose/5.8.0:
     dependencies:
       bson: 1.1.3
       kareem: 2.3.1
-      mongodb: 3.3.3
+      mongodb: 3.3.5
       mongoose-legacy-pluralize: 1.0.2
       mpath: 0.6.0
       mquery: 3.2.2
@@ -871,7 +871,7 @@ packages:
     engines:
       node: '>=4.0.0'
     resolution:
-      integrity: sha512-KpQosHPXmlNJKZbiP19mtmC0icaziRlB+xZ14R8q7jY7+OgbbynLD9VWSFb1CyzJX5ebdkVSGmay9HXn341hTA==
+      integrity: sha512-+VqrLGmHoDW/72yaXgiXSF7E/JcZ8Iyt7etrd4x3+Bj0z7k6GHHUBgGHP5ySPoG4J412RFuvHqx6xEOIuUrcfQ==
   /mpath/0.6.0:
     dev: false
     engines:
@@ -1402,8 +1402,8 @@ shrinkwrapVersion: 3
 specifiers:
   discord.js: ^11.5.1
   dotenv: ^8.2.0
-  eslint: ^6.6.0
+  eslint: ^6.7.2
   eslint-config-google: ^0.14.0
   express: ^4.16.4
   moment: ^2.24.0
-  mongoose: ^5.7.9
+  mongoose: ^5.7.14
