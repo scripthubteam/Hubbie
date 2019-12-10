@@ -21,7 +21,7 @@ exports.run = async (client, msg, args) => {
   if (!await botManager.botExists(BOT_ID)) return msg.channel.send(':x: **Este bot no está registrado en el club de bots**.');
 
   // Comprueba si el dueño está dentro del servidor.
-  if (!userOwner) {
+  if (!msg.guild.members.find(x => x.user === userOwner)) {
     return client.channels.get(privateLogsChannelId).send(`Se ha detectado que el usuario <@${OWNER_ID}> abandonó el servidor y su bot **${userBot.tag}** está en el servidor. **ESTO AMERITA UN KICK A LA APLICACIÓN**.`);
   }
 
@@ -51,7 +51,7 @@ exports.run = async (client, msg, args) => {
       return msg.channel.send('**Has eliminado tu voto del bot**.');
     } else if (args[1].toLowerCase().startsWith('prefix:')) {
       // Comprueba si es el dueño del bot para poder establecer cambios.
-      if (msg.author !== userOwner || msg.author !== msg.member.roles.has("606222350228127765")) return msg.channel.send(':x: **No puedes modificar información de este bot** Sólo los dueños del bot y miembros del staff de Script Hub pueden modificar esto.');
+      if (msg.author !== userOwner || !msg.member.roles.has("606222350228127765")) return msg.channel.send(':x: **No puedes modificar información de este bot** Sólo los dueños del bot y miembros del staff de Script Hub pueden modificar esto.');
 
       await botManager.setPrefix(BOT_ID, args[1].slice(7));
       const newPrefix = await botManager.getPrefix(BOT_ID);
@@ -60,7 +60,7 @@ exports.run = async (client, msg, args) => {
       return msg.channel.send(`**Has redefinido el prefijo del bot a** \`${newPrefix}\`.`);
     } else if (args[1].toLowerCase().startsWith('desc:')) {
       // Comprueba si es el dueño del bot para poder establecer cambios.
-      if (msg.author !== userOwner || msg.author !== msg.member.roles.has("606222350228127765")) return msg.channel.send(':x: **No puedes modificar información de este bot** Sólo los dueños del bot y miembros del staff de Script Hub pueden modificar esto.');
+      if (msg.author !== userOwner || !msg.member.roles.has("606222350228127765")) return msg.channel.send(':x: **No puedes modificar información de este bot** Sólo los dueños del bot y miembros del staff de Script Hub pueden modificar esto.');
 
       // Comprueba si la descripción se pasa del límite de caracteres (200).
       if (args.slice(1).join(' ').slice(5).length > 200) return msg.channel.send(':x: **La descripción no puede sobrepasar el límite de 200 caracteres**.');
