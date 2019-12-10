@@ -1,7 +1,8 @@
 const suggestionsChannelId = process.env.suggestionsChannelId;
+const {RichEmbed} = require("discord.js")
 exports.run = async (client, msg, args) => {
     let color = {
-        naranja: 0xFF0044,
+        naranja: "#FF9D00",
         verde: 0x43b581,
         rojo: 0xf04947
     }
@@ -20,9 +21,10 @@ exports.run = async (client, msg, args) => {
             embed
                 .setColor(color.verde)
                 .setTitle("¡Muchas gracias por tu sugerencia!");
-            message.channel.send({ embed });
+            msg.channel.send({ embed });
             let suggestion = args.join(' ');
             let suggestEmbed = new RichEmbed()
+                .setTitle("¡Nueva sugerencia!")
                 .setAuthor(msg.author.tag, msg.author.displayAvatarURL)
                 .setColor(color.naranja)
                 .setDescription(suggestion)
