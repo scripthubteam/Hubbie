@@ -2,21 +2,21 @@ const {RichEmbed} = require('discord.js');
 
 exports.run = async (client, msg, args) => {
   // Verifica si se introdujo un comando.
-  if(client.cmds.get(args[0])){
+  if (client.cmds.get(args[0])) {
     const embedHelpCMD = new RichEmbed()
-    .setColor("#F7671E")
-    .setTitle(args[0])
-    .setFooter(msg.author.tag, msg.author.displayAvatarURL)
-    .setDescription("> Alias: `"+client.cmds.get(args[0]).aliases.join(", ")+"`")
-    .addField("Descripción", client.cmds.get(args[0]).description.trim())
-    .addField("Ejemplo de uso", client.cmds.get(args[0]).usage.trim())
-    if(!client.cmds.get(args[0]).public){
-      embedHelpCMD.addField("Comando administrativo", "> Este comando sólo puede ser usado por miembros del equipo de **Script Hub**.")
+        .setColor('#F7671E')
+        .setTitle(args[0])
+        .setFooter(msg.author.tag, msg.author.displayAvatarURL)
+        .setDescription('> Alias: `' + client.cmds.get(args[0]).aliases.join(', ') + '`')
+        .addField('Descripción', client.cmds.get(args[0]).description.trim())
+        .addField('Ejemplo de uso', client.cmds.get(args[0]).usage.trim());
+    if (!client.cmds.get(args[0]).public) {
+      embedHelpCMD.addField('Comando administrativo', '> Este comando sólo puede ser usado por miembros del equipo de **Script Hub**.');
     }
     msg.channel.send(embedHelpCMD);
     return;
   }
-  if(args[0]) msg.channel.send("<:shAnimeShrug:607958984854601731> No se ha encontrado el comando `"+args[0]+"` en nuestro registro de comandos. **Revisa la lista de comandos nuevamente, aquí la tienes:**")
+  if (args[0]) msg.channel.send('<:shAnimeShrug:607958984854601731> No se ha encontrado el comando `' + args[0] + '` en nuestro registro de comandos. **Revisa la lista de comandos nuevamente, aquí la tienes:**');
   // Crea el Embed con una información predefinida.
   const embedOTA = new RichEmbed()
       .setColor('#00EBB0')
