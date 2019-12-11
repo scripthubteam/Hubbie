@@ -15,32 +15,37 @@ exports.run = async (client, msg, args) => {
     outPublic += `**[${cmd.usage.trim()}](https://scripthubteam.github.io/)** - ${cmd.description.trim()}\n`;
   });
 
+  const embedServer = new RichEmbed()
+      .setTitle('Lista de comandos')
+      .setDescription(outPublic)
+      .setAuthor(client.user.username, client.user.displayAvatarURL)
+      .setColor(0x36393e)
+      .setFooter(msg.author.tag, msg.author.displayAvatarURL);
+
+  let outPrivate = '';
+  client.cmds.filter((cmd) => !cmd.public).array().forEach((cmd) => {
+    outPrivate += `**[${cmd.usage.trim()}](https://scripthubteam.github.io/)** - ${cmd.description.trim()}\n`;
+  });
+
+  // Se coloca un título y descripción diferente para los privados.
+  const embedPrivate = new RichEmbed()
+      .setTitle('Panel de Administración')
+      .setDescription(outPrivate)
+      .setAuthor(client.user.username, client.user.displayAvatarURL)
+      .setColor(0x36393e)
+      .setFooter(msg.author.tag, msg.author.displayAvatarURL);
+
   // Comandos privados al MD del personal autorizado.
   if (msg.member.hasPermission('MANAGE_GUILD')) {
     // Definimos una variable de salida y por cada comando privado/no público, lo listamos en esa variable para ser colocado en el Embed.
-    let outPrivate = '';
-    client.cmds.filter((cmd) => !cmd.public).array().forEach((cmd) => {
-      outPrivate += `**[${cmd.usage.trim()}](https://scripthubteam.github.io/)** - ${cmd.description.trim()}\n`;
-    });
-
-    const embedServer = new RichEmbed()
-        .setTitle('Lista de comandos')
-        .setDescription(outPublic)
-        .setAuthor(client.user.username, client.user.displayAvatarURL)
-        .setColor(0x36393e)
-        .setFooter(msg.author.tag, msg.author.displayAvatarURL);
-    // Se coloca un título y descripción diferente para los privados.
-    const embedPrivate = new RichEmbed()
-        .setTitle('Panel de Administración')
-        .setDescription(outPrivate)
-        .setAuthor(client.user.username, client.user.displayAvatarURL)
-        .setColor(0x36393e)
-        .setFooter(msg.author.tag, msg.author.displayAvatarURL);
 
     msg.author.send(embedPrivate);
     msg.channel.send(embedServer);
     msg.channel.send(embedOTA);
-  };
+  } else {
+    msg.channel.send(embedServer);
+    msg.channel.send(embedOTA);
+  }
 };
 exports.aliases = [];
 exports.public = false;
