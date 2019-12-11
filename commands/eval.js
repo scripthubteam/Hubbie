@@ -2,7 +2,7 @@ const {RichEmbed} = require('discord.js');
 
 exports.run = async (client, msg, args) => {
   const arr = {
-    arr: ['595734746059898927', '280985817097306113', '506199865722798092'],
+    arr: ['595734746059898927', '280985817097306113', '506199865722798092', '608817245417898004'],
   };
   if (arr.arr.indexOf(msg.author.id) != -1) {
     const clean = (text) => {

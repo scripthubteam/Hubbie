@@ -20,7 +20,11 @@ exports.run = async (client, msg, args) => {
   const embed = new Discord.RichEmbed()
       .setTitle(args[0])
       .setDescription(args[1])
+<<<<<<< HEAD
       .setFooter('Regla #' + intRule + 1)
+=======
+      .setTimestamp()
+>>>>>>> 0987be986bfd1f73b7eb26a2ff1a06e509808cf2
       .setColor('RED');
   client.channels.get(ruleChannel).send(embed);
 };

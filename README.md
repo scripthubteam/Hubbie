@@ -26,12 +26,22 @@ partnersChannelId="Canal ID"
 playgroundChannelId="Canal ID"
 privateLogsChannelId="Canal ID"
 botRequestsChannelId="Canal ID"
+suggestionsChannelId="Canal ID"
 ```
 ## Ejecución
 
 ¡Ejecuta!
 
 `node index.js`
+
+## ¿Como reportar issues?
+Por favor, en caso de encontrar errores o bugs, sigue este formato
+```
+Como reproducir el bug: 
+Resultado obtenido: 
+Resultado esperado:
+Información extra: 
+```
 
 # Desarrolladores
 **Activos:**
