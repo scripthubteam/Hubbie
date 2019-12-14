@@ -3,7 +3,6 @@ const ruleChannel = process.env.ruleChannel;
 const Discord = require('discord.js');
 
 exports.run = async (client, msg, args) => {
-  const intRule = 0;
   args = args.join(' ').split('|').map((arg) => arg.trim());
   if (!msg.member.hasPermission('MANAGE_GUILD')) return msg.channel.send(':x: No posees los permisos necesarios.');
 

@@ -39,6 +39,7 @@ module.exports = async (client, member) => {
     // Se agregan roles correspondientes al usuario.
     member.addRole('606222613307457603');
 
+
     // Por útlimo muestra en el canal del personal que el usuario entró.
     client.channels.get(privateLogsChannelId).send(`**[USER] ${member.user.tag}** entró al servidor.`).catch((e) => {
       console.log(e);
