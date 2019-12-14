@@ -15,7 +15,7 @@ module.exports = async (client, member) => {
     if (!botExists) return client.channels.get(privateLogsChannelId).send(`:robot: **[COMÚN] ${member.user.username}** salió del servidor.`);
 
     // Añade roles correspondientes para ser el bot probado y aprobado.
-    member.addRole(member.guild.roles.find((r) => r.name === 'ToTest'));
+    member.addRole('617491727590096949');
 
     // Envía un mensaje de la entrada del bot al canal privado del personal del servidor.
     client.channels.get(privateLogsChannelId).send(`**[BOT] ${member.user.tag}** ha sido invitado al servidor y requiere de aprobación.`).catch((e) => {
@@ -37,7 +37,8 @@ module.exports = async (client, member) => {
     });
 
     // Se agregan roles correspondientes al usuario.
-    member.addRole(member.guild.roles.find((r) => r.name === 'Usuario'));
+    member.addRole('606222613307457603');
+
 
     // Por útlimo muestra en el canal del personal que el usuario entró.
     client.channels.get(privateLogsChannelId).send(`**[USER] ${member.user.tag}** entró al servidor.`).catch((e) => {
