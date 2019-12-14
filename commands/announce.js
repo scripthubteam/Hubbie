@@ -1,12 +1,8 @@
-require('dotenv').config();
 const {RichEmbed} = require('discord.js');
 const announceChannelId = process.env.announceChannelId;
 
 exports.run = async (client, msg, args) => {
   let depName;
-
-  if (!msg.member.hasPermission('MANAGE_GUILD')) return msg.channel.send(':x: No posees los permisos necesarios.');
-
   args = args.join(' ').split('|').map((arg) => arg.trim());
 
   if (!args[0]) {
@@ -46,11 +42,11 @@ exports.run = async (client, msg, args) => {
 
 
   // Departamento comunidad
-  if (msg.channel.id === '643948768118571028') depName = 'departamento comunitario';
+  if (msg.channel.id === process.env.communityDepChannelId) depName = 'departamento comunitario';
   // Departamento técnico
-  if (msg.channel.id === '643948656545890320') depName = 'departamento técnico';
+  if (msg.channel.id === process.env.developmentDepChannelId) depName = 'departamento técnico';
   // Departamento general
-  if (msg.channel.id === '609010510599421985') depName = 'departamento general';
+  if (msg.channel.id === process.env.generalDepChannelId) depName = 'departamento general';
   let toSend;
 
   if (args[3] === 'e') {
