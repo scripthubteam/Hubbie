@@ -5,7 +5,7 @@ const {RichEmbed} = require('discord.js');
 
 const BotManager = require('../lib/BotManager');
 const botManager = new BotManager();
-// Bot Modules
+// Bot Module
 
 module.exports = async (client, member) => {
   // Si el usuario es un bot, lo coloca para ser aprobado.
