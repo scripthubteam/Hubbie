@@ -34,6 +34,9 @@ exports.run = async (client, msg, args) => {
         return;
     }
 
+    let teamIdRole = "606222350228127765";
+    if (banUser.roles.some(r => teamIdRole.includes(r.id))) return msg.channel.send("No puedo banear a un miembro de Script Hub Team.")
+
     msg.guild.member(banUser).ban().catch(e => {
         console.log(e)
     });
