@@ -14,41 +14,41 @@ function makeId() {
 
 exports.run = async (client, msg, args) => {
     
-    if (!msg.member.hasPermission('KICK_MEMBERS')) return msg.channel.send(':x: No posees los permisos necesarios.');
+    if (!msg.member.hasPermission('BAN_MEMBERS')) return msg.channel.send(':x: No posees los permisos necesarios.');
 
-    let kickUser = msg.mentions.members.first();
-    let kickReason = args.join(" ").slice(22);
+    let banUser = msg.mentions.members.first();
+    let banReason = args.join(" ").slice(22);
 
-    if (!kickUser) {
+    if (!banUser) {
         msg.channel.send(":x: Debes mencionar un usuario.");
         return;
     }
 
-    if (!kickReason) {
+    if (!banReason) {
         msg.channel.send(":x: Debes especificar una razón.");
         return;
     }
 
-    if (!msg.guild.member(kickUser).kickable) {
-        msg.channel.send(":x: No puedo kickear a ese usuario.");
+    if (!msg.guild.member(banUser).bannable) {
+        msg.channel.send(":x: No puedo banear a ese usuario.");
         return;
     }
 
-    msg.guild.member(kickUser).kick().catch(e => {
+    msg.guild.member(banUser).ban().catch(e => {
         console.log(e)
     });
     let caseId = makeId();
     client.channels.get(caseLogsChannelId).send("```diff\n" +
-    "- El usuario "+kickUser.user.tag+"("+kickUser.id+") fue kickeado por el moderador/a "+msg.author.tag+" ("+msg.author.id+").\n" +
-    "+ Razón: "+kickReason+"\n" +
+    "- El usuario "+banUser.user.tag+"("+banUser.id+") fue baneado por el moderador/a "+msg.author.tag+" ("+msg.author.id+").\n" +
+    "+ Razón: "+banReason+"\n" +
     "+ Caso: "+caseId+"\n" +
     "```");
-    kickUser.send("Fuiste **kickeado** de Script Hub. Debido a **"+kickReason+"**.\nSi crees que ésto es incorrecto, contácta con un miembro del staff.\nCaso: "+caseId+"").catch(e => {
+    banUser.send("Fuiste **baneado** de Script Hub. Debido a **"+banReason+"**.\nSi crees que ésto es incorrecto, contácta con un miembro del staff.\nCaso: "+caseId+"").catch(e => {
         console.log(e)
     });
 }
 
 exports.aliases = [];
 exports.public = false;
-exports.description = 'Kickea a un usuario y genera un caso.';
-exports.usage = 's!kick @user razón';
+exports.description = 'Banea a un usuario y genera un caso.';
+exports.usage = 's!ban @user razón';

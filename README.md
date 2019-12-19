@@ -27,6 +27,7 @@ playgroundChannelId="Canal ID"
 privateLogsChannelId="Canal ID"
 botRequestsChannelId="Canal ID"
 suggestionsChannelId="Canal ID"
+caseLogsChannelId="Canal ID"
 ```
 ## Ejecución
 
