@@ -33,6 +33,8 @@ exports.run = async (client, msg, args) => {
         msg.channel.send(":x: No puedo kickear a ese usuario.");
         return;
     }
+    let teamIdRole = "606222350228127765";
+    if (kickUser.roles.some(r => teamIdRole.includes(r.id))) return msg.channel.send("No puedo kickear a un miembro de Script Hub Team.")
 
     msg.guild.member(kickUser).kick().catch(e => {
         console.log(e)
