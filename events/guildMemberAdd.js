@@ -5,7 +5,7 @@ const {RichEmbed} = require('discord.js');
 
 const BotManager = require('../lib/BotManager');
 const botManager = new BotManager();
-// Bot Modules
+// Bot Module
 
 module.exports = async (client, member) => {
   // Si el usuario es un bot, lo coloca para ser aprobado.
@@ -29,7 +29,7 @@ module.exports = async (client, member) => {
         .setColor(0x03e45c)
         .setTimestamp(new Date())
         .setFooter(`${member.guild.name} - N#${member.guild.memberCount}`)
-        .setImage('https://i.imgur.com/D56tkxB.png');
+        .setImage('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/86d67988638009.5ddc82b1376d3.jpg');
 
     // Se envía el Embed al canal general/global.
     client.channels.get(globalChannelId).send(member.user.toString(), embed).catch((e) => {
