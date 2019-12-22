@@ -25,7 +25,7 @@ module.exports = async (client, member) => {
     // Se crea un Embed para la bienvenida de cualquier usuario normal.
     const embed = new RichEmbed()
         .setTitle(`¡Bienvenido/a ${member.user.tag}!`)
-        .setDescription('Gracias por unirte a **Script Hub**.\n**—** Lee <#640985543630389288> para empezar tu recorrido por el servidor.\n**—** Lee <#606688095328272394> para seguir el fundamento del servidor.\n**—** ¿Necesitas ayuda? Consulta tus dudas en <#614201710855979102>.')
+        .setDescription('Gracias por unirte a **Script Hub**.\n**—** Lee <#640985543630389288> para empezar tu recorrido por el servidor.\n**—** Lee <#649405246308614144> para seguir el fundamento del servidor.\n**—** ¿Necesitas ayuda? Consulta tus dudas en <#614201710855979102>.')
         .setColor(0x03e45c)
         .setTimestamp(new Date())
         .setFooter(`${member.guild.name} - N#${member.guild.memberCount}`)
