@@ -1,55 +1,54 @@
 require('dotenv').config();
 const caseLogsChannelId = process.env.caseLogsChannelId;
-const {RichEmbed} = require('discord.js');
 
 function makeId() {
-    let result = '';
-    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let charactersLength = characters.length;
-    for ( let i = 0; i < 5; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  for ( let i = 0; i < 5; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }
 
 exports.run = async (client, msg, args) => {
-    
-    if (!msg.member.hasPermission('BAN_MEMBERS')) return msg.channel.send(':x: No posees los permisos necesarios.');
+  if (!msg.member.hasPermission('BAN_MEMBERS')) return msg.channel.send(':x: No posees los permisos necesarios.');
 
-    let banUser = msg.mentions.members.first();
-    let banReason = args.join(" ").slice(22);
+  const banUser = msg.mentions.members.first();
+  const banReason = args.join(' ').slice(22);
 
-    if (!banUser) {
-        msg.channel.send(":x: Debes mencionar un usuario.");
-        return;
-    }
+  if (!banUser) {
+    msg.channel.send(':x: Debes mencionar un usuario.');
+    return;
+  }
 
-    if (!banReason) {
-        msg.channel.send(":x: Debes especificar una razón.");
-        return;
-    }
+  if (!banReason) {
+    msg.channel.send(':x: Debes especificar una razón.');
+    return;
+  }
 
-    if (!msg.guild.member(banUser).bannable) {
-        msg.channel.send(":x: No puedo banear a ese usuario.");
-        return;
-    }
+  if (!msg.guild.member(banUser).bannable) {
+    msg.channel.send(':x: No puedo banear a ese usuario.');
+    return;
+  }
 
-    let teamIdRole = "606222350228127765";
-    if (banUser.roles.some(r => teamIdRole.includes(r.id))) return msg.channel.send("No puedo banear a un miembro de Script Hub Team.")
+  const teamIdRole = '606222350228127765';
+  if (banUser.roles.some((r) => teamIdRole.includes(r.id))) return msg.channel.send('No puedo banear a un miembro de Script Hub Team.');
 
-    msg.guild.member(banUser).ban().catch(e => {
-        console.log(e)
-    });
-    let caseId = makeId();
-    client.channels.get(caseLogsChannelId).send("```diff\n" +
-    "- El usuario "+banUser.user.tag+"("+banUser.id+") fue baneado por el moderador/a "+msg.author.tag+" ("+msg.author.id+").\n" +
-    "+ Razón: "+banReason+"\n" +
-    "+ Caso: "+caseId+"\n" +
-    "```");
-    banUser.send("Fuiste **baneado** de Script Hub. Debido a **"+banReason+"**.\nSi crees que ésto es incorrecto, contácta con un miembro del staff.\nCaso: "+caseId+"").catch(e => {
-        console.log(e)
-    });
-}
+  msg.guild.member(banUser).ban().catch((e) => {
+    console.log(e);
+  });
+  const caseId = makeId();
+  msg.channel.send('Baneaste satisfactoriamente a '+banUser.tag+'.');
+  client.channels.get(caseLogsChannelId).send('```diff\n' +
+    '- El usuario '+banUser.user.tag+'('+banUser.id+') fue baneado por el moderador/a '+msg.author.tag+' ('+msg.author.id+').\n' +
+    '+ Razón: '+banReason+'\n' +
+    '+ Caso: '+caseId+'\n' +
+    '```');
+  banUser.send('Fuiste **baneado** de Script Hub. Debido a **'+banReason+'**.\nSi crees que ésto es incorrecto, contácta con un miembro del staff.\nCaso: '+caseId+'').catch((e) => {
+    console.log(e);
+  });
+};
 
 exports.aliases = [];
 exports.public = false;
