@@ -1,7 +1,7 @@
 require('dotenv').config();
 const globalChannelId = process.env.globalChannelId;
 const privateLogsChannelId = process.env.privateLogsChannelId;
-const {RichEmbed} = require('discord.js');
+const { RichEmbed } = require('discord.js');
 
 const BotManager = require('../lib/BotManager');
 const botManager = new BotManager();
@@ -24,12 +24,13 @@ module.exports = async (client, member) => {
   } else {
     // Se crea un Embed para la bienvenida de cualquier usuario normal.
     const embed = new RichEmbed()
-        .setTitle(`¡Bienvenido/a ${member.user.tag}!`)
-        .setDescription('Gracias por unirte a **Script Hub**.\n**—** Lee <#640985543630389288> para empezar tu recorrido por el servidor.\n**—** Lee <#606688095328272394> para seguir el fundamento del servidor.\n**—** ¿Necesitas ayuda? Consulta tus dudas en <#614201710855979102>.')
-        .setColor(0x03e45c)
-        .setTimestamp(new Date())
-        .setFooter(`${member.guild.name} - N#${member.guild.memberCount}`)
-        .setImage('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/86d67988638009.5ddc82b1376d3.jpg');
+      .setTitle(`¡Bienvenido/a ${member.user.tag}!`)
+      .setDescription('Gracias por unirte a **Script Hub**.\n**—** Lee <#658406257425776640> para empezar tu recorrido por el servidor.\n**—** Lee <#658482751833505842> para seguir el fundamento del servidor.\n**—** ¿Necesitas ayuda? Consulta tus dudas en la categoría <#606203446672228352>.')
+      .setColor(0x03e45c)
+      .setTimestamp(new Date())
+      .setFooter(`${member.guild.name} - N#${member.guild.memberCount}`)
+      .setImage('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/86d67988638009.5ddc82b1376d3.jpg');
+
 
     // Se envía el Embed al canal general/global.
     client.channels.get(globalChannelId).send(member.user.toString(), embed).catch((e) => {
@@ -44,5 +45,5 @@ module.exports = async (client, member) => {
     client.channels.get(privateLogsChannelId).send(`**[USER] ${member.user.tag}** entró al servidor.`).catch((e) => {
       console.log(e);
     });
-  };
+  }
 };

@@ -43,7 +43,9 @@ exports.run = async (client, msg, args) => {
       .setTimestamp();
 
   await client.channels.get(playgroundChannelId).send(embedServer);
-  await client.users.get(acceptedBot.ownerId).send(embedOwner);
+  await client.users.get(acceptedBot.ownerId).send(embedOwner).catch((e) => {
+    msg.channel.send('El mensaje de aceptación no pudo ser enviado debido a que el usuario posee los mensajes desactivados.');
+  });
 
   // Se envía un mensaje Embed al dueño de que el bot ha sido aceptado correctamente.
 };

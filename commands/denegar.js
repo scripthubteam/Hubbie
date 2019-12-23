@@ -33,7 +33,7 @@ exports.run = async (client, msg, args) => {
     // TODO: Convertir a embed
     userOwner.send(`:information_source: Mensaje del **equipo de aprobaciones de aplicaciones de Script Hub** enviado por el encargado en **aprobación de solicitudes de bots** ー **${msg.author.tag}**:\n\n¡Hola **${userOwner.tag}**! Tenemos información de tu bot: **${userBot.user.tag}**.\nEste mensaje fue enviado para notificarte nuestra decisión sobre la solicitud dada el día **${new Date().toLocaleDateString()}** a las **${new Date().toLocaleTimeString()}** hora GMT (UTC) para la aprobación de tu bot en nuestros servicios:\n> ${args.slice(1).join(' ')}`)
         .catch((e) => {
-          console.error(e);
+          msg.channel.send('El mensaje de rechazo no pudo ser enviado debido a que el usuario posee los mensajes desactivados.');
         });
   }
 
