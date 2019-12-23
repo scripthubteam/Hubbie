@@ -9,7 +9,7 @@ app.get('*', (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log(`'Pagina web lista`);
+  console.log(`Pagina web lista`);
 });
 
 // Código del bot en sí.

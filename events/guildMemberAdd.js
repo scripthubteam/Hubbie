@@ -31,6 +31,7 @@ module.exports = async (client, member) => {
       .setFooter(`${member.guild.name} - N#${member.guild.memberCount}`)
       .setImage('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/86d67988638009.5ddc82b1376d3.jpg');
 
+
     // Se envía el Embed al canal general/global.
     client.channels.get(globalChannelId).send(member.user.toString(), embed).catch((e) => {
       console.log(e);
