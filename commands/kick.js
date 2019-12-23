@@ -38,6 +38,7 @@ exports.run = async (client, msg, args) => {
     console.log(e);
   });
   const caseId = makeId();
+  msg.channel.send('Kickeaste satisfactoriamente a '+kickUser.tag+'.');
   client.channels.get(caseLogsChannelId).send('```diff\n' +
     '- El usuario '+kickUser.user.tag+'('+kickUser.id+') fue kickeado por el moderador/a '+msg.author.tag+' ('+msg.author.id+').\n' +
     '+ Razón: '+kickReason+'\n' +
