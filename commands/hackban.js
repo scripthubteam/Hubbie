@@ -54,3 +54,8 @@ exports.run = async (client, msg, args) => {
     }).catch((e) => console.log(e));
   });
 };
+
+exports.aliases = ['hb'];
+exports.public = false;
+exports.description = 'Banea a un usuario que no esté en el servidor.';
+exports.usage = 's!hackban id razón';
