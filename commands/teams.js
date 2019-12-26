@@ -63,9 +63,13 @@ exports.run = async (client, msg, args) => {
   try {
     let teamkeys = Object.keys(teamroles);
     let teamvalues = Object.values(teamroles);
+    if (!args[0])
+      return msg.channel.send(
+        ":x: | Los equipos validos son: `" + teamkeys.join(", ") + "`"
+      );
     for (let x in teamkeys) {
       for (let y in teamvalues) {
-        if (args[0].toLowerCase() === teamkeys[x] && x === y) {
+        if (args[0] === teamkeys[x] && x === y) {
           let membersrole = client.guilds
             .get("606199542605414428")
             .roles.get(teamvalues[y].id)
