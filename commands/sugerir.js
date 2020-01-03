@@ -3,8 +3,8 @@ const {RichEmbed} = require("discord.js")
 exports.run = async (client, msg, args) => {
     let color = {
         naranja: "#FF9D00",
-        verde: 0x43b581,
-        rojo: 0xf04947
+        verde: "#0x43b581",
+        rojo: "#0xf04947#
     }
     let embed = new RichEmbed() // Se crea un nuevo embed que utilizaremos todo el tiempo.
         .setAuthor(msg.author.tag, msg.author.displayAvatarURL) // Ponemos el avatar y el tag del autor.
