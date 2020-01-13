@@ -1,31 +1,34 @@
-require("dotenv").config();
-const privateLogsChannelId = process.env.privateLogsChannelId;
-const { RichEmbed } = require("discord.js");
-
-module.exports = async (client, oldMessage, newMessage) => {
-  // Condiciones fundamentales por si el mensaje tiene embed y se "edita".
-  if (oldMessage == newMessage) return;
-  if (oldMessage.content === newMessage.content) return;
-
-  // Se crea el Embed con el contenido anterior y el actual.
-  const embed = new RichEmbed()
-    .setDescription("Mensaje editado en " + oldMessage.channel.toString())
-    .addField(
-      "> Usuario:",
-      `<@${oldMessage.author.id}> \`(${oldMessage.author.id}\`)`
-    )
-    .addField(
-      "> Antes",
-      oldMessage.content,
-      oldMessage.content.lenght < 16 ? true : false
-    )
-    .addField("> Después", newMessage.content, true);
-
-  // Se envía el Embed al canal del registro privado.
-  client.channels
-    .get(privateLogsChannelId)
-    .send(embed)
-    .catch(e => {
+let { RichEmbed } = require('discord.js');
+module.exports = class MessageUpdateEvent {
+  constructor(client) {
+    this.client = client;
+  }
+  async run(oldMessage, newMessage) {
+    if (oldMessage == newMessage) return;
+    if (oldMessage.content === newMessage.content) return;
+    this.client.emit('message', newMessage);
+    const embed = new RichEmbed()
+      .setColor(0xf1c40f)
+      .setTitle(
+        '<:shMiscTickY:659827689930096673> • Mensaje editado en ' +
+          oldMessage.channel.name
+      )
+      .addField(
+        '> Usuario:',
+        `<@${oldMessage.author.id}> \`(${oldMessage.author.id})\``
+      )
+      .addField(
+        '> Antes',
+        oldMessage.content,
+        oldMessage.content.lenght < 16 ? true : false
+      )
+      .addField('> Después', newMessage.content, true);
+    this.client.channels
+      .get(this.client.config.servidor.categorias.staff.canales.logs)
+      .send({ embed });
+    try {
+    } catch (e) {
       console.error(e);
-    });
+    }
+  }
 };

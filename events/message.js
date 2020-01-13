@@ -1,27 +1,78 @@
-require('dotenv').config();
-// Bot Modules
+module.exports = class MessageEvent {
+  constructor(client) {
+    this.client = client;
+  }
+  async run(message) {
+    let client = this.client;
+    try {
+      let data = {};
+      let prefix;
+      if (message.guild) {
+        let guild = await client.findOrCreateGuild({ id: message.guild.id });
+        data.guild = guild;
+        let member = await client.findOrCreateMember({
+          id: message.author.id,
+          guildID: message.guild.id
+        });
+        data.member = member;
+      }
+      let user = await client.findOrCreateUser({ id: message.author.id });
+      data.user = user;
 
-module.exports = async (client, message) => {
-  // Condiciones útiles para saber si es un bot, si está en mensaje directo y si no es un comando.
-  if (message.author.bot) return;
-  if (message.channel.type === 'dm') return;
-  if (!message.content.toLowerCase().startsWith(process.env.PREFIX)) return;
+      message.guild
+        ? (prefix = data.guild.prefix)
+        : (prefix = client.config.bot.prefix);
+      if (!message.content.startsWith(prefix) || message.author.bot) return;
+      let args = message.content
+        .slice(prefix.length)
+        .trim()
+        .split(/ +/g),
+        command = args.shift().toLowerCase(),
+        cmd =
+          client.commands.get(command) ||
+          client.commands.get(client.aliases.get(command));
 
-  // Definición de cosas útiles como argumentos y el propio comando.
-  const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
-  const cmd = args.shift().toLowerCase();
-
-  // Se obtiene el comando por medio de alias o su propio nombre.
-  const cmdData = await client.cmds.get(cmd) || await client.cmds.find((c) => c.aliases.some((alias) => alias.toLowerCase() == cmd));
-
-  if (!cmdData) return;
-
-  try {
-    // Se ejecuta la función run del archivo del comando obtenido.
-    cmdData.runFile.run(client, message, args);
-    console.log(`${message.author.tag} ejecutó el comando ${cmd}`);
-  } catch (err) {
-    // Si hay algún error coloca una variable a true y muestra el error en consola.
-    console.error(err);
+      if (!cmd) return;
+      if (!cmd.config.enabled) {
+        return message.channel.send(':x: | Este comando está deshabilitado.');
+      }
+      if (
+        cmd.config.ownerOnly &&
+        !client.config.owners.includes(message.author.id)
+      ) {
+        return message.channel.send(
+          ':x: | Este comando es solo para los desarrolladores.'
+        );
+      }
+      if (cmd.config.guildOnly && !message.guild) {
+        return message.channel.send(
+          ':x: | Este comando solo se puede usar en el servidor.'
+        );
+      }
+      if (message.guild) {
+        let needp = [];
+        cmd.config.memberPermissions.forEach(p => {
+          if (!message.channel.permissionsFor(message.member).has(p)) {
+            needp.push(p);
+          }
+        });
+        if (needp.length > 0) {
+          return message.channel.send(
+            ':x: | No puedes utilizar este comando.\nNecesitas los siguientes permisos:\n`' +
+            needp.map(p => `\`${p}\``).join('`, `')
+          );
+        }
+      }
+      try {
+        cmd.run(message, args, data);
+        console.log(
+          message.author.tag + ' ha usado el comando `' + cmd.help.name + '`'
+        );
+      } catch (e) {
+        console.error(e);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
 };
