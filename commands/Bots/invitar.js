@@ -37,14 +37,11 @@ module.exports = class Bots extends Command {
               ":x: | Necesitas especificar el prefijo."
             );
           } else {
-            let user;
-            try {
-              user = await this.client.fetchUser(args[0]);
-            } catch {
-              return message.channel.send(
-                ":x: | Esa no es una ID válida, la ID debe ser el identificador de la aplicación del bot."
-              );
-            }
+            let user = await this.client.fetchUser(args[0]);
+            if (!user) return message.channel.send(
+              ":x: | Esa no es una ID válida, la ID debe ser el identificador de la aplicación del bot."
+            );
+
             if (!user.bot) {
               return message.channel.send(
                 ":x: | La ID introducida no pertenece a un bot."

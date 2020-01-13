@@ -28,12 +28,8 @@ module.exports = class Mods extends Command {
             ':x: | Necesitas colocar la ID de un caso.'
           );
         } else {
-          let user;
-          try {
-            user = await this.client.fetchUser(args[0]);
-          } catch {
-            return message.channel.send(':x: | El usuario no existe.');
-          }
+          let user = await this.client.fetchUser(args[0]);
+          if (!user) return message.channel.send(':x: | El usuario no existe.');
           let member = await this.client.findOrCreateMember({
             id: user.id,
             guildID: message.guild.id
