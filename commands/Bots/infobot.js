@@ -133,7 +133,7 @@ module.exports = class Bots extends Command {
                 ":white_check_mark: | El prefijo se ha editado correctamente.\nNuevo Prefijo: `" +
                 args[2] +
                 "`"
-              );
+              , { disableEveryone: true });
               bot.info.prefix = args[2];
               await bot.save();
             }
@@ -152,7 +152,7 @@ module.exports = class Bots extends Command {
                 ":white_check_mark: | La descripción se ha editado correctamente.\nNueva Descripción:\n`" +
                 args.slice(2).join(" ") +
                 "`"
-              );
+              , { disableEveryone: true });
               bot.info.description = args.slice(2).join(" ");
               await bot.save();
             }
