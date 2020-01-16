@@ -106,31 +106,28 @@ module.exports = class Teams extends Command {
                         let embed = new RichEmbed();
                         let namerole = teamkeys[x];
                         let name = namerole.charAt(0).toUpperCase() + namerole.slice(1);
-                        try {
-                            if (namerole === "bots") {
-                                let getallbots = await this.client.botsys.getAllBots();
-                                if (_.isEmpty(getallbots)) {
-                                    message.channel.send(":x: | El **Club de Bots** está vacio.");
-                                    return;
-                                }
-                                for (let x in getallbots) {
-                                    embed
-                                        .setTitle("🛡️🎏 | Club de Bots")
-                                        .setColor(0xf7671e)
-                                        .setDescription(
-                                            ">>> ```" +
-                                            this.client.users.get(getallbots[x].id).tag +
-                                            " ```"
-                                        )
-                                        .setTimestamp();
-                                    message.channel.send(embed);
-                                    return;
-                                }
+                        if (namerole === "bots") {
+                            let getallbots = await this.client.botsys.getAllBots();
+                            if (_.isEmpty(getallbots)) {
+                                message.channel.send(":x: | El **Club de Bots** está vacio.");
                                 return;
                             }
-                        } catch (e) {
-                            console.error(e)
+                            for (let x in getallbots) {
+                                embed
+                                    .setTitle("🤖 | Club de Bots")
+                                    .setColor(0xf7671e)
+                                    .setDescription(
+                                        ">>> ```" +
+                                        this.client.users.get(getallbots[x].id).tag +
+                                        " ```"
+                                    )
+                                    .setTimestamp();
+                                message.channel.send(embed);
+                                return;
+                            }
+                            return;
                         }
+
                         if (namerole === "comunidad" || namerole === "tecnico") {
                             namerole = "Departamento " + name;
                             name = namerole;
