@@ -21,10 +21,10 @@ module.exports = class Bots extends Command {
       server = this.client.config.servidor;
     try {
       if (
-        !message.member.roles.has(server.roles.staff.departamento.comunidad)
+        !message.member.roles.has(server.roles.staff.sht)
       ) {
         return message.channel.send(
-          ":x: | No eres del Departamento Comunidad."
+          ':x: | No eres del equipo de Script Hub.'
         );
       } else {
         if (!args[0]) {
@@ -81,8 +81,8 @@ module.exports = class Bots extends Command {
                       .addField(
                         "Playground",
                         "Puedes ir al canal <#" +
-                          server.categorias.bots.canales.playground +
-                          "> para probar a tu bot."
+                        server.categorias.bots.canales.playground +
+                        "> para probar a tu bot."
                       )
                       .addField(
                         "Información",
@@ -103,8 +103,8 @@ module.exports = class Bots extends Command {
                       .addField(
                         "Tu bot ha sido aceptado en el servidor",
                         "Puedes ir a probarlo en <#" +
-                          server.categorias.bots.canales.playground +
-                          ">"
+                        server.categorias.bots.canales.playground +
+                        ">"
                       )
                       .addField("Bot", `<@${bot.id}>`, true)
                       .addField(

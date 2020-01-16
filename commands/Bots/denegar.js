@@ -21,10 +21,10 @@ module.exports = class Bots extends Command {
             server = this.client.config.servidor;
         try {
             if (
-                !message.member.roles.has(server.roles.staff.departamento.comunidad)
+                !message.member.roles.has(server.roles.staff.sht)
             ) {
                 return message.channel.send(
-                    ':x: | No eres del Departamento Comunidad.'
+                    ':x: | No eres del equipo de Script Hub.'
                 );
             } else {
                 if (!args[0]) {

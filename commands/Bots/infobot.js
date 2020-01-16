@@ -23,15 +23,25 @@ module.exports = class Bots extends Command {
         return message.channel.send(":x: | Necesitas mencionar a un bot");
       } else {
         let options = ["votar", "prefijo", "descripción"];
-        let member = message.mentions.members.first() || message.guild.members.find(x => `${x.displayName}${x.user.tag}`.toLowerCase().includes(args[0].toLowerCase())) || message.guild.members.get(args[0]);
+        let member =
+          message.mentions.members.first() ||
+          message.guild.members.find(x =>
+            `${x.displayName}${x.user.tag}`
+              .toLowerCase()
+              .includes(args[0].toLowerCase())
+          ) ||
+          message.guild.members.get(args[0]);
         let botDBExists = await this.client.botsys.botExists(member.user.id);
         if (!botDBExists) {
-          message.channel.send(":x: | Este bot no existe en la base de datos.")
+          message.channel.send(":x: | Este bot no existe en la base de datos.");
         } else {
-          let bot = await this.client.botsys.findOrCreateBot({ id: member.user.id });
+          let bot = await this.client.botsys.findOrCreateBot({
+            id: member.user.id
+          });
           let owner = await this.client.fetchUser(bot.info.ownerID);
           if (!args[1]) {
-            let state = bot.invite.state, State;
+            let state = bot.invite.state,
+              State;
             if (state === 0) {
               State = "Esperando aprobación...";
             } else if (state === 1) {
@@ -46,10 +56,7 @@ module.exports = class Bots extends Command {
               .setTitle(
                 (bot.info.verified
                   ? "<:shIconVerificado:632377244232318986> "
-                  : "") +
-                "¡Información del bot " +
-                member.displayName +
-                "!"
+                  : "") + member.displayName
               )
               .setThumbnail(member.user.displayAvatarURL)
               .setDescription(
@@ -73,9 +80,7 @@ module.exports = class Bots extends Command {
                 true
               )
               .addField("Estado", State)
-              .addField(
-                "Dueño/a", owner.tag
-              );
+              .addField("Dueño/a", owner.tag);
             message.channel.send({ embed });
           } else if (args[1].toLowerCase() === options[0]) {
             let votes = ["up", "down"];
