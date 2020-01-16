@@ -101,7 +101,8 @@ module.exports = class Bots extends Command {
               down: 0
             },
             voters: [],
-            nota: []
+            nota: [],
+            description: "Beep boop"
           };
           bot.invite = {
             state: 0,
