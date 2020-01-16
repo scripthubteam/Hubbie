@@ -62,7 +62,9 @@ module.exports = {
       },
       comunidad: {
         verificado: env.roleVeri,
-        usuario: env.roleUser
+        usuario: env.roleUser,
+        veterano: env.roleVet,
+        soporte: env.roleSupp
       },
       bots: {
         gen: env.roleBotsGen,
