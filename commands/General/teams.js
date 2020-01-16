@@ -12,7 +12,7 @@ module.exports = class Teams extends Command {
             enabled: true,
             ownerOnly: false,
             guildOnly: false,
-            aliases: ['equipo', 'team', 'equipos'],
+            aliases: ['equipo', 'equipos', 'teams'],
             memberPermissions: [],
             dirname: __dirname
         });
@@ -75,6 +75,12 @@ module.exports = class Teams extends Command {
             },
             bots: {
                 id: "606678494482661378"
+            },
+            veteranos: {
+                id: "667451379387858964"
+            },
+            soporte: {
+                id: "606346140413329409"
             }
         };
         try {
@@ -82,7 +88,7 @@ module.exports = class Teams extends Command {
             let teamvalues = Object.values(teamroles);
             if (!args[0])
                 return message.channel.send(
-                    ":x: | Los equipos validos son: `" + teamkeys.join(", ") + "`"
+                    ":x: | Los equipos existentes son: `" + teamkeys.join(", ") + "`"
                 );
             for (let x in teamkeys) {
                 for (let y in teamvalues) {
@@ -100,22 +106,30 @@ module.exports = class Teams extends Command {
                         let embed = new RichEmbed();
                         let namerole = teamkeys[x];
                         let name = namerole.charAt(0).toUpperCase() + namerole.slice(1);
-                        if (namerole === "bots") {
-                            let getallbots = await this.client.botsys.getAllBots();
-                            for (let x in getallbots) {
-                                embed
-                                    .setTitle("🛡️🎏 | Listado de Bots")
-                                    .setColor(0xf7671e)
-                                    .setDescription(
-                                        ">>> ```" +
-                                        this.client.users.get(getallbots[x].id).tag +
-                                        " ```"
-                                    )
-                                    .setTimestamp();
-                                message.channel.send(embed);
+                        try {
+                            if (namerole === "bots") {
+                                let getallbots = await this.client.botsys.getAllBots();
+                                if (_.isEmpty(getallbots)) {
+                                    message.channel.send(":x: | El **Club de Bots** está vacio.");
+                                    return;
+                                }
+                                for (let x in getallbots) {
+                                    embed
+                                        .setTitle("🛡️🎏 | Club de Bots")
+                                        .setColor(0xf7671e)
+                                        .setDescription(
+                                            ">>> ```" +
+                                            this.client.users.get(getallbots[x].id).tag +
+                                            " ```"
+                                        )
+                                        .setTimestamp();
+                                    message.channel.send(embed);
+                                    return;
+                                }
                                 return;
                             }
-                            return;
+                        } catch (e) {
+                            console.error(e)
                         }
                         if (namerole === "comunidad" || namerole === "tecnico") {
                             namerole = "Departamento " + name;
