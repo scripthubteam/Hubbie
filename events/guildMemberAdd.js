@@ -28,11 +28,11 @@ module.exports = class GuildMemberAddEvent {
           .setColor(this.client.colors.hub)
           .setTitle(`¡Bienvenido/a ${member.displayName}!`)
           .setDescription(
-            `Gracias por unirte a **${member.guild.name}**.\n~ Lee <#${servidor.categorias.info.canales.intro}> para empezar tu recorrido por el servidor.\n~ Lee <#${servidor.categorias.info.canales.rules}> para seguir el fundamento del servidor.\n~ ¿Necesitas ayuda? Consulta tus dudas en la categoría <#${servidor.categorias.langs.id}>.`
+            `Gracias por unirte a **${member.guild.name}**.\n~ Lee <#${servidor.categorias.info.canales.intro}> para empezar tu recorrido por el servidor.\n~ Lee [las reglas](https://scripthubteam.com/reglas) para seguir el fundamento del servidor.\n~ ¿Necesitas ayuda? Consulta tus dudas en la [plataforma de soporte](https://soporte.scripthubteam.com).`
           )
           .setFooter(`Usuario número: #${member.guild.memberCount}`)
           .setImage(
-            "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/86d67988638009.5ddc82b1376d3.jpg"
+            "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/91428790768793.5e1fd7f3d4c51.png"
           );
         member.addRole(servidor.roles.comunidad.usuario);
         this.client.channels
