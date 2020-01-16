@@ -112,9 +112,8 @@ module.exports = class Bots extends Command {
           await data.guild.save();
         }
       }
+    } catch (e) {
+      console.error(e);
     }
-    } catch(e) {
-    console.error(e);
   }
-}
 };
