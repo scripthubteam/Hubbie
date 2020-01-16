@@ -114,7 +114,7 @@ module.exports = class Teams extends Command {
                             }
                             for (let x in getallbots) {
                                 embed
-                                    .setTitle("🛡️🎏 | Club de Bots")
+                                    .setTitle("🤖 | Club de Bots")
                                     .setColor(0xf7671e)
                                     .setDescription(
                                         ">>> ```" +
