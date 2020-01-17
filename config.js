@@ -8,7 +8,7 @@ module.exports = {
   bot: {
     prefix: env.botPrefix
   },
-  owners: [env.ownLau, env.ownDev, env.ownMon],
+  owners: [env.ownLau, env.ownDev],
   servidor: {
     id: env.servID,
     categorias: {
